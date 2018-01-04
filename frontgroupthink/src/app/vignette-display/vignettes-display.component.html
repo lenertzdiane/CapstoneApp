@@ -1,0 +1,37 @@
+
+
+<div class="col-sm-8">
+  <div class="row">
+    <div class="col-sm-2">
+      <label for="Name">Name</label>
+    </div>
+    <div class="col-sm-2">
+      <label for="Text">Text</label>
+    </div>
+    <div class="col-sm-2">
+      <label for="Characters">Characters</label>
+    </div>
+    <div class="col-sm-2">
+      <label for="Location">Location</label>
+    </div>
+  </div>
+  <div class="row" *ngFor="let vignette of vignettes" (click)="setEditVignette(vignette)">
+    <div class="col-sm-2">
+      {{vignette.name}}
+    </div>
+    <div class="col-sm-2">
+      {{vignette.text}}
+    </div>
+    <div class="col-sm-2">
+      {{vignette.characters}}
+    </div>
+    <div class="col-sm-2">
+      {{vignette.location}}
+    </div>
+    <div class="col-sm-2">
+      <button class="btn btn-default" (click)="deleteVignette(vignette)">Delete</button>
+    </div>
+  </div>
+  <div>
+
+  <vignettes-edit [vignette]="editVignette" ></vignettes-edit>
