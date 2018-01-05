@@ -1,14 +1,9 @@
 <div class= "container-fluid full-width">
   <div class="row row-no-gutter">
 
-    <div class="col-sm-1" id="nav">
-      <div class="row">
-        <a class="col-sm-12" routerLink="/add">Add</a>
-        <a class="col-sm-12" routerLink="/manage">Manage</a>
-        <a class="col-sm-12" routerLink="/reader">Reader</a>
-      </div>
-    </div>
 
+
+    <app-menu>  </app-menu>
     <div class = "col-sm-5">
       <label for="insertvignette">New Vignette:</label>
       <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>

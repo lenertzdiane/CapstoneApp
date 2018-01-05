@@ -5,7 +5,7 @@ export class Vignette {
         public name: string,
         public text : string,
         public characters: Array<string>,
-        public location : string,
+        public location : string, //geoJSON
     ){}
 
     static CreateDefault(): Vignette {

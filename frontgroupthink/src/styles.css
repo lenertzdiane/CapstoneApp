@@ -19,6 +19,7 @@
   margin: 2vw;
   max-height: 10vw;
   overflow: scroll;
+  background-color: white; 
 }
 
 #text-input {
@@ -34,4 +35,8 @@
  text-transform: uppercase;
  text-align: center;
  font-weight: bold;
+}
+
+body {
+  background-color: lightgrey;
 }

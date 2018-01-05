@@ -5,6 +5,7 @@ import { VignetteDisplayComponent } from './vignette-display/vignettes-display.c
 import { AuthorComponent } from './author/author.component'
 import { HomeComponent } from './home/home.component'
 import { ReaderComponent } from './reader/reader.component'
+import { NotesComponent } from './notes/notes.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'reader', component: ReaderComponent },
   { path: 'add', component: VignetteComponent },
   { path: 'manage', component: VignetteDisplayComponent }
+  { path: 'notes', component: NotesComponent },
 ];
 
 //The method is called forRoot() because you configure the router at the application's

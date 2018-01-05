@@ -17,10 +17,12 @@ import { AuthorComponent } from './author/author.component';
 import { HomeComponent } from './home/home.component';
 import { ReaderComponent } from './reader/reader.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { NotesComponent } from './notes/notes.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent
   ],
   imports: [
     BrowserModule,
