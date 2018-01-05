@@ -1,14 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-#map {
+#mapid, #map {
   height: 500px;
   vertical-align: top;
   display: inline-block;
   max-width: 100%;
   position: fixed;
   margin-left: 0;
+  overflow: scroll;
 }
+
+
 
 #nav {
   height: 100vw;
@@ -19,7 +22,7 @@
   margin: 2vw;
   max-height: 10vw;
   overflow: scroll;
-  background-color: white; 
+  background-color: white;
 }
 
 #text-input {
@@ -39,4 +42,9 @@
 
 body {
   background-color: lightgrey;
+}
+
+.container {
+  max-height: 100vw;
+  overflow: scroll;
 }

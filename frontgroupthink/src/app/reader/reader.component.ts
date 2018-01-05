@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Vignette } from '../models/vignette'
 import { VignetteService } from '../services/vignettes.service';
 import * as L from "leaflet";
-import { MapService } from "../services/map.service";
+import { MapComponent } from '../map/map.component'
 
 
 @Component({
@@ -10,16 +10,17 @@ import { MapService } from "../services/map.service";
   templateUrl: './reader.component.html',
   styleUrls: ['./reader.component.css']
 })
+
 export class ReaderComponent implements OnInit {
+  // @ViewChild('myMap') mapComponent: MapComponent;
+
   vignettes: Vignette[];
   editVignette: Vignette;
   searchCriteria: string;
-
+  scrollTop: number;
 
   constructor(
-    private vignetteService: VignetteService,
-    private mapService: MapService
-  ) { }
+    private vignetteService: VignetteService) { }
 
 
   ngOnInit() {
@@ -27,20 +28,15 @@ export class ReaderComponent implements OnInit {
     this.searchCriteria = '';
     this.getVignettes();
 
-    let map = L.map("map", {
-      zoomControl: false,
-      center: L.latLng(41.79, -87.65),
-      zoom: 13,
-      minZoom: 8,
-      maxZoom: 19,
-      layers: [this.mapService.baseMaps.OpenStreetMap]
-    });
+  }
 
-    L.control.zoom({ position: "topright" }).addTo(map);
-    L.control.layers(this.mapService.baseMaps).addTo(map);
-    L.control.scale().addTo(map);
 
-    this.mapService.map = map;
+  handleScroll(scrollTop) {
+    console.log('in handleScroll')
+    this.scrollTop = scrollTop;
+
+    // this.mapComponent.handleScrollTop(scrollTop)
+
   }
 
   getVignettes(){

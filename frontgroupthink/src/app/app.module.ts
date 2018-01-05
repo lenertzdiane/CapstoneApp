@@ -11,18 +11,22 @@ import { VignetteEditComponent } from './vignette-edit/vignettes-edit.component'
 
 import { VignetteService } from './services/vignettes.service';
 import { MapService } from './services/map.service';
+import { D3Service } from './services/d3.service';
+
 
 import { AppRoutingModule } from './/app-routing.module';
 import { AuthorComponent } from './author/author.component';
 import { HomeComponent } from './home/home.component';
 import { ReaderComponent } from './reader/reader.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule} from '@angular/material/grid-list';
 import { NotesComponent } from './notes/notes.component';
 import { MenuComponent } from './menu/menu.component';
+import { ScrollAnimateDirective } from './directives/scroll-animate.directive';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,7 @@ import { MenuComponent } from './menu/menu.component';
     AppRoutingModule,
     MatGridListModule
   ],
-  providers: [VignetteService, MapService],
+  providers: [VignetteService, MapService, D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

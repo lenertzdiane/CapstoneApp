@@ -1,24 +1,26 @@
-<div class= "container-fluid full-width">
+<div class= "container-fluid full-width" >
   <div class="row row-no-gutter">
+    <app-menu></app-menu>
 
-<app-menu></app-menu>
-<div class = "col-sm-5">
-  <div class="" *ngFor="let vignette of vignettes">
-    <div class="">
-      {{vignette.name}}
+    <div appScrollAnimate [callback] = "handleScroll" class = "col-sm-5 container" >
+      <div class="" *ngFor="let vignette of vignettes">
+        <div class="">
+          {{vignette.name}}
+        </div>
+        <div class="">
+          {{vignette.text}}
+        </div>
+        <div class="">
+          {{vignette.location}}
+        </div>
+      </div>
+
     </div>
-    <div class="">
-      {{vignette.text}}
+
+    <div class="" >
+      <app-map [scrollTop]="scrollTop" id = "mapid"></app-map>
     </div>
-    <div class="">
-      {{vignette.location}}
-    </div>
+
+
   </div>
-
-</div>
-  <div class="col-sm-5" id = "map">
-  </div>
-
-
-</div>
 </div>
