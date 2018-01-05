@@ -11,6 +11,8 @@ export class VignetteEditComponent implements OnInit {
   @Input() vignette: Vignette;
 
   editVignette: Vignette
+  newVignette: Vignette;
+  vignettes: Vignette[]
 
 
   constructor(

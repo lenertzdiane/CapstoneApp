@@ -42,33 +42,33 @@ router.post('/insertNewVignette', function(req, res, next) {
   });
 });
 
-// router.delete('/deleteVignette', function(req, res, next) {
-//   Vignette.remove({_id : req.body.id}), function(err) {
-//     if (err) {
-//       console.log("not removed!");
-//       res.status(400);
-//       res.send();
-//     }
-//
-//     console.log("removed!");
-//     res.send({status: 'ok'});
-//   });
-// });
+router.post('/deleteVignette', function(req, res, next) {
+  Vignette.remove({id : req.body._id}, function(err) {
+    if (err) {
+      console.log("not removed!");
+      res.status(400);
+      res.send();
+    }
 
-// router.put('/updateVignette', function(req, res, next) {
-//   var vignette = new Vignette(req.body);
-//   console.log(res);
-//   Vignette.update({_id : req.body.id}), vignette, function(err) {
-//     if (err) {
-//       console.log("not updated!");
-//       res.status(400);
-//       res.send();
-//     }
-//
-//     console.log("updated!");
-//     res.send({status: 'ok'});
-//   });
-// });
+    console.log("removed!");
+    res.send({status: 'ok'});
+  });
+});
+
+router.post('/updateVignette', function(req, res, next) {
+  var vignette = new Vignette(req.body);
+  console.log(res);
+  Vignette.update({id : req.body._id}, vignette, function(err) {
+    if (err) {
+      console.log("not updated!");
+      res.status(400);
+      res.send();
+    }
+
+    console.log("updated!");
+    res.send({status: 'ok'});
+  });
+});
 
 
 

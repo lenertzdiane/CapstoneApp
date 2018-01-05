@@ -1,4 +1,8 @@
-
+<nav>
+  <a routerLink="/add">Add</a>
+  <a routerLink="/manage">Manage</a>
+  <a routerLink="/reader">Reader</a>
+</nav>
 <div class="form-group col-sm-2">
   <label for="insertvignette">Insert Vignette:</label>
   <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
@@ -7,7 +11,3 @@
   <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.newVignette.location" [ngModelOptions]="{standalone: true}"/>
   <button class="btn btn-default" (click)="insertNewVignette()"> Insert Vignette </button>
 </div>
-
-
-
-<vignettes-display></vignettes-display>

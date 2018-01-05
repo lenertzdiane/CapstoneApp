@@ -10,15 +10,20 @@ import { VignetteDisplayComponent } from './vignette-display/vignettes-display.c
 import { VignetteEditComponent } from './vignette-edit/vignettes-edit.component'
 
 import { VignetteService } from './services/vignettes.service';
+import { AppRoutingModule } from './/app-routing.module';
+import { AuthorComponent } from './author/author.component';
+import { HomeComponent } from './home/home.component';
+import { ReaderComponent } from './reader/reader.component';
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [VignetteService],
   bootstrap: [AppComponent]

@@ -1,36 +1,28 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
-import { Vignette } from '../models/vignette';
+import { Component, OnInit } from '@angular/core';
+import { Vignette } from '../models/vignette'
 import { VignetteService } from '../services/vignettes.service';
 
 @Component({
-  selector: 'vignettes',
-  templateUrl: './vignettes.component.html',
+  selector: 'app-reader',
+  templateUrl: './reader.component.html',
+  styleUrls: ['./reader.component.css']
 })
-export class VignetteComponent implements OnInit {
-  newVignette: Vignette;
+export class ReaderComponent implements OnInit {
   vignettes: Vignette[];
+  editVignette: Vignette;
   searchCriteria: string;
+
 
   constructor(
     private vignetteService: VignetteService
   ) { }
 
-  ngOnInit() {
-    this.newVignette = Vignette.CreateDefault();
-    this.searchCriteria = '';
-    this.getVignettes()
-  }
 
-  insertNewVignette() {
-    this.vignetteService
-    .insertNewVignette(this.newVignette)
-    .subscribe(
-      data => {
-        this.newVignette._id = data.id;
-        this.vignettes.push(this.newVignette);
-        this.newVignette = Vignette.CreateDefault();
-      }
-    )
+
+  ngOnInit() {
+    // this.editVignette = Vignette.CreateDefault();
+    this.searchCriteria = '';
+    this.getVignettes();
   }
 
   getVignettes(){
@@ -50,7 +42,4 @@ export class VignetteComponent implements OnInit {
           })
         }
 
-
-
-
-        }
+}
