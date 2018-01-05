@@ -7,10 +7,10 @@ import { HomeComponent } from './home/home.component'
 import { ReaderComponent } from './reader/reader.component'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent }
-  { path: 'author', component: AuthorComponent }
-  { path: 'reader', component: ReaderComponent }
-  { path: 'add', component: VignetteComponent }
+  { path: '', component: HomeComponent },
+  { path: 'author', component: AuthorComponent },
+  { path: 'reader', component: ReaderComponent },
+  { path: 'add', component: VignetteComponent },
   { path: 'manage', component: VignetteDisplayComponent }
 ];
 

@@ -10,10 +10,13 @@ import { VignetteDisplayComponent } from './vignette-display/vignettes-display.c
 import { VignetteEditComponent } from './vignette-edit/vignettes-edit.component'
 
 import { VignetteService } from './services/vignettes.service';
+import { MapService } from './services/map.service';
+
 import { AppRoutingModule } from './/app-routing.module';
 import { AuthorComponent } from './author/author.component';
 import { HomeComponent } from './home/home.component';
 import { ReaderComponent } from './reader/reader.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,10 @@ import { ReaderComponent } from './reader/reader.component';
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatGridListModule
   ],
-  providers: [VignetteService],
+  providers: [VignetteService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

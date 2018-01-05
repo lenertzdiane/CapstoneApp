@@ -1,7 +1,7 @@
 <div class="form-group col-sm-2">
     <label for="editVignette">Edit Vignette:</label>
     <input class="form-control" type="text" placeholder="Name" [(ngModel)]="vignette.name" [ngModelOptions]="{standalone: true}"/>
-    <input class="form-control" type="text" placeholder="Text" [(ngModel)]="vignette.text" [ngModelOptions]="{standalone: true}"/>
+    <textarea placeholder="Text" [(ngModel)]="vignette.text"></textarea>
     <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="vignette.characters" [ngModelOptions]="{standalone: true}"/>
     <input class="form-control" type="text" placeholder="Location" [(ngModel)]="vignette.location" [ngModelOptions]="{standalone: true}"/>
     <button class="btn btn-default" (click)="updateVignette()"> Edit Vignette </button>

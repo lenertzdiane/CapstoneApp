@@ -1,9 +1,27 @@
+<div class= "container-fluid full-width">
+  <div class="row row-no-gutter">
 
-  <div class="row" *ngFor="let vignette of vignettes">
-    <div class="col-sm-2">
+    <div class="col-sm-1" id="nav">
+      <div class="row">
+        <a class="col-sm-12" routerLink="/add">Add</a>
+        <a class="col-sm-12" routerLink="/manage">Manage</a>
+        <a class="col-sm-12" routerLink="/reader">Reader</a>
+      </div>
+    </div>
+<div class = "col-sm-5">
+  <div class="" *ngFor="let vignette of vignettes">
+    <div class="">
       {{vignette.name}}
     </div>
-    <div class="col-sm-2">
+    <div class="">
       {{vignette.text}}
     </div>
   </div>
+
+</div>
+  <div class="col-sm-5" id = "map">
+  </div>
+
+
+</div>
+</div>

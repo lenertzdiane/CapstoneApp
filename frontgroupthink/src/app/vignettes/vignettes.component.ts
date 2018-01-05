@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { Vignette } from '../models/vignette';
 import { VignetteService } from '../services/vignettes.service';
+import * as L from "leaflet";
+import { MapService } from "../services/map.service";
 
 @Component({
   selector: 'vignettes',
@@ -12,13 +14,32 @@ export class VignetteComponent implements OnInit {
   searchCriteria: string;
 
   constructor(
-    private vignetteService: VignetteService
+    private vignetteService: VignetteService,
+    private mapService: MapService
   ) { }
 
   ngOnInit() {
     this.newVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
-    this.getVignettes()
+    this.getVignettes(); // I shouldn't have to do this right?
+
+    let map = L.map("map", {
+            zoomControl: false,
+            center: L.latLng(41.79, -87.65),
+            zoom: 13,
+            minZoom: 8,
+            maxZoom: 19,
+            layers: [this.mapService.baseMaps.OpenStreetMap]
+        });
+
+
+
+        L.control.zoom({ position: "topright" }).addTo(map);
+        L.control.layers(this.mapService.baseMaps).addTo(map);
+        L.control.scale().addTo(map);
+
+        this.mapService.map = map;
+
   }
 
   insertNewVignette() {
@@ -53,4 +74,4 @@ export class VignetteComponent implements OnInit {
 
 
 
-        }
+      }

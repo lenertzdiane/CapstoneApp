@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+#map {
+  height: 500px;
+  vertical-align: top;
+  display: inline-block;
+  max-width: 100%;
+  position: fixed;
+  margin-left: 0;
+}
+
+#nav {
+  height: 100vw;
+}
+
+.vignette {
+  border: 2px solid black;
+  margin: 2vw;
+  max-height: 10vw;
+  overflow: scroll;
+}
+
+#text-input {
+  height: 40vw;
+  width: 100%
+}
+
+::-webkit-input-placeholder {
+  vertical-align: top;
+ font-size: 14px;
+ color: #d0cdfa;
+ text-transform: uppercase;
+ text-transform: uppercase;
+ text-align: center;
+ font-weight: bold;
+}

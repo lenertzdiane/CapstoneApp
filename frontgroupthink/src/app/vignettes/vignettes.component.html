@@ -1,13 +1,30 @@
-<nav>
-  <a routerLink="/add">Add</a>
-  <a routerLink="/manage">Manage</a>
-  <a routerLink="/reader">Reader</a>
-</nav>
-<div class="form-group col-sm-2">
-  <label for="insertvignette">Insert Vignette:</label>
-  <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
-  <input class="form-control" type="text" placeholder="Text" [(ngModel)]="this.newVignette.text" [ngModelOptions]="{standalone: true}"/>
-  <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters" [ngModelOptions]="{standalone: true}"/>
-  <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.newVignette.location" [ngModelOptions]="{standalone: true}"/>
-  <button class="btn btn-default" (click)="insertNewVignette()"> Insert Vignette </button>
+<div class= "container-fluid full-width">
+  <div class="row row-no-gutter">
+
+    <div class="col-sm-1" id="nav">
+      <div class="row">
+        <a class="col-sm-12" routerLink="/add">Add</a>
+        <a class="col-sm-12" routerLink="/manage">Manage</a>
+        <a class="col-sm-12" routerLink="/reader">Reader</a>
+      </div>
+    </div>
+
+    <div class = "col-sm-5">
+      <label for="insertvignette">New Vignette:</label>
+      <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
+      <!-- <input class="form-control" id= "text-input" type="text" placeholder="Text" [(ngModel)]="this.newVignette.text" [ngModelOptions]="{standalone: true}"/> -->
+      <textarea id= "text-input" placeholder="Text" [(ngModel)]="this.newVignette.text"></textarea>
+      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.newVignette.location" [ngModelOptions]="{standalone: true}"/>
+      <button class="btn btn-default" (click)="insertNewVignette()"> Add Vignette! </button>
+    </div>
+
+    <div class="col-sm-5" id = "map">
+
+    </div>
+
+  </div>
 </div>
+
+
+<!-- <leaflet></leaflet> -->
