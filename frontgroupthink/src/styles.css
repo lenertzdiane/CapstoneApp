@@ -11,7 +11,9 @@
   overflow: scroll;
 }
 
-
+.reader-text {
+  font-size: 3vw;
+}
 
 #nav {
   height: 100vw;

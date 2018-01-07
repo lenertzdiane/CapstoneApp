@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ApplicationRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Vignette } from '../models/vignette'
 import { VignetteService } from '../services/vignettes.service';
 import * as L from "leaflet";
@@ -13,30 +13,27 @@ import { MapComponent } from '../map/map.component'
 
 export class ReaderComponent implements OnInit {
   // @ViewChild('myMap') mapComponent: MapComponent;
-
   vignettes: Vignette[];
   editVignette: Vignette;
   searchCriteria: string;
   scrollTop: number;
+  scrollHandler: Function;
 
   constructor(
-    private vignetteService: VignetteService) { }
+    private vignetteService: VignetteService) {
+      this.scrollHandler = this.handleScroll.bind(this);
+  }
 
 
   ngOnInit() {
     // this.editVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
     this.getVignettes();
-
   }
 
-
   handleScroll(scrollTop) {
-    console.log('in handleScroll')
     this.scrollTop = scrollTop;
-
-    // this.mapComponent.handleScrollTop(scrollTop)
-
+    console.log()
   }
 
   getVignettes(){

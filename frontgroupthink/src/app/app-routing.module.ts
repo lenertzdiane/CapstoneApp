@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'author', component: AuthorComponent },
   { path: 'reader', component: ReaderComponent },
   { path: 'add', component: VignetteComponent },
-  { path: 'manage', component: VignetteDisplayComponent }
+  { path: 'manage', component: VignetteDisplayComponent },
   { path: 'notes', component: NotesComponent },
 ];
 

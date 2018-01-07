@@ -2,8 +2,8 @@
   <div class="row row-no-gutter">
     <app-menu></app-menu>
 
-    <div appScrollAnimate [callback] = "handleScroll" class = "col-sm-5 container" >
-      <div class="" *ngFor="let vignette of vignettes">
+    <div appScrollAnimate [callback] = "scrollHandler" class = "col-sm-5 container" >
+      <div class="reader-text" *ngFor="let vignette of vignettes">
         <div class="">
           {{vignette.name}}
         </div>

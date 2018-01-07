@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { MapService } from "../services/map.service";
-import { D3Service } from '../services/map.service'
+import { D3Service } from '../services/d3.service'
 
 
 @Component({
@@ -11,7 +11,7 @@ import { D3Service } from '../services/map.service'
 export class MapComponent implements OnInit, OnChanges {
   @Input() scrollTop: number;
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService, private d3Service: D3Service) { }
 
   ngOnInit() {
 
@@ -29,12 +29,16 @@ export class MapComponent implements OnInit, OnChanges {
     // L.control.scale().addTo(map);
 
     this.mapService.map = map;
+    this.d3Service.readyMap(this.mapService.map);
+    this.d3Service.placeMarkers(this.mapService.map)
+    this.d3Service.readyPath(this.mapService.map)
 
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("something")
-    console.log(changes['scrollTop'])
+    let scrollTop = changes['scrollTop'].currentValue
+    // console.log(this)
+    // this.d3Service.applyScrollableBehavior(this.mapService.map, scrollTop)
   }
 
 
