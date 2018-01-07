@@ -18,6 +18,7 @@ export class ReaderComponent implements OnInit {
   searchCriteria: string;
   scrollTop: number;
   scrollHandler: Function;
+  text: object;
 
   constructor(
     private vignetteService: VignetteService) {
@@ -31,9 +32,9 @@ export class ReaderComponent implements OnInit {
     this.getVignettes();
   }
 
-  handleScroll(scrollTop) {
+  handleScroll(scrollTop, text) {
     this.scrollTop = scrollTop;
-    console.log()
+    this.text = text;
   }
 
   getVignettes(){

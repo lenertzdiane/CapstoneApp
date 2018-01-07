@@ -11,7 +11,7 @@ export class ScrollAnimateDirective {
   @Input() callback: Function;
 
   @HostListener('scroll') scroll($event) {
-    this.callback(event.target.scrollTop);
+    this.callback(event.target.scrollTop, event.target);
   }
 
 

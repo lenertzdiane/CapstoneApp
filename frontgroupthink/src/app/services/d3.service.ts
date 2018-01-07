@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3'
+declare var jquery:any;
+declare var $ :any;
 
 @Injectable()
 export class D3Service {
@@ -94,6 +96,7 @@ export class D3Service {
 //   //then use popups.coordinates
 //
   placeMarkers(d3map) {
+
     //I think this is just leaflet stuff so does the d3 library work?
     let dataLayer = L.geoJson(this.popups, {
     onEachFeature: function(feature, layer) {
@@ -111,11 +114,16 @@ export class D3Service {
 // //have to find a way to send the d3 service access to the reader div so I can read
 // //jquery elements
   readyMap(map) {
-
     var svg = d3.select(map.getPanes().overlayPane).append("svg");
     this.g = svg.append("g").attr("class", "leaflet-zoom-hide");
   }
 
+findText(text, scrollTop) {
+  this.text = text
+  console.log(this.text)
+  console.log(scrollTop)
+  console.log($(window).innerHeight())
+}
 readyPath(map) {
   var cscale = d3.scale.linear().domain([1, 3]).range(["#ff0000", "#ff6a00", "#ffd800", "#b6ff00", "#00ffff", "#0094ff"]); //"#00FF00","#FFA500"
 
@@ -185,11 +193,10 @@ readyPath(map) {
       var x = d.geometry.coordinates[0]
       return map.latLngToLayerPoint(new L.LatLng(y, x))
     }
-
 }
 
 
-// reset(map, scrollTop) {
+// reset(map, scrollTop, text) {
 //   function reset() {
 //
 //     let newScrollTop = scrollTop;
