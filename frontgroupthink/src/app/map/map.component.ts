@@ -18,7 +18,7 @@ export class MapComponent implements OnInit, OnChanges {
     let map = L.map("map", {
       zoomControl: false,
       center: L.latLng(41.79, -87.65),
-      zoom: 13,
+      zoom: 15,
       minZoom: 8,
       maxZoom: 19,
       layers: [this.mapService.baseMaps.OpenStreetMap]
@@ -27,18 +27,19 @@ export class MapComponent implements OnInit, OnChanges {
     // L.control.zoom({ position: "topright" }).addTo(map);
     // L.control.layers(this.mapService.baseMaps).addTo(map);
     // L.control.scale().addTo(map);
-
+    let scrollTop = undefined
     this.mapService.map = map;
-    this.d3Service.readyMap(this.mapService.map);
+    // this.d3Service.readyMap(this.mapService.map);
     this.d3Service.placeMarkers(this.mapService.map)
-    this.d3Service.readyPath(this.mapService.map)
+    this.d3Service.readyMap(this.mapService.map)
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.text)
     let scrollTop = changes.scrollTop.currentValue
-    this.d3Service.findText(this.text, scrollTop)
-    // this.d3Service.applyScrollableBehavior(this.mapService.map, scrollTop, text)
+    // this.d3Service.makeLine(this.mapService.map, scrollTop, this.text)
+
+    // this.d3Service.findText(this.text, scrollTop)
+    // this.d3Service.reset(this.mapService.map, scrollTop, this.text)
   }
 
 
