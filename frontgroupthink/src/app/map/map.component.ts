@@ -36,7 +36,7 @@ export class MapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     let scrollTop = changes.scrollTop.currentValue
-    // this.d3Service.makeLine(this.mapService.map, scrollTop, this.text)
+    this.d3Service.drawLine(this.mapService.map, scrollTop, this.text)
 
     // this.d3Service.findText(this.text, scrollTop)
     // this.d3Service.reset(this.mapService.map, scrollTop, this.text)

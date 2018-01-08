@@ -3,7 +3,9 @@
     <app-menu></app-menu>
 
     <div appScrollAnimate [callback] = "scrollHandler" class = "col-sm-5 container" >
-      <div class="reader-text" *ngFor="let vignette of vignettes">
+      <div class="reader-text">
+
+       <!-- *ngFor="let vignette of vignettes"> -->
         <!-- <div class="">
         {{vignette.name}}
       </div>
@@ -30,7 +32,7 @@
 </div>
 
 <div class="" >
-  <app-map [text]="text" [scrollTop]="scrollTop"  id = "mapid"></app-map>
+  <app-map appResize [text]="text" [scrollTop]="scrollTop"  id = "mapid"></app-map>
 </div>
 
 

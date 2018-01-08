@@ -15,6 +15,11 @@
   font-size: 3vw;
 }
 
+path {
+  fill: none;
+  stroke: red;
+}
+
 #nav {
   height: 100vw;
 }
