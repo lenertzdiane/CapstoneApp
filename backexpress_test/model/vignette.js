@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var vignetteSchema = new Schema({
   name: String,
-  text: String,
+  text: Array,
   characters: Array,
   location: String
 });

@@ -8,8 +8,10 @@
       <label for="insertvignette">New Vignette:</label>
       <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
       <!-- <input class="form-control" id= "text-input" type="text" placeholder="Text" [(ngModel)]="this.newVignette.text" [ngModelOptions]="{standalone: true}"/> -->
-      <textarea id= "text-input" placeholder="Text" [(ngModel)]="this.newVignette.text"></textarea>
-      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters" [ngModelOptions]="{standalone: true}"/>
+      <textarea appHighlight [textArray] = "this.textArray" id= "text-input" placeholder="Text" [(ngModel)]="this.newVignette.text"></textarea>
+      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/>
+
       <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.newVignette.location" [ngModelOptions]="{standalone: true}"/>
       <button class="btn btn-default" (click)="insertNewVignette()"> Add Vignette! </button>
     </div>

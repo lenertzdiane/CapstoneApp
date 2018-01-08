@@ -24,10 +24,11 @@ import { MenuComponent } from './menu/menu.component';
 import { ScrollAnimateDirective } from './directives/scroll-animate.directive';
 import { MapComponent } from './map/map.component';
 import { ResizeDirective } from './directives/resize.directive';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective
   ],
   imports: [
     BrowserModule,

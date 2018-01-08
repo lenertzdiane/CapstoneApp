@@ -42,6 +42,7 @@ export class VignetteDisplayComponent implements OnInit {
 
     setEditVignette(vignette: Vignette){
       console.log('in set edit')
+      console.log(vignette)
       this.editVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location);
     }
 

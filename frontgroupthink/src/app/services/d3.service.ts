@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3'
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -311,7 +312,7 @@ drawLine(map, scrollTop, text) {
     window.requestAnimationFrame(render)
   } // end reset
 
-});
+}oc;
 
 // //
 // //   //this is called from ngOnInit in map component, must find a way to import geJSON data

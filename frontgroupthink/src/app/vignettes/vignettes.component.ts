@@ -11,6 +11,7 @@ export class VignetteComponent implements OnInit {
   newVignette: Vignette;
   vignettes: Vignette[];
   searchCriteria: string;
+  textArray: Array;
 
   constructor(
     private vignetteService: VignetteService,
@@ -21,7 +22,7 @@ export class VignetteComponent implements OnInit {
     this.newVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
     this.getVignettes(); // I shouldn't have to do this right?
-
+    this.textArray = []
   }
 
   insertNewVignette() {
