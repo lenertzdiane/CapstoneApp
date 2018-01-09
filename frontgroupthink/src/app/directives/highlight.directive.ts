@@ -10,14 +10,9 @@ export class HighlightDirective {
   @Input() textArray: Array;
 
   @HostListener('mouseup') mouseup($event) {
-
-    console.log('in mouseup')
     let text = document.getElementById("text-input")
-    console.log(this.textArray)
     let start = text.selectionStart
     let end = text.selectionEnd
-    console.log(start, end, text.value.slice(start, end))
-    console.log('whatup', $(text)[0].value)
     let selection = text.value.slice(start, end)
     if(start<end){
       this.textArray.push(selection)

@@ -10,6 +10,7 @@ import { D3Service } from '../services/d3.service'
 export class MapComponent implements OnInit, OnChanges {
   @Input() text: object;
   @Input() scrollTop: number;
+  @Input() actingVignette: Vignette;
 
   constructor(private mapService: MapService, private d3Service: D3Service) { }
 
@@ -24,25 +25,27 @@ export class MapComponent implements OnInit, OnChanges {
       layers: [this.mapService.baseMaps.OpenStreetMap]
     });
 
-    // L.control.zoom({ position: "topright" }).addTo(map);
-    // L.control.layers(this.mapService.baseMaps).addTo(map);
-    // L.control.scale().addTo(map);
-
     this.mapService.map = map;
-    this.d3Service.readyMap(this.mapService.map);
-    this.d3Service.placeMarkers(this.mapService.map)
-    this.d3Service.readyPath(this.mapService.map)
+    // this.d3Service.readyMap(this.mapService.map) //this.actingVignette.location);
+    // this.d3Service.placeMarkers(this.mapService.map) // this.actingVignette.location)
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(this.text)
-    let scrollTop = changes.scrollTop.currentValue
-    this.d3Service.drawLine(this.mapService.map, scrollTop, this.text)
+  //when a new vignette is actingVignette
 
-    // this.d3Service.findText(this.text, scrollTop)
-    // this.d3Service.reset(this.mapService.map, scrollTop, this.text)
-    // this.d3Service.findText(this.text, scrollTop)
-    // this.d3Service.applyScrollableBehavior(this.mapService.map, scrollTop, text)
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
+      // console.log(changes['actingVignette'])
+      this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
+      this.d3Service.placeMarkers(this.mapService.map, this.actingVignette.location)
+      this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
+
+    }
+
+    if changes['scrollTop'] && changes['scrollTop'].currentValue != undefined) {
+      // console.log(this.actingVignette)
+      let scrollTop = changes.scrollTop.currentValue
+      this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
+    }
   }
 
 

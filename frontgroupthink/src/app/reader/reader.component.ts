@@ -19,39 +19,49 @@ export class ReaderComponent implements OnInit {
   scrollTop: number;
   scrollHandler: Function;
   text: object;
+  actingVignette: Vignette;
 
   constructor(
     private vignetteService: VignetteService) {
       this.scrollHandler = this.handleScroll.bind(this);
-  }
+    }
 
 
-  ngOnInit() {
-    // this.editVignette = Vignette.CreateDefault();
-    this.searchCriteria = '';
-    this.getVignettes();
-  }
+    ngOnInit() {
+      // this.editVignette = Vignette.CreateDefault();
+      this.searchCriteria = '';
+      this.getVignettes();
+    }
 
-  handleScroll(scrollTop, text) {
-    this.scrollTop = scrollTop;
-    this.text = text;
-  }
+    // defineVignette(vignette:Vignette) {
+    //   this.vignette = vignette
+    //   console.log(this.vignette)
+    // }
 
-  getVignettes(){
-    this.vignetteService.getVignettes(this.searchCriteria)
-    .subscribe(
-      data => {
-        this.vignettes = [];
-        data.forEach(
-          element => {
-            var newVignette = new Vignette(element._id,
-              element.name,
-              element.text,
-              element.characters,
-              element.location)
-              this.vignettes.push(newVignette);
+    handleScroll(scrollTop, text) {
+      this.scrollTop = scrollTop;
+      this.text = text;
+    }
+
+    setActingVignette(vignette: Vignette) {
+      this.actingVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location);
+    }
+
+    getVignettes(){
+      this.vignetteService.getVignettes(this.searchCriteria)
+      .subscribe(
+        data => {
+          this.vignettes = [];
+          data.forEach(
+            element => {
+              var newVignette = new Vignette(element._id,
+                element.name,
+                element.text,
+                element.characters,
+                element.location)
+                this.vignettes.push(newVignette);
+              })
             })
-          })
-        }
+          }
 
-      }
+        }

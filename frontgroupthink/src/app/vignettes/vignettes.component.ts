@@ -26,6 +26,7 @@ export class VignetteComponent implements OnInit {
   }
 
   insertNewVignette() {
+    console.log(this.textArray)
     this.vignetteService
     .insertNewVignette(this.newVignette)
     .subscribe(

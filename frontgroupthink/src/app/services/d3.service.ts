@@ -7,6 +7,11 @@ declare var $ :any;
 @Injectable()
 export class D3Service {
 
+  projectedArray: Array;
+  linePath: object;
+  marker: object;
+  counter: number;
+
   constructor() {
     console.log('contructing')
     this.projectedArray =[]
@@ -30,74 +35,13 @@ export class D3Service {
       ]
     }
 
-    this.pathPoints = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              -87.65480518341064,
-              41.79241661048939
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              -87.65474081039429,
-              41.78699303451275
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              -87.6527452468872,
-              41.78520107376093
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              -87.64624357223511,
-              41.78513707423634
-            ]
-          }
-        },
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              -87.64611482620239,
-              41.78284904926622
-            ]
-          }
-        }
-      ]
-    }
-  }
+}
+  readyMap(map, location) {
+    let projectedArray = this.projectedArray
+    // let linePath = this.linePath
+    // let marker = this.marker
 
-readyMap(map) {
-  let projectedArray = this.projectedArray
-  let linePath = this.linePath
-  let marker = this.marker
-
-  // console.log(projectedArray)
+    // console.log(projectedArray)
 
     var svg = d3.select(map.getPanes().overlayPane).append("svg");
     let g = svg.append("g").attr("class", "leaflet-zoom-hide");
@@ -105,17 +49,11 @@ readyMap(map) {
     var dataLayer = L.geoJson(this.popups);
     dataLayer.addTo(map);
 
-    var geoData = this.pathPoints;
+    var geoData = JSON.parse(location);
 
     //linear scale for preserving scale
     //https://github.com/d3/d3-scale/blob/master/README.md#continuous-scales
     var cscale = d3.scale.linear().domain([1, 3]).range(["#ff0000", "#ff6a00", "#ffd800", "#b6ff00", "#00ffff", "#0094ff"]); //"#00FF00","#FFA500"
-
-
-    //to make it black and white i kinda like!
-    //this is where I'd take the street names off?
-    // Use Leaflet to implement a D3 geometric transformation.
-
 
     var transform = d3.geo.transform({
       point: projectPoint,
@@ -124,7 +62,7 @@ readyMap(map) {
     //path: given a GeoJSON geometry or feature object, it generates an SVG path data string or renders the path to a Canvas.
     var path = d3.geo.path().projection(transform);
 
-    // this.projectedArray = []
+    this.projectedArray = []
 
     var makeLine = d3.svg.line()
     .x(function(d) { return applyLatLngToLayer(d).x})
@@ -191,147 +129,154 @@ readyMap(map) {
     // ptPath.attr("d", d3path);
     g.attr("transform", "translate(" + (-topLeft[0] + 50) + "," + (-topLeft[1] + 50) + ")");
 
-    var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
+    var p = this.linePath.node().getPointAtLength(length - parseInt(this.linePath.style('stroke-dashoffset')));
     // console.log(p)
-    marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+    this.marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+    this.projectedArray = projectedArray
+  }
 
-}
 
 
+  drawLine(map, scrollTop, text, location) {
+    let marker = this.marker
+    let projectedArray = this.projectedArray
+    let linePath = this.linePath
 
-drawLine(map, scrollTop, text) {
-  let marker = this.marker
-  let projectedArray = this.projectedArray
-  let linePath = this.linePath
-  let geoData = this.pathPoints
-  //this will become
-  // map.on("viewreset", reset);
-  // map.on("moveend", reset);
 
-  reset(linePath);
+    let geoData = JSON.parse(location)
 
-  function reset() {
+    // console.log(location)
+    // projectedArray = projectedArray.slice((projectedArray.length - geoData.features.length), (projectedArray.length))
+    // console.log(projectedArray)
 
-    let distance = 0
-    let lengthsArray = []
+    //this will become
+    // map.on("viewreset", reset);
+    // map.on("moveend", reset);
+    console.log(linePath)
+    reset(linePath);
 
-    projectedArray = projectedArray.slice((projectedArray.length - geoData.features.length), (projectedArray.length))
+    function reset() {
 
-    var getDistance = function getDistance(point1, point2) {
-      var xs = 0;
-      var ys = 0;
+      let distance = 0
+      let lengthsArray = []
 
-      xs = point2[0] - point1[0];
-      xs = xs * xs;
+      projectedArray = projectedArray.slice((projectedArray.length - geoData.features.length), (projectedArray.length))
 
-      ys = point2[1] - point1[1];
-      ys = ys * ys;
+      var getDistance = function getDistance(point1, point2) {
+        var xs = 0;
+        var ys = 0;
 
-      return Math.sqrt( xs + ys );
-    }
+        xs = point2[0] - point1[0];
+        xs = xs * xs;
 
-    for (let i = 0; i < projectedArray.length-1; i++) {
-      distance = getDistance(projectedArray[i], projectedArray[i+1]);
-      lengthsArray.push(distance);
-    }
+        ys = point2[1] - point1[1];
+        ys = ys * ys;
 
-    function makeTestPosition(scrollTop, number) {
-      if(number === 0) {
-        return 0
+        return Math.sqrt( xs + ys );
       }
-      else {
-        return $('#'+number).position().top + scrollTop - ($(window).innerHeight())
-      }
-    }
 
-    function makeLastTestPosition(scrollTop, number) {
-      if(number === 0){
-        return 0
-      } else {
-
-        return $('#' + number + '.last').position().top + scrollTop - ($(window).innerHeight())
+      for (let i = 0; i < projectedArray.length-1; i++) {
+        distance = getDistance(projectedArray[i], projectedArray[i+1]);
+        lengthsArray.push(distance);
       }
-    }
 
-    function makeSegLength(lengthsArray, number) {
-      let total = 0
-      if(number === 0) {
-        return 0
-      }
-      else {
-        for (let i = 0; i < number; i ++){
-          total = total + lengthsArray[i]
+      function makeTestPosition(scrollTop, number) {
+        if(number === 0) {
+          return 0
         }
-        return total
+        else {
+          return $('#'+number).position().top + scrollTop - ($(window).innerHeight())
+        }
       }
-    }
 
-    function makeLinePathScale(scrollTop, number){
-      var linePathScale = d3.scale.linear()
-      .domain([makeLastTestPosition(scrollTop, number-1), makeTestPosition(scrollTop, number)])
-      .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
-      .clamp(true);
-      return linePathScale(scrollTop)
-    }
+      function makeLastTestPosition(scrollTop, number) {
+        if(number === 0){
+          return 0
+        } else {
+          return $('#' + number + '.last').position().top + scrollTop - ($(window).innerHeight())
+        }
+      }
 
-    render()
+      function makeSegLength(lengthsArray, number) {
+        let total = 0
+        if(number === 0) {
+          return 0
+        }
+        else {
+          for (let i = 0; i < number; i ++){
+            total = total + lengthsArray[i]
+          }
+          return total
+        }
+      }
 
-    function render() {
+      function makeLinePathScale(scrollTop, number){
+        var linePathScale = d3.scale.linear()
+        .domain([makeLastTestPosition(scrollTop, number-1), makeTestPosition(scrollTop, number)])
+        .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
+        .clamp(true);
+        return linePathScale(scrollTop)
+      }
 
-      let length = linePath.node().getTotalLength()
+      render()
 
-        let elements = $("span[class='last']");
+      function render() {
+
+        let length = linePath.node().getTotalLength()
+        let elements = document.getElementsByClassName("last")
 
         for(let i = 0; i < elements.length; i ++) {
+          // console.log($(elements[i]).position().top, $(window).innerHeight()))
+          // console.log(i)
           if($(elements[i]).position().top > $(window).innerHeight()){
-            let actingElement = $(elements[i])
-            break
-          }
+          let actingElement = $(elements[i])
+          break
         }
+      }
 
-        linePath
-        .style('stroke-dashoffset', function(d) {
-          let num = parseInt(actingElement[0].id)
-          return length - makeLinePathScale(scrollTop, num) + 'px';
-        })
-        .style('stroke-dasharray', length)
-        .style('stroke-width', function() {
-          if(map.getZoom() > 16) {
-            return 9
-          } else if(14 < map.getZoom < 16) {
-            return 5
-          } else {
-            return 2
-          }
-        })
-        .style('stroke-dasharray', length)
+      linePath
+      .style('stroke-dashoffset', function(d) {
+        let num = parseInt(actingElement[0].id)
+        return length - makeLinePathScale(scrollTop, num) + 'px';
+      })
+      .style('stroke-dasharray', length)
+      .style('stroke-width', function() {
+        if(map.getZoom() > 16) {
+          return 9
+        } else if(14 < map.getZoom < 16) {
+          return 5
+        } else {
+          return 2
+        }
+      })
+      .style('stroke-dasharray', length)
 
-        var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
-        marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+      var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
+      marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
     }
     window.requestAnimationFrame(render)
   } // end reset
 
-}oc;
+};
 
 // //
 // //   //this is called from ngOnInit in map component, must find a way to import geJSON data
 // //   //probably from a model. should be something like import Popups from '../models/popups'
 // //   //then use popups.coordinates
 // //
-  placeMarkers(map) {
+placeMarkers(map) {
 
-    //I think this is just leaflet stuff so does the d3 library work?
-    let dataLayer = L.geoJson(this.popups, {
-    onEachFeature: function(feature, layer) {
-      var popupText = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit</p>  "
-      + feature.geometry.coordinates;
-      layer.bindPopup(popupText);
-      layer.on("click", function() {
-      })
-    }
-  });
-  dataLayer.addTo(map)
+//I think this is just leaflet stuff so does the d3 library work?
+let dataLayer = L.geoJson(this.popups, {
+onEachFeature: function(feature, layer) {
+  var popupText = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit</p>  "
+  + feature.geometry.coordinates;
+  layer.bindPopup(popupText);
+  layer.on("click", function() {
+  })
+}
+});
+dataLayer.addTo(map)
 }
 
 }

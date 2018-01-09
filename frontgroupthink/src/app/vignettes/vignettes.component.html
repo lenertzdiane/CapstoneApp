@@ -8,7 +8,7 @@
       <label for="insertvignette">New Vignette:</label>
       <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
       <!-- <input class="form-control" id= "text-input" type="text" placeholder="Text" [(ngModel)]="this.newVignette.text" [ngModelOptions]="{standalone: true}"/> -->
-      <textarea appHighlight [textArray] = "this.textArray" id= "text-input" placeholder="Text" [(ngModel)]="this.newVignette.text"></textarea>
+      <textarea appHighlight [(textArray)] = "this.textArray" id= "text-input" placeholder="Text" (input)="textArray = this.newVignette.text"></textarea>
       <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
       <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/>
 
@@ -17,7 +17,7 @@
     </div>
 
 
-      <app-map class = "col-sm-5" id = "mapid"></app-map>
+      <!-- <app-map class = "col-sm-5" id = "mapid"></app-map> -->
 
 
   </div>
