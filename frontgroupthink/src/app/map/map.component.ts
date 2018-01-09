@@ -42,7 +42,7 @@ export class MapComponent implements OnInit, OnChanges {
     }
 
     if changes['scrollTop'] && changes['scrollTop'].currentValue != undefined) {
-      // console.log(this.actingVignette)
+      console.log(this.actingVignette)
       let scrollTop = changes.scrollTop.currentValue
       this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
     }

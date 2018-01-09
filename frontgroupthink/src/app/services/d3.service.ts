@@ -152,7 +152,7 @@ export class D3Service {
     //this will become
     // map.on("viewreset", reset);
     // map.on("moveend", reset);
-    console.log(linePath)
+    // console.log(linePath)
     reset(linePath);
 
     function reset() {
@@ -180,20 +180,25 @@ export class D3Service {
         lengthsArray.push(distance);
       }
 
-      function makeTestPosition(scrollTop, number) {
+      function makePartPosition(scrollTop, number, actingChild) {
+        console.log(actingChild)
         if(number === 0) {
           return 0
         }
         else {
-          return $('#'+number).position().top + scrollTop - ($(window).innerHeight())
+          // console.log($(actingChild[0].childNodes[1][])
+          // console.log(actingChild[0].position())
+          // console.log($('#'+number).position().top + scrollTop - ($(window).innerHeight()))
+          return $(actingChild).position().top + scrollTop - ($(window).innerHeight())
         }
       }
 
-      function makeLastTestPosition(scrollTop, number) {
+      function makeLastPartPosition(scrollTop, number, actingLast) {
+        // console.log(actingChild[0].childNodes[1])
         if(number === 0){
           return 0
         } else {
-          return $('#' + number + '.last').position().top + scrollTop - ($(window).innerHeight())
+          return $(actingLast).position().top + scrollTop - ($(window).innerHeight())
         }
       }
 
@@ -204,15 +209,16 @@ export class D3Service {
         }
         else {
           for (let i = 0; i < number; i ++){
+            // console.log(lengthsArray)
             total = total + lengthsArray[i]
           }
           return total
         }
       }
 
-      function makeLinePathScale(scrollTop, number){
+      function makeLinePathScale(scrollTop, number, actingChild, actingLast){
         var linePathScale = d3.scale.linear()
-        .domain([makeLastTestPosition(scrollTop, number-1), makeTestPosition(scrollTop, number)])
+        .domain([makeLastPartPosition(scrollTop, number-1, actingLast), makePartPosition(scrollTop, number, actingChild)])
         .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
         .clamp(true);
         return linePathScale(scrollTop)
@@ -223,21 +229,44 @@ export class D3Service {
       function render() {
 
         let length = linePath.node().getTotalLength()
-        let elements = document.getElementsByClassName("last")
 
-        for(let i = 0; i < elements.length; i ++) {
+        let vignetteElements = document.getElementsByClassName("read-vignette")
+        // console.log(elements)
+
+        for(let i = 0; i < vignetteElements.length; i ++) {
           // console.log($(elements[i]).position().top, $(window).innerHeight()))
           // console.log(i)
-          if($(elements[i]).position().top > $(window).innerHeight()){
-          let actingElement = $(elements[i])
+          //DIRTY HACK have to find something beetter than window height...
+          if($(vignetteElements[i]).position().top > $(window).innerHeight() - 2000){
+          let actingVignette = $(vignetteElements[i])
+          // console.log('this is the acting element: ')
+          // console.log(actingVignette)
+          break
+        }
+        }
+
+        //let elements be the children of the acting vignette
+        let children = actingVignette.children()
+        // console.log(children)
+
+        for(let i = 0; i < children.length; i ++) {
+          // console.log($(elements[i]).position().top, $(window).innerHeight()))
+          // console.log(i)
+          if($(children[i]).position().top > $(window).innerHeight()){
+          let actingChild = $(children[i])
+
+          //this wont work between the last one of the last vignette and the first
+          //one of the second vignette
+          let actingLast = $(children[i - 1])
+          // console.log(actingChild)
           break
         }
       }
 
       linePath
       .style('stroke-dashoffset', function(d) {
-        let num = parseInt(actingElement[0].id)
-        return length - makeLinePathScale(scrollTop, num) + 'px';
+        let num = parseInt(actingChild[0].id)
+        return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
       })
       .style('stroke-dasharray', length)
       .style('stroke-width', function() {
