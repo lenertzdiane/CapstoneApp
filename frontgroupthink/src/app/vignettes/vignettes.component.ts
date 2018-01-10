@@ -12,6 +12,8 @@ export class VignetteComponent implements OnInit {
   vignettes: Vignette[];
   searchCriteria: string;
   textArray: Array;
+  editPart: string;
+  index: number;
 
   constructor(
     private vignetteService: VignetteService,
@@ -23,7 +25,20 @@ export class VignetteComponent implements OnInit {
     this.searchCriteria = '';
     this.getVignettes(); // I shouldn't have to do this right?
     this.textArray = []
+    this.editPart = ''
+    this.index = 0
   }
+
+  deletePart(i) {
+    this.textArray.splice(i, 1)
+  }
+
+  setEditPart(part, index) {
+    this.editPart = part
+    this.index = index
+    console.log(this.editPart)
+  }
+
 
   insertNewVignette() {
     console.log(this.textArray)

@@ -8,17 +8,15 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
-      <div  [class]="index" *ngFor="let vignette of vignettes; let index = index" (click)="setActingVignette(vignette)">
+      <div [id]="index+1" class = "read-vignette" *ngFor="let vignette of vignettes; let index = index" (click)="setActingVignette(vignette)">
         <div  class="">
           {{vignette.name}}
         </div>
-        <div *ngFor="let t of vignette.text; let index = index" class =  "test" [id] = "index + 1">
+        <div *ngFor="let t of vignette.text; let index = index" class = "part" [id] = "index + 1">
             {{t}}
             <span class = "last" [id] = "index + 1"></span>
         </div>
-        <div class="">
-          {{vignette.location}}
-        </div>
+    
       </div>
     </div>
 

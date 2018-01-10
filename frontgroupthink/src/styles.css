@@ -10,8 +10,51 @@
   margin-left: 0;
   overflow: scroll;
 }
+.black {
+  color: black;
+}
+/* .part {
+  height: 10vw;
+  overflow: hidden;
+} */
 
-.reader-text {
+.part:nth-of-type(5n +1) {
+  border-width: 2px;
+  background-color: #202020 ;
+  color: white;
+}
+
+.part:nth-of-type(5n + 2) {
+  border-width: 2px;
+  background-color: #404040 ;
+  color: white;
+
+}
+
+.part:nth-of-type(5n + 3) {
+  border-width: 2px;
+  background-color: #686868 ;
+  color: white;
+
+}
+
+.part:nth-of-type(5n + 4) {
+  border-width: 2px;
+  background-color: #909090 ;
+  color: white;
+
+}
+
+.part:nth-of-type(5n + 5) {
+  border-width: 2px;
+  background-color: #B0B0B0 ;
+  color: white;
+
+}
+
+
+
+.read-vignette {
   font-size: 3vw;
 }
 

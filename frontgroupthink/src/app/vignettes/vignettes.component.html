@@ -4,10 +4,16 @@
 
 
     <app-menu>  </app-menu>
-    <div class = "col-sm-5">
+    <div class = "row col-sm-5">
       <label for="insertvignette">New Vignette:</label>
       <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
-      <!-- <input class="form-control" id= "text-input" type="text" placeholder="Text" [(ngModel)]="this.newVignette.text" [ngModelOptions]="{standalone: true}"/> -->
+      <div class = "part col-sm-4" *ngFor="let part of textArray; let index = index">
+        {{index + 1}}
+        {{part}}
+        <button class="btn btn-default" (click)="deletePart(index)">Delete</button>
+        <button class="btn btn-default" (click)="setEditPart(part, index)">Edit</button>
+      </div>
+      <app-part-edit [(editPart)]= "this.editPart" [(index)] = "this.index" [(textArray)] = "this.textArray" ></app-part-edit>
       <textarea appHighlight [(textArray)] = "this.textArray" id= "text-input" placeholder="Text" (input)="textArray = this.newVignette.text"></textarea>
       <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
       <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/>
@@ -17,7 +23,7 @@
     </div>
 
 
-      <!-- <app-map class = "col-sm-5" id = "mapid"></app-map> -->
+      <app-map class = "col-sm-5" id = "mapid"></app-map>
 
 
   </div>

@@ -30,6 +30,10 @@ export class MapComponent implements OnInit, OnChanges {
     // this.d3Service.placeMarkers(this.mapService.map) // this.actingVignette.location)
   }
 
+  setPoint(event) {
+    console.log('clicked');
+    console.log(event)
+  }
   //when a new vignette is actingVignette
 
   ngOnChanges(changes: SimpleChanges) {
@@ -41,8 +45,7 @@ export class MapComponent implements OnInit, OnChanges {
 
     }
 
-    if changes['scrollTop'] && changes['scrollTop'].currentValue != undefined) {
-      // console.log(this.actingVignette)
+    if(changes['scrollTop'] && changes['scrollTop'].currentValue != undefined) {
       let scrollTop = changes.scrollTop.currentValue
       this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
     }

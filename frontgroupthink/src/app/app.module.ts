@@ -25,10 +25,13 @@ import { ScrollAnimateDirective } from './directives/scroll-animate.directive';
 import { MapComponent } from './map/map.component';
 import { ResizeDirective } from './directives/resize.directive';
 import { HighlightDirective } from './directives/highlight.directive';
+import { ModalDirective } from './directives/modal.directive';
+import { PartEditComponent } from './part-edit/part-edit.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent
   ],
   imports: [
     BrowserModule,
