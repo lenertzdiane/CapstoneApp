@@ -16,7 +16,8 @@ export class VignetteComponent implements OnInit {
   textArray: Array;
   editPart: string;
   index: number;
-  features: Array;
+  features: string;
+
 
   constructor(
     private vignetteService: VignetteService,
@@ -31,6 +32,16 @@ export class VignetteComponent implements OnInit {
     this.textArray = []
     this.editPart = ''
     this.index = 0
+    this.features = '['
+
+  }
+
+  setLocation(event) {
+    let latlng = this.mapService.getLatLng(event)
+
+    let feature = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
+    this.features += feature
+    console.log(this.features)
   }
 
   deletePart(i) {
@@ -43,17 +54,12 @@ export class VignetteComponent implements OnInit {
     console.log(this.editPart)
   }
 
-  setPoint(event) {
-    let latlng = this.mapService.getLatLng(event)
-
-    let feature = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lat},           ${latlng.long}        ]       }     },`
-    features.push(feature)
-
-
-  }
 
   insertNewVignette() {
-    console.log(this.textArray)
+    let points = "{\"type\": \"FeatureCollection\", \"features\":" + this.features.substring(0, this.features.length - 2) + "] }"
+    console.log(points)
+    this.newVignette.location = points
+    console.log('after location')
     this.vignetteService
     .insertNewVignette(this.newVignette)
     .subscribe(

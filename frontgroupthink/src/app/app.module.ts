@@ -27,6 +27,8 @@ import { ResizeDirective } from './directives/resize.directive';
 import { HighlightDirective } from './directives/highlight.directive';
 import { ModalDirective } from './directives/modal.directive';
 import { PartEditComponent } from './part-edit/part-edit.component';
+import { LocationDirective } from './directives/location.directive';
+
 
 
 @NgModule({

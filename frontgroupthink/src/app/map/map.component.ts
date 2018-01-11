@@ -10,13 +10,15 @@ import * as L from "leaflet";
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnChanges {
+  // features: Array;
   @Input() text: object;
   @Input() scrollTop: number;
   @Input() actingVignette: Vignette;
-
+  @Input() features: Array
   constructor(private mapService: MapService, private d3Service: D3Service) { }
 
   ngOnInit() {
+    this.features = []
 
     let map = L.map("map", {
       zoomControl: false,

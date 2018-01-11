@@ -51,6 +51,7 @@ export class D3Service {
     dataLayer.addTo(map);
 
     var geoData = JSON.parse(location);
+    console.log(geoData)
 
     //linear scale for preserving scale
     //https://github.com/d3/d3-scale/blob/master/README.md#continuous-scales

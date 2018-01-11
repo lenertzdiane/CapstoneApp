@@ -8,12 +8,12 @@
       <label for="insertvignette">New Vignette:</label>
       <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
       <textarea appHighlight [(textArray)] = "this.textArray" id= "text-input" placeholder="Text" (input)="textArray = this.newVignette.text"></textarea>
-      <app-map id = "mapid" (click) = "setPoint($event)"></app-map>
+      <app-map (click) = "setLocation($event)" id = "mapid" ></app-map>
 
       <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
       <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/>
 
-      <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.newVignette.location" [ngModelOptions]="{standalone: true}"/>
+      <!-- <input class="form-control" type="text" placeholder="Location" (input)="this.features = this.newVignette.location" /> -->
 
 
       <button class="btn btn-default" (click)="insertNewVignette()"> Add Vignette! </button>
