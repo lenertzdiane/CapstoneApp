@@ -26,7 +26,16 @@ export class MapService {
       //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
       // })
     };
+
   }
+
+  getLatLng(event) {
+    console.log(event)
+    let ll = this.map.mouseEventToLatLng(event)
+    console.log(ll)
+    return ll
+  }
+
 
   // disableMouseEvent(elementId: string) {
   //     let element = <HTMLElement>document.getElementById(elementId);

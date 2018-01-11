@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { Vignette } from '../models/vignette';
 import { VignetteService } from '../services/vignettes.service';
 import * as L from "leaflet";
+import { MapService } from "../services/map.service";
+
 
 @Component({
   selector: 'vignettes',
@@ -14,9 +16,11 @@ export class VignetteComponent implements OnInit {
   textArray: Array;
   editPart: string;
   index: number;
+  features: Array;
 
   constructor(
     private vignetteService: VignetteService,
+    private mapService: MapService
 
   ) { }
 
@@ -39,6 +43,14 @@ export class VignetteComponent implements OnInit {
     console.log(this.editPart)
   }
 
+  setPoint(event) {
+    let latlng = this.mapService.getLatLng(event)
+
+    let feature = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lat},           ${latlng.long}        ]       }     },`
+    features.push(feature)
+
+
+  }
 
   insertNewVignette() {
     console.log(this.textArray)

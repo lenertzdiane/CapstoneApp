@@ -2,50 +2,60 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 #mapid, #map {
-  height: 500px;
+  height: 350px;
   vertical-align: top;
-  display: inline-block;
-  max-width: 100%;
-  position: fixed;
+  /* display: inline-block; */
+  /* width: 88÷%; */
+  /* position: fixed; */
   margin-left: 0;
-  overflow: scroll;
+  /* margin-right: 8vw; */
+
+  /* overflow: scroll; */
 }
 .black {
   color: black;
+  margin-left: 3vw;
+  width: 100%;
 }
-/* .part {
+
+textarea {
+  max-width: 100%;
+  overflow: scroll;
+}
+.parts {
   height: 10vw;
   overflow: hidden;
-} */
+  margin-left: 3vw;
+}
 
-.part:nth-of-type(5n +1) {
+.parts:nth-of-type(5n +1) {
   border-width: 2px;
   background-color: #202020 ;
   color: white;
 }
 
-.part:nth-of-type(5n + 2) {
+.parts:nth-of-type(5n + 2) {
   border-width: 2px;
   background-color: #404040 ;
   color: white;
 
 }
 
-.part:nth-of-type(5n + 3) {
+.parts:nth-of-type(5n + 3) {
   border-width: 2px;
   background-color: #686868 ;
   color: white;
 
 }
 
-.part:nth-of-type(5n + 4) {
+.parts:nth-of-type(5n + 4) {
   border-width: 2px;
   background-color: #909090 ;
   color: white;
 
 }
 
-.part:nth-of-type(5n + 5) {
+.parts:nth-of-type(5n + 5) {
   border-width: 2px;
   background-color: #B0B0B0 ;
   color: white;
@@ -54,9 +64,23 @@
 
 
 
-.read-vignette {
-  font-size: 3vw;
+.txt {
+  font-size: 1.5vw;
+  height: 20vw;
+  overflow: scroll;
 }
+
+.nav {
+  height: 100%;
+}
+
+.reader {
+  margin-right: 8vw;
+}
+
+/* .title {
+  position: absolute;
+} */
 
 path {
   fill: none;
@@ -76,7 +100,6 @@ path {
 }
 
 #text-input {
-  height: 40vw;
   width: 100%
 }
 
@@ -94,7 +117,45 @@ body {
   background-color: lightgrey;
 }
 
-.container {
+/* .container {
   max-height: 100vw;
   overflow: scroll;
+} */
+
+body {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+p {
+  margin-bottom: 14px;
+}
+
+textarea {
+  color: #444;
+  padding: 5px;
+}
+
+.txtstuff {
+  resize: none; /* remove this if you want the user to be able to resize it in modern browsers */
+  overflow: hidden;
+}
+
+.hiddendiv {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word; /* future version of deprecated 'word-wrap' */
+}
+
+/* the styles for 'commmon' are applied to both the textarea and the hidden clone */
+/* these must be the same for both */
+.common {
+  width: 500px;
+  min-height: 50px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
 }

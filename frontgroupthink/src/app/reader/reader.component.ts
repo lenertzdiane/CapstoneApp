@@ -20,6 +20,7 @@ export class ReaderComponent implements OnInit {
   scrollHandler: Function;
   text: object;
   actingVignette: Vignette;
+  show: Boolean;
 
   constructor(
     private vignetteService: VignetteService) {
@@ -31,6 +32,7 @@ export class ReaderComponent implements OnInit {
       // this.editVignette = Vignette.CreateDefault();
       this.searchCriteria = '';
       this.getVignettes();
+      this.show = true
     }
 
     // defineVignette(vignette:Vignette) {
@@ -43,7 +45,19 @@ export class ReaderComponent implements OnInit {
       this.text = text;
     }
 
+    show() {
+      console.log('in show')
+    }
+
+    hide() {
+      console.log('in hide')
+
+      this.show = !this.show
+
+    }
+
     setActingVignette(vignette: Vignette) {
+      console.log(vignette)
       this.actingVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location);
     }
 

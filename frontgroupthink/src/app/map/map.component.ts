@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { MapService } from "../services/map.service";
 import { D3Service } from '../services/d3.service'
+import * as L from "leaflet";
+
 
 @Component({
   selector: 'app-map',
@@ -30,15 +32,12 @@ export class MapComponent implements OnInit, OnChanges {
     // this.d3Service.placeMarkers(this.mapService.map) // this.actingVignette.location)
   }
 
-  setPoint(event) {
-    console.log('clicked');
-    console.log(event)
-  }
+
   //when a new vignette is actingVignette
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
-      // console.log(changes['actingVignette'])
+      console.log(changes['actingVignette'])
       this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
       this.d3Service.placeMarkers(this.mapService.map, this.actingVignette.location)
       this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)

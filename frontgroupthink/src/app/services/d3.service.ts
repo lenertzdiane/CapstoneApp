@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3'
 declare var jquery:any;
+import * as L from 'leaflet'
 
 declare var $ :any;
 
@@ -240,28 +241,30 @@ export class D3Service {
           // console.log($(elements[i]).position().top, $(window).innerHeight()))
           // console.log(i)
           //DIRTY HACK have to find something beetter than window height...
-          if($(vignetteElements[i]).position().top > $(window).innerHeight() - 12000){
+          if($(vignetteElements[i]).position().top > $(window).innerHeight() - 20000){
           let actingVignette = $(vignetteElements[i])
           // console.log('this is the acting element: ')
-          console.log(actingVignette)
+          // console.log(actingVignette)
           break
         }
         }
 
         //let elements be the children of the acting vignette
         let children = actingVignette.children()
-        console.log(children)
+        // console.log(children)
 
         for(let i = 0; i < children.length; i ++) {
           console.log('in here')
           // console.log($(elements[i]).position().top, $(window).innerHeight()))
           // console.log(i)
+          console.log($(children[i]).position().top)
+          console.log($(window).innerHeight())
           if($(children[i]).position().top > $(window).innerHeight()){
           let actingChild = $(children[i])
           //this wont work between the last one of the last vignette and the first
           //one of the second vignette
           let actingLast = $(children[i - 1])
-          // console.log(actingChild)
+          console.log(actingChild)
           break
         }
       }
