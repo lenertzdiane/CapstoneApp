@@ -97,6 +97,14 @@ export class D3Service {
       map.latLngToLayerPoint(new L.LatLng(y, x)).y + ")";
     });
 
+    let latitude = geoData.features[0].geometry.coordinates[0]
+    let longitude = geoData.features[0].geometry.coordinates[1]
+
+    map.panTo([longitude, latitude])
+
+
+
+
     function projectPoint(x, y) {
       var point = map.latLngToLayerPoint(new L.LatLng(y, x));
       projectedArray.push([point.x, point.y])
@@ -139,6 +147,7 @@ export class D3Service {
 
 
   drawLine(map, scrollTop, text, location) {
+    let map = map
     let marker = this.marker
     let projectedArray = this.projectedArray
     let linePath = this.linePath
@@ -243,18 +252,13 @@ export class D3Service {
         let txt = document.getElementsByClassName("txt")
         txtHeight = $(txt).innerHeight()
 
-        console.log($($(vignetteElements[i]).children().last().children()).position())
-        console.log(txtHeight)
         if($($(vignetteElements[i]).children().last().children()).position().top > txtHeight){
           let actingVignette = $(vignetteElements[i])
-          console.log('this is the acting element: ')
-          console.log(actingVignette)
           break
         }
       }
 
       //let elements be the children of the acting vignette
-      console.log(actingVignette)
       let children = actingVignette.children()
 
       for(let i = 1; i < children.length; i ++) {
@@ -262,11 +266,9 @@ export class D3Service {
         // console.log(i)
         if($(children[i]).position().top > txtHeight){
         let actingChild = $(children[i])
-        console.log(actingChild)
         //this wont work between the last one of the last vignette and the first
         //one of the second vignette
         let actingLast = $(children[i - 1])
-        console.log(actingLast)
         break
       }
     }
@@ -290,8 +292,21 @@ export class D3Service {
 
     var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
     marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+
+    var svgPnt = L.point(p.x,p.y)
+	  var mapLatLng = map.layerPointToLatLng(svgPnt)
+    console.log(mapLatLng)
+    map.panTo(mapLatLng)
+	// var mapLat=mapLatLng.lat
+	// var mapLng=mapLatLng.lng
+	// mapLatValue.value=mapLat.toFixed(3)
+	// mapLngValue.value=mapLng.toFixed(3)
   }
   window.requestAnimationFrame(render)
+
+  // var marker2 = document.getElementById('marker')
+  // console.log(typeof $(marker2).lngLat())
+  // getPosition($(marker2))
 } // end reset
 
 };

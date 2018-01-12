@@ -37,6 +37,7 @@ export class VignetteComponent implements OnInit {
   }
 
   setLocation(event) {
+    console.log(event)
 
     let latlng = this.mapService.getLatLng(event)
 

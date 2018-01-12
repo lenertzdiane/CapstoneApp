@@ -23,7 +23,7 @@ export class MapComponent implements OnInit, OnChanges {
     let map = L.map("map", {
       zoomControl: false,
       center: L.latLng(41.79, -87.65),
-      zoom: 13,
+      zoom: 17,
       minZoom: 8,
       maxZoom: 19,
       layers: [this.mapService.baseMaps.OpenStreetMap]

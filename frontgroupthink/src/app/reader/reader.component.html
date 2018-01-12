@@ -1,16 +1,13 @@
 <div class= "whole container-fluid full-width" >
   <div class="reader row row-no-gutter" >
     <div class = "nav col-sm-2"  (click)="hide()">
-      <div class="col-sm-12">
-        show/hide
-      </div>
-        <app-menu *ngIf = "show" ></app-menu>
+        <app-menu ></app-menu>
     </div>
     <section class = "big">
 
       <div appScrollAnimate [callback] = "scrollHandler"  class = "txt">
         <div [id]="index+1" class = "read-vignette" *ngFor="let vignette of vignettes; let index = index" (click)="setActingVignette(vignette)">
-          <div  class="title">
+          <div  class="reader-title">
             {{vignette.name}}
           </div>
 

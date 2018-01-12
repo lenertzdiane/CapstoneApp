@@ -1,0 +1,48 @@
+<div class= "container-fluid full-width">
+  <div class="row row-no-gutter">
+
+
+    <div class="col-sm-2">
+      <app-menu>  </app-menu>
+    </div>
+
+    <div class = "forms row col-sm-4">
+      <h1>Add A Standalone</h1>
+      <!-- <label for="insertvignette">New Vignette:</label> -->
+      <input class="form-control title" type="text" placeholder="Title" [(ngModel)]="this.newStandalone.name" [ngModelOptions]="{standalone: true}"/>
+      <textarea name="name" rows="8" cols="80"  [(ngModel)]="this.newStandalone.text"></textarea>
+      <!-- <div>
+      <div class = "row parts " *ngFor="let part of textArray; let index = index" (click)="setEditPart(part, index)">
+      <div class="col-sm-2 part-index">
+      {{index + 1}}
+    </div>
+    <div class="col-sm-9">
+    {{part}}
+  </div>
+  <div class="col-sm-1">
+
+  <button class="btn btn-default" (click)="deletePart(index)">X</button>
+</div>
+</div> -->
+
+
+<!-- <app-part-edit class = "" *ngIf = "editPart.length > 0" [(editPart)]= "this.editPart" [(index)] = "this.index" [(textArray)] = "this.textArray" ></app-part-edit> -->
+
+
+
+<!-- <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
+<input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/> -->
+<button class="btn btn-default btn-add" (click)="insertNewStandalone()"> ADD </button>
+</div>
+
+<app-map class = "add-map col-sm-4" (click) = "setLocation($event)" id = "mapid" ></app-map>
+<!-- <button class="btn btn-default btn-remove" (click)="removeMarkers"> REMOVE </button> -->
+
+
+
+
+</div>
+</div>
+
+
+<!-- <leaflet></leaflet> -->

@@ -7,7 +7,7 @@
   </div>
     <div class = "forms row col-sm-4">
       <h1>Add A Vignette</h1>
-      <label for="insertvignette">New Vignette:</label>
+      <!-- <label for="insertvignette">New Vignette:</label> -->
       <input class="form-control title" type="text" placeholder="Title" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
       <textarea appHighlight [(textArray)] = "this.textArray" id= "text-input" placeholder="Text" (input)="textArray = this.newVignette.text"></textarea>
 

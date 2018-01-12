@@ -10,6 +10,8 @@ import { VignetteDisplayComponent } from './vignette-display/vignettes-display.c
 import { VignetteEditComponent } from './vignette-edit/vignettes-edit.component'
 
 import { VignetteService } from './services/vignettes.service';
+import { StandaloneService } from './services/standalone.service';
+
 import { MapService } from './services/map.service';
 import { D3Service } from './services/d3.service';
 
@@ -28,12 +30,13 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { ModalDirective } from './directives/modal.directive';
 import { PartEditComponent } from './part-edit/part-edit.component';
 import { LocationDirective } from './directives/location.directive';
+import { StandaloneComponent } from './standalone/standalone.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent, StandaloneComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { LocationDirective } from './directives/location.directive';
     AppRoutingModule,
     MatGridListModule
   ],
-  providers: [VignetteService, MapService, D3Service],
+  providers: [VignetteService, MapService, D3Service, StandaloneService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

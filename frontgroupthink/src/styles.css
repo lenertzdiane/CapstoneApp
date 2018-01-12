@@ -16,7 +16,7 @@
 /* ADD VIGNETTE********************************************* ADD VIGNETTE  */
 
 h1 {
-  color: white;
+  color: #A9D9E5;
   font-size: 4vw;
 }
 
@@ -28,6 +28,8 @@ h1 {
 .title {
   height: 5vw;
   font-size: 3vw;
+  background-color: #4f5b66 ;
+  color: #A9D9E5;
 }
 
 .btn-add {
@@ -35,6 +37,7 @@ h1 {
   height: 2.9vw;
   font-size: 1.8vw;
   margin-top: 3vw;
+    background-color: #4f5b66 ;
 }
 
 .forms {
@@ -56,6 +59,8 @@ textarea {
 #text-input {
   width: 100%;
   overflow: scroll;
+background-color: #65737e;
+  color: #A9D9E5;
 }
 
 /* PART */
@@ -84,13 +89,13 @@ div.parts:hover {
 .parts:nth-of-type(2n +1) {
   border-width: 2px;
   background-color: 	#4f5b66 ;
-  color: #FFFFFF;
+  color:  #A9D9E5;
 }
 
 .parts:nth-of-type(2n + 2) {
   border-width: 2px;
   background-color: #65737e ;
-  color: #FFFFFF;
+  color:  #A9D9E5;
 
 }
 
@@ -115,19 +120,21 @@ div.parts:hover {
 .btn-menu:nth-of-type(2n +1) {
   border-width: 2px;
   background-color: 	#4f5b66 ;
-  color: #FFFFFF;
+  color: #A9D9E5;
 }
 
 .btn-menu:nth-of-type(2n + 2) {
   border-width: 2px;
   background-color: #65737e ;
-  color: #FFFFFF;
+  color: #A9D9E5;
 }
 
 .btn-menu:hover {
   text-decoration: none;
   background-color: #a7adba;
+  color: #FFFFFF
 }
+
 
 /* READER ********************************************* READER  */
 
@@ -143,13 +150,14 @@ div.parts:hover {
 }
 
 
-/* .title {
-  position: absolute;
-} */
+.reader-title {
+  height: 5vw;
+  font-size: 3vw;
+}
 
 path {
   fill: none;
-  stroke: red;
+  stroke: #A9D9E5;
 }
 
 .big {
@@ -165,8 +173,9 @@ path {
 }
 
 .read-vignette {
-  background-color: #c0c5ce;
-  font-size: 3vw;
+  background-color: #343d46;
+  color: #A9D9E5;
+  font-size: 2.3vw;
 }
 
 
@@ -185,6 +194,10 @@ path {
   max-height: 100vw;
   overflow: scroll;
 } */
+
+.travelMarker {
+  opacity: .6;
+}
 
 
 /* TEXTAREA RESIZE ********************************************* TEXTAREA RESIZE  */

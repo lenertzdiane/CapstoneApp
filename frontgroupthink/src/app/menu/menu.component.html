@@ -1,8 +1,13 @@
 <!-- <div class=" row col-sm-12" id="nav"> -->
   <!-- <div class="row"> -->
+
+<button (click)="toggleCollapse()" class="navbar-toggler navbar-toggler-right" type="button"> v </button>
+<!-- other navbar code omitted -->
+<div class="collapse" [class.show]="show">
     <a class="col-sm-12 btn-menu" routerLink="/add">Add</a>
     <a class="col-sm-12 btn-menu" routerLink="/manage">Manage</a>
     <a class="col-sm-12 btn-menu" routerLink="/reader">Reader</a>
     <a class="col-sm-12 btn-menu" routerLink="/notes">Notes</a>
-  <!-- </div> -->
+  </div>
+
 <!-- </div> -->

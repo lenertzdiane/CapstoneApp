@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  show: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  toggleCollapse() {
+   this.show = !this.show
+ }
 
 }

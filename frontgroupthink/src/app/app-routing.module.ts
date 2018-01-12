@@ -6,6 +6,8 @@ import { AuthorComponent } from './author/author.component'
 import { HomeComponent } from './home/home.component'
 import { ReaderComponent } from './reader/reader.component'
 import { NotesComponent } from './notes/notes.component'
+import { StandaloneComponent } from './standalone/standalone.component'
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +16,7 @@ const routes: Routes = [
   { path: 'add', component: VignetteComponent },
   { path: 'manage', component: VignetteDisplayComponent },
   { path: 'notes', component: NotesComponent },
+  { path: 'standalone', component: StandaloneComponent }
 ];
 
 //The method is called forRoot() because you configure the router at the application's
