@@ -6,28 +6,39 @@
     <app-menu>  </app-menu>
     <div class = "row col-sm-5">
       <label for="insertvignette">New Vignette:</label>
-      <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control title" type="text" placeholder="Title" [(ngModel)]="this.newVignette.name" [ngModelOptions]="{standalone: true}"/>
       <textarea appHighlight [(textArray)] = "this.textArray" id= "text-input" placeholder="Text" (input)="textArray = this.newVignette.text"></textarea>
-      <app-map (click) = "setLocation($event)" id = "mapid" ></app-map>
 
-      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
-      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/>
 
       <!-- <input class="form-control" type="text" placeholder="Location" (input)="this.features = this.newVignette.location" /> -->
 
 
-      <button class="btn btn-default" (click)="insertNewVignette()"> Add Vignette! </button>
-    </div>
+      <div>
+        <div class = "row parts " *ngFor="let part of textArray; let index = index" (click)="setEditPart(part, index)">
+          <div class="col-sm-2 part-index">
+            {{index + 1}}
+          </div>
+          <div class="col-sm-9">
+            {{part}}
+          </div>
+          <div class="col-sm-1">
 
-    <div class="row col-sm-6">
-      <div class = "parts " *ngFor="let part of textArray; let index = index" (click)="setEditPart(part, index)">
-        {{index + 1}}
-        {{part}}
-        <button class="btn btn-default" (click)="deletePart(index)">Delete</button>
+            <button class="btn btn-default" (click)="deletePart(index)">X</button>
+          </div>
+        </div>
+
+
+        <app-part-edit *ngIf = "editPart" appHighlight [(editPart)]= "this.editPart" [(index)] = "this.index" [(textArray)] = "this.textArray" ></app-part-edit>
+
       </div>
-      <app-part-edit appHighlight [(editPart)]= "this.editPart" [(index)] = "this.index" [(textArray)] = "this.textArray" ></app-part-edit>
 
+      <!-- <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/> -->
+      <button class="btn btn-default btn-add" (click)="insertNewVignette()"> ADD </button>
     </div>
+
+    <app-map class = "add-map col-sm-5" (click) = "setLocation($event)" id = "mapid" ></app-map>
+    <!-- <button class="btn btn-default btn-remove" (click)="removeMarkers"> REMOVE </button> -->
 
 
 

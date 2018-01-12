@@ -19,13 +19,9 @@ export class PartEditComponent implements OnInit {
   }
 
   updatePart(editPart, index, textArray) {
-    console.log(editPart)
-    console.log(index)
-    console.log(textArray)
     textArray[index] = editPart
-    console.log(textArray)
-    
-
+    editPart = null
+    console.log(editPart)
   }
 
 }

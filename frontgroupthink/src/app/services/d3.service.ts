@@ -242,7 +242,7 @@ export class D3Service {
           // console.log($(elements[i]).position().top, $(window).innerHeight()))
           // console.log(i)
           //DIRTY HACK have to find something beetter than window height...
-          if($(vignetteElements[i]).position().top > $(window).innerHeight() - 20000){
+          if($(vignetteElements[i]).position().top > $(window).innerHeight()-10000){
           let actingVignette = $(vignetteElements[i])
           // console.log('this is the acting element: ')
           // console.log(actingVignette)

@@ -17,7 +17,7 @@ export class LocationDirective {
 
   @Input() features: Array;
 
-  @HostListener('click') click($event) {
+  @HostListener('mouseup') mouseup($event) {
     console.log('inside location directive')
 
 
