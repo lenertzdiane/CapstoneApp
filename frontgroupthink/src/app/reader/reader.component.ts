@@ -1,6 +1,9 @@
 import { ApplicationRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Vignette } from '../models/vignette'
 import { VignetteService } from '../services/vignettes.service';
+import { StandaloneService } from '../services/standalone.service';
+import { Standalone } from '../models/standalone'
+
 import * as L from "leaflet";
 import { MapComponent } from '../map/map.component'
 
@@ -21,9 +24,10 @@ export class ReaderComponent implements OnInit {
   text: object;
   actingVignette: Vignette;
   show: Boolean;
+  standalones: Standalone[]
 
   constructor(
-    private vignetteService: VignetteService) {
+    private vignetteService: VignetteService, private standaloneService: StandaloneService) {
       this.scrollHandler = this.handleScroll.bind(this);
     }
 
@@ -32,7 +36,8 @@ export class ReaderComponent implements OnInit {
       // this.editVignette = Vignette.CreateDefault();
       this.searchCriteria = '';
       this.getVignettes();
-      this.show = true
+      this.show = true;
+      this.getStandalones();
     }
 
     // defineVignette(vignette:Vignette) {
@@ -40,26 +45,38 @@ export class ReaderComponent implements OnInit {
     //   console.log(this.vignette)
     // }
 
-    handleScroll(scrollTop, text) {
+    handleScroll(scrollTop, text, standalones) {
       this.scrollTop = scrollTop;
       this.text = text;
+      this.standalones = standalones;
     }
 
-    show() {
-      console.log('in show')
-    }
 
     hide() {
-      console.log('in hide')
-
       this.show = !this.show
-
     }
 
     setActingVignette(vignette: Vignette) {
-      console.log(vignette)
       this.actingVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location);
     }
+
+    getStandalones(){
+      this.standaloneService.getStandalones(this.searchCriteria)
+      .subscribe(
+        data => {
+          this.standalones = [];
+          data.forEach(
+            element => {
+              var newStandalone = new Standalone(element._id,
+                element.name,
+                element.text,
+                element.characters,
+                element.location)
+                this.standalones.push(newStandalone);
+              })
+            })
+          }
+
 
     getVignettes(){
       this.vignetteService.getVignettes(this.searchCriteria)

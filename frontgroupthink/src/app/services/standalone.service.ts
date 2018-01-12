@@ -12,6 +12,17 @@ export class StandaloneService {
     constructor(private http: Http) {
     }
 
+    getStandalones(searchCriteria:any) : Observable<Standalone[]>{
+
+        return this.http.get("http://localhost:3000/getStandalones")
+                .map((res:any) => {
+                    return res.json();
+                })
+                .catch((error:any) => {
+                    return Observable.throw(error.json ? error.json().error : error || 'Server error')
+                });
+    }
+
     insertNewStandalone(standalone:Standalone): Observable<any>{
         return this.http.post("http://localhost:3000/insertNewStandalone", standalone)
             .map((res:any) => {

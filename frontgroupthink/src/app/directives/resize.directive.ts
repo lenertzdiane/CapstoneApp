@@ -10,8 +10,9 @@ export class ResizeDirective {
 
   constructor(private d3Service: D3Service, private mapService: MapService) { }
   @Input() callback: Function;
+  @Input() standalones: Standalone[];
 
   @HostListener('load') resize($event) {
-    this.d3Service.readyMap(this.mapService.map)
+    this.d3Service.readyMap(this.mapService.map, standalones)
   }
 }

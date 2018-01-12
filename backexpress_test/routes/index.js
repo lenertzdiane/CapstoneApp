@@ -81,7 +81,7 @@ router.get('/getStandalones', function(req, res, next) {
   if(req.query.name)
     searchQuery = { name: req.query.name };
 
-  Standolone.find(searchQuery, function(err, vignettes){
+  Standalone.find(searchQuery, function(err, standalones){
     if (err) {
       console.log("ERROR");
       res.status(400);

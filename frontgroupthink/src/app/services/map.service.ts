@@ -47,9 +47,22 @@ export class MapService {
     return ll
   }
 
+  addStandaloneMarker(event) {
+    this.markerGroup = L.layerGroup()
+    console.log(this.markerGroup)
+    this.markerGroup.addTo(this.map);
+
+    let ll = this.map.mouseEventToLatLng(event)
+    var marker = L.marker([ll.lat, ll.lng]).addTo(this.markerGroup);
+    //if I wanted to do this part better i'd convert to geoJSON and pass back lol
+    //console.log(marker.toGeoJSON())
+    return ll
+  }
+
   removeMarkers() {
     this.map.removeLayer(this.markerGroup)
   }
+
 
 
   // disableMouseEvent(elementId: string) {

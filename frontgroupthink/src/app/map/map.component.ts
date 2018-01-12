@@ -15,6 +15,8 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() scrollTop: number;
   @Input() actingVignette: Vignette;
   @Input() features: Array
+  @Input() standalones: Standalone[];
+
   constructor(private mapService: MapService, private d3Service: D3Service) { }
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class MapComponent implements OnInit, OnChanges {
     });
 
     this.mapService.map = map;
+    this.standalones = {};
     // this.d3Service.readyMap(this.mapService.map) //this.actingVignette.location);
     // this.d3Service.placeMarkers(this.mapService.map) // this.actingVignette.location)
   }
@@ -40,8 +43,9 @@ export class MapComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
       console.log(changes['actingVignette'])
+      console.log(changes)
       this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
-      this.d3Service.placeMarkers(this.mapService.map, this.actingVignette.location)
+      this.d3Service.placeMarkers(this.mapService.map, this.standalones)
       this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
 
     }

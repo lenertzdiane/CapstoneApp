@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Standalone } from '../models/standalone'
 import { StandaloneService } from '../services/standalone.service'
+import { MapService } from '../services/map.service'
 
 @Component({
   selector: 'app-standalone',
@@ -10,14 +11,49 @@ import { StandaloneService } from '../services/standalone.service'
 export class StandaloneComponent implements OnInit {
 
   newStandalone: Standalone;
+  standalones: Standalone[];
+  features: String
 
-  constructor(private standaloneService: StandaloneService) { }
+  constructor(private standaloneService: StandaloneService, private mapService: MapService) { }
 
   ngOnInit() {
     this.newStandalone = Standalone.CreateDefault();
+    this.getStandalones()
+    this.searchCriteria = '';
+    this.feature = ''
+    this.standalones = this.getStandalones()
   }
 
+
+  setLocation(event) {
+    console.log(event)
+
+    let latlng = this.mapService.addStandaloneMarker(event)
+
+    let feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
+    this.feature = feat
+  }
+
+  getStandalones(){
+    this.standaloneService.getStandalones(this.searchCriteria)
+    .subscribe(
+      data => {
+        this.standalones = [];
+        data.forEach(
+          element => {
+            var newStandalone = new Standalone(element._id,
+              element.name,
+              element.text,
+              element.characters,
+              element.location)
+              this.standalones.push(newStandalone);
+            })
+          })
+        }
+
+
   insertNewStandalone() {
+    this.newStandalone.location = this.feature
     this.standaloneService
     .insertNewStandalone(this.newStandalone)
     .subscribe(
@@ -29,6 +65,8 @@ export class StandaloneComponent implements OnInit {
          console.log("Added standalone.");
       }
     )
+    this.mapService.removeMarkers()
+
   }
 
 }

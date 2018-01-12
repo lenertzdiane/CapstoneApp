@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as d3 from 'd3'
 declare var jquery:any;
 import * as L from 'leaflet'
+import { StandaloneComponent } from '../standalone/standalone.component'
 
 declare var $ :any;
 
@@ -19,23 +20,6 @@ export class D3Service {
     this.linePath = undefined
     this.marker = undefined
 
-    this.popups = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              -87.6535713672638,
-              41.790568806493454
-            ]
-          }
-        }
-      ]
-    }
-
   }
   readyMap(map, location) {
     let projectedArray = this.projectedArray
@@ -49,7 +33,6 @@ export class D3Service {
 
     var dataLayer = L.geoJson(this.popups);
     dataLayer.addTo(map);
-
     var geoData = JSON.parse(location);
 
     //linear scale for preserving scale
@@ -192,7 +175,6 @@ export class D3Service {
       }
 
       function makePartPosition(scrollTop, number, actingChild) {
-        console.log(actingChild)
         if(number === 0) {
           return 0
         }
@@ -242,7 +224,6 @@ export class D3Service {
       let length = linePath.node().getTotalLength()
 
       let vignetteElements = document.getElementsByClassName("read-vignette")
-      console.log(vignetteElements)
 
 
       for(let i = 0; i < vignetteElements.length; i ++) {
@@ -295,7 +276,6 @@ export class D3Service {
 
     var svgPnt = L.point(p.x,p.y)
 	  var mapLatLng = map.layerPointToLatLng(svgPnt)
-    console.log(mapLatLng)
     map.panTo(mapLatLng)
 	// var mapLat=mapLatLng.lat
 	// var mapLng=mapLatLng.lng
@@ -316,10 +296,36 @@ export class D3Service {
 // //   //probably from a model. should be something like import Popups from '../models/popups'
 // //   //then use popups.coordinates
 // //
-placeMarkers(map) {
+placeMarkers(map, standalones) {
 
+{
+  "type": "FeatureCollection",
+  "features": [
+    // {
+    //   "type": "Feature",
+    //   "properties": {},
+    //   "geometry": {
+    //     "type": "Point",
+    //     "coordinates": [
+    //       -87.6535713672638,
+    //       41.790568806493454
+    //     ]
+    //   }
+    // }
+  ]
+}
+
+let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
+standalones.forEach(function(standalone) {
+  popups += standalone.location
+})
+
+let finishedPopups = popups.substring(0, popups.length-2)
+finishedPopups += " ] }"
+
+let geoJSONPopups = JSON.parse(finishedPopups)
 //I think this is just leaflet stuff so does the d3 library work?
-let dataLayer = L.geoJson(this.popups, {
+let dataLayer = L.geoJson(geoJSONPopups, {
 onEachFeature: function(feature, layer) {
   var popupText = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit</p>  "
   + feature.geometry.coordinates;
