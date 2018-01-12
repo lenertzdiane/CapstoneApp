@@ -20,7 +20,7 @@ export class PartEditComponent implements OnInit {
 
   updatePart(editPart, index, textArray) {
     textArray[index] = editPart
-    editPart = null
+    editPart = ''
     console.log(editPart)
   }
 

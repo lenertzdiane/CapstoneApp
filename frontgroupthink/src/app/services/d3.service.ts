@@ -36,7 +36,7 @@ export class D3Service {
       ]
     }
 
-}
+  }
   readyMap(map, location) {
     let projectedArray = this.projectedArray
     // let linePath = this.linePath
@@ -51,7 +51,6 @@ export class D3Service {
     dataLayer.addTo(map);
 
     var geoData = JSON.parse(location);
-    console.log(geoData)
 
     //linear scale for preserving scale
     //https://github.com/d3/d3-scale/blob/master/README.md#continuous-scales
@@ -144,6 +143,7 @@ export class D3Service {
     let projectedArray = this.projectedArray
     let linePath = this.linePath
 
+    let txtHeight
 
     let geoData = JSON.parse(location)
 
@@ -197,101 +197,102 @@ export class D3Service {
 
       function makeLastPartPosition(scrollTop, number, actingLast) {
         // console.log(actingChild[0].childNodes[1])
-        if(number === 0){
-          return 0
-        } else {
-          if(actingLast) {
-            console.log(actingLast)
-          return $(actingLast).position().top + scrollTop - ($(window).innerHeight())
-        }
-        }
+        if(actingLast.length === 0){
+        return 0
+      } else {
+        return $(actingLast).position().top + scrollTop - (txtHeight)
       }
-
-      function makeSegLength(lengthsArray, number) {
-        let total = 0
-        if(number === 0) {
-          return 0
-        }
-        else {
-          for (let i = 0; i < number; i ++){
-            // console.log(lengthsArray)
-            total = total + lengthsArray[i]
-          }
-          return total
-        }
-      }
-
-      function makeLinePathScale(scrollTop, number, actingChild, actingLast){
-        var linePathScale = d3.scale.linear()
-        .domain([makeLastPartPosition(scrollTop, number-1, actingLast), makePartPosition(scrollTop, number, actingChild)])
-        .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
-        .clamp(true);
-        return linePathScale(scrollTop)
-      }
-
-      render()
-
-      function render() {
-
-        let length = linePath.node().getTotalLength()
-
-        let vignetteElements = document.getElementsByClassName("read-vignette")
-        // console.log(elements)
-
-        for(let i = 0; i < vignetteElements.length; i ++) {
-          // console.log($(elements[i]).position().top, $(window).innerHeight()))
-          // console.log(i)
-          //DIRTY HACK have to find something beetter than window height...
-          if($(vignetteElements[i]).position().top > $(window).innerHeight()-10000){
-          let actingVignette = $(vignetteElements[i])
-          // console.log('this is the acting element: ')
-          // console.log(actingVignette)
-          break
-        }
-        }
-
-        //let elements be the children of the acting vignette
-        let children = actingVignette.children()
-        // console.log(children)
-
-        for(let i = 0; i < children.length; i ++) {
-          console.log('in here')
-          // console.log($(elements[i]).position().top, $(window).innerHeight()))
-          // console.log(i)
-          console.log($(children[i]).position().top)
-          console.log($(window).innerHeight())
-          if($(children[i]).position().top > $(window).innerHeight()){
-          let actingChild = $(children[i])
-          //this wont work between the last one of the last vignette and the first
-          //one of the second vignette
-          let actingLast = $(children[i - 1])
-          console.log(actingChild)
-          break
-        }
-      }
-
-      linePath
-      .style('stroke-dashoffset', function(d) {
-        let num = parseInt(actingChild[0].id)
-        return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
-      })
-      .style('stroke-dasharray', length)
-      .style('stroke-width', function() {
-        if(map.getZoom() > 16) {
-          return 9
-        } else if(14 < map.getZoom < 16) {
-          return 5
-        } else {
-          return 2
-        }
-      })
-      .style('stroke-dasharray', length)
-
-      var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
-      marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
     }
-    window.requestAnimationFrame(render)
-  } // end reset
+
+    function makeSegLength(lengthsArray, number) {
+      let total = 0
+      if(number === 0) {
+        return 0
+      }
+      else {
+        for (let i = 0; i < number; i ++){
+          // console.log(lengthsArray)
+          total = total + lengthsArray[i]
+        }
+        return total
+      }
+    }
+
+    function makeLinePathScale(scrollTop, number, actingChild, actingLast){
+      var linePathScale = d3.scale.linear()
+      .domain([makeLastPartPosition(scrollTop, number-1, actingLast), makePartPosition(scrollTop, number, actingChild)])
+      .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
+      .clamp(true);
+      return linePathScale(scrollTop)
+    }
+
+    render()
+
+    function render() {
+
+      let length = linePath.node().getTotalLength()
+
+      let vignetteElements = document.getElementsByClassName("read-vignette")
+      console.log(vignetteElements)
+
+
+      for(let i = 0; i < vignetteElements.length; i ++) {
+        // console.log($(elements[i]).position().top, $(window).innerHeight()))
+        // console.log(i)
+        //DIRTY HACK have to find something beetter than window height...
+        let txt = document.getElementsByClassName("txt")
+        txtHeight = $(txt).innerHeight()
+
+        console.log($($(vignetteElements[i]).children().last().children()).position())
+        console.log(txtHeight)
+        if($($(vignetteElements[i]).children().last().children()).position().top > txtHeight){
+          let actingVignette = $(vignetteElements[i])
+          console.log('this is the acting element: ')
+          console.log(actingVignette)
+          break
+        }
+      }
+
+      //let elements be the children of the acting vignette
+      console.log(actingVignette)
+      let children = actingVignette.children()
+
+      for(let i = 1; i < children.length; i ++) {
+        // console.log($(elements[i]).position().top, $(window).innerHeight()))
+        // console.log(i)
+        if($(children[i]).position().top > txtHeight){
+        let actingChild = $(children[i])
+        console.log(actingChild)
+        //this wont work between the last one of the last vignette and the first
+        //one of the second vignette
+        let actingLast = $(children[i - 1])
+        console.log(actingLast)
+        break
+      }
+    }
+
+    linePath
+    .style('stroke-dashoffset', function(d) {
+      let num = parseInt(actingChild[0].id)
+      return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
+    })
+    .style('stroke-dasharray', length)
+    .style('stroke-width', function() {
+      if(map.getZoom() > 16) {
+        return 9
+      } else if(14 < map.getZoom < 16) {
+        return 5
+      } else {
+        return 2
+      }
+    })
+    .style('stroke-dasharray', length)
+
+    var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
+    marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+  }
+  window.requestAnimationFrame(render)
+} // end reset
 
 };
 

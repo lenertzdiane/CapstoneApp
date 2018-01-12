@@ -15,6 +15,11 @@
 
 /* ADD VIGNETTE********************************************* ADD VIGNETTE  */
 
+h1 {
+  color: white;
+  font-size: 4vw;
+}
+
 .black {
   color: black;
   width: 100%;
@@ -27,8 +32,14 @@
 
 .btn-add {
   width: 100%;
-  height: 2.5vw;
+  height: 2.9vw;
   font-size: 1.8vw;
+  margin-top: 3vw;
+}
+
+.forms {
+  margin-left: 5vw;
+  /* margin-top: 8vw; */
 }
 
 .add-map {
@@ -43,7 +54,8 @@ textarea {
 }
 
 #text-input {
-  width: 100%
+  width: 100%;
+  overflow: scroll;
 }
 
 /* PART */
@@ -87,10 +99,34 @@ div.parts:hover {
 /* NAV ********************************************* NAV */
 
 .nav {
-  height: 100%;
+  height: 100vw;
 }
 #nav {
   height: 100vw;
+}
+
+.btn-menu {
+  font-size: 2.5vw;
+  width: 100%;
+  height: 3vw;
+  margin-top: 17px;
+}
+
+.btn-menu:nth-of-type(2n +1) {
+  border-width: 2px;
+  background-color: 	#4f5b66 ;
+  color: #FFFFFF;
+}
+
+.btn-menu:nth-of-type(2n + 2) {
+  border-width: 2px;
+  background-color: #65737e ;
+  color: #FFFFFF;
+}
+
+.btn-menu:hover {
+  text-decoration: none;
+  background-color: #a7adba;
 }
 
 /* READER ********************************************* READER  */
@@ -105,6 +141,7 @@ div.parts:hover {
 .reader {
   margin-right: 8vw;
 }
+
 
 /* .title {
   position: absolute;
@@ -128,7 +165,8 @@ path {
 }
 
 .read-vignette {
-  background-color: white;
+  background-color: #c0c5ce;
+  font-size: 3vw;
 }
 
 

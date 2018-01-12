@@ -1,7 +1,9 @@
 <div class= "whole container-fluid full-width" >
   <div class="reader row row-no-gutter" >
-    <div class = "nav col-sm-1"  (click)="hide()">
-      show/hide
+    <div class = "nav col-sm-2"  (click)="hide()">
+      <div class="col-sm-12">
+        show/hide
+      </div>
         <app-menu *ngIf = "show" ></app-menu>
     </div>
     <section class = "big">
@@ -14,7 +16,7 @@
 
           <div *ngFor="let t of vignette.text; let index = index" class = "part" [id] = "index + 1" class = "reader-text">
             {{t}}
-            <span class = "last" [id] = "index + 1"></span>
+            <span class = "last" [id] = "index + 1">x</span>
           </div>
 
 
