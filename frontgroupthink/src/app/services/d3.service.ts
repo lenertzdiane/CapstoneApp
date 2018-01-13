@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as d3 from 'd3'
+import * as d3 from 'd3';
 declare var jquery:any;
-import * as L from 'leaflet'
+import * as L from 'leaflet';
 import { StandaloneComponent } from '../standalone/standalone.component'
 
 declare var $ :any;
@@ -239,25 +239,19 @@ export class D3Service {
         }
       }
 
-      linePath
-      .style('stroke-dashoffset', function(d) {
-        let num = parseInt(actingChild[0].id)
-        return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
-      })
-      .style('stroke-dasharray', length)
-      .style('stroke-width', function() {
-        if(map.getZoom() > 16) {
-          return 9
-        } else if(14 < map.getZoom < 16) {
-          return 5
-        } else {
-          return 2
-        }
-      })
-      .style('stroke-dasharray', length)
+      //let elements be the children of the acting vignette
+      let children = actingVignette.children()
 
-      var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
-      marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+      for(let i = 1; i < children.length; i ++) {
+        // console.log($(elements[i]).position().top, $(window).innerHeight()))
+        // console.log(i)
+        if($(children[i]).position().top > txtHeight){
+        let actingChild = $(children[i])
+        //this wont work between the last one of the last vignette and the first
+        //one of the second vignette
+        let actingLast = $(children[i - 1])
+        break
+      }
     }
 
     linePath
@@ -293,7 +287,7 @@ export class D3Service {
   // var marker2 = document.getElementById('marker')
   // console.log(typeof $(marker2).lngLat())
   // getPosition($(marker2))
- // end reset
+} // end reset
 
 };
 
