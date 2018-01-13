@@ -12,8 +12,11 @@ export class StandaloneComponent implements OnInit {
 
   newStandalone: Standalone;
   standalones: Standalone[];
-  features: String
-  feat: string
+  features: String;
+  feature: string;
+  feat: string;
+  searchCriteria: string;
+
 
   constructor(private standaloneService: StandaloneService, private mapService: MapService) { }
 
@@ -23,7 +26,7 @@ export class StandaloneComponent implements OnInit {
     this.searchCriteria = '';
     this.feature = ''
     this.feat = ''
-    this.standalones = this.getStandalones()
+    this.standalones = []
   }
 
 

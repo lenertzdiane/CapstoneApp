@@ -4,5 +4,7 @@
     <textarea placeholder="Text" [(ngModel)]="vignette.text"></textarea>
     <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="vignette.characters" [ngModelOptions]="{standalone: true}"/>
     <input class="form-control" type="text" placeholder="Location" [(ngModel)]="vignette.location" [ngModelOptions]="{standalone: true}"/>
+    <!-- <input class="form-control" type="text" placeholder="Order" [(ngModel)]="vignette.order" [ngModelOptions]="{standalone: true}"/> -->
+
     <button class="btn btn-default" (click)="updateVignette()"> Edit Vignette </button>
 </div>

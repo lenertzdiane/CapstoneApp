@@ -23,9 +23,11 @@ export class VignetteEditComponent implements OnInit {
 
   ngOnInit() {
     this.vignette = Vignette.CreateDefault();
+    this.editVignette = Vignette.CreateDefault();
   }
 
     updateVignette(vignette:Vignette) {
+      console.log(this.editVignette)
       this.vignetteService
       .updateVignette(this.newVignette)
       .subscribe(
@@ -34,7 +36,7 @@ export class VignetteEditComponent implements OnInit {
           this.vignettes[index] = this.editVignette;
           this.editVignette = Vignette.CreateDefault();
 
-          console.log("Added vignette.");
+          console.log("edited vignette.");
         }
       )
     }

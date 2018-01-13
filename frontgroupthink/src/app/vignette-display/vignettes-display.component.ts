@@ -13,6 +13,7 @@ export class VignetteDisplayComponent implements OnInit {
   vignettes: Vignette[];
   editVignette: Vignette;
   searchCriteria: string;
+  newVignette: Vignette;
 
 
   constructor(
@@ -41,22 +42,23 @@ export class VignetteDisplayComponent implements OnInit {
     }
 
     setEditVignette(vignette: Vignette){
-      this.editVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location);
+      this.editVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location, vignette.order);
+      console.log(this.editVignette)
     }
 
-    // updateVignette(vignette:Vignette) {
-    //   this.vignetteService
-    //   .updateVignette(this.newVignette)
-    //   .subscribe(
-    //     data => {
-    //       var index = this.vignettes.findIndex(item => item._id === this.editVignette._id);
-    //       this.vignettes[index] = this.editVignette;
-    //       this.editVignette = Vignette.CreateDefault();
-    //
-    //       console.log("Added vignette.");
-    //     }
-    //   )
-    // }
+    updateVignette(vignette:Vignette) {
+      this.vignetteService
+      .updateVignette(this.newVignette)
+      .subscribe(
+        data => {
+          var index = this.vignettes.findIndex(item => item._id === this.editVignette._id);
+          this.vignettes[index] = this.editVignette;
+          this.editVignette = Vignette.CreateDefault();
+
+          console.log("Added vignette.");
+        }
+      )
+    }
 
     // setEditVignette(vignette: Vignette){
     //   console.log('in set edit')
@@ -74,10 +76,13 @@ export class VignetteDisplayComponent implements OnInit {
                 element.name,
                 element.text,
                 element.characters,
-                element.location)
+                element.location,
+                element.order)
                 this.vignettes.push(newVignette);
               })
             })
           }
+          //create new this.sorted vignettes, iterate over this.vignettes and push in sorted order, then ngFor
+          //to display them.
 
 }

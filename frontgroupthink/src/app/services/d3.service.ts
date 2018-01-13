@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as d3 from 'd3'
+import * as d3 from 'd3';
 declare var jquery:any;
-import * as L from 'leaflet'
+import * as L from 'leaflet';
 import { StandaloneComponent } from '../standalone/standalone.component'
 
 declare var $ :any;

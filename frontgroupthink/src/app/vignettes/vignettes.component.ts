@@ -13,7 +13,7 @@ export class VignetteComponent implements OnInit {
   newVignette: Vignette;
   vignettes: Vignette[];
   searchCriteria: string;
-  textArray: Array;
+  textArray: Array<string>;
   editPart: string;
   index: number;
   features: string;
@@ -29,10 +29,11 @@ export class VignetteComponent implements OnInit {
     this.newVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
     this.getVignettes(); // I shouldn't have to do this right?
-    this.textArray = []
-    this.editPart = ''
-    this.index = 0
-    this.features = '['
+    this.textArray = [];
+    this.editPart = '';
+    this.index = 0;
+    this.features = '[';
+    this.vignettes = [];
 
   }
 
@@ -64,6 +65,7 @@ export class VignetteComponent implements OnInit {
     let points = "{\"type\": \"FeatureCollection\", \"features\":" + this.features.substring(0, this.features.length - 2) + "] }"
     console.log(points)
     this.newVignette.location = points
+    this.newVignette.order = this.vignettes.length + 1
     this.vignetteService
     .insertNewVignette(this.newVignette)
     .subscribe(
@@ -89,7 +91,8 @@ export class VignetteComponent implements OnInit {
               element.name,
               element.text,
               element.characters,
-              element.location)
+              element.location,
+              element.order)
               this.vignettes.push(newVignette);
             })
           })

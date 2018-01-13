@@ -12,7 +12,7 @@ export class HighlightDirective {
 
 
   }
-  @Input() textArray: Array;
+  @Input() textArray: Array<string>;
 
 
   @HostListener('mouseup') mouseup($event) {
