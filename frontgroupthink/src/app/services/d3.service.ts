@@ -293,7 +293,7 @@ export class D3Service {
   // var marker2 = document.getElementById('marker')
   // console.log(typeof $(marker2).lngLat())
   // getPosition($(marker2))
-} // end reset
+ // end reset
 
 };
 
