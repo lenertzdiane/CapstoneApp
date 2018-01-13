@@ -49,7 +49,6 @@ export class MapService {
 
   addStandaloneMarker(event) {
     this.markerGroup = L.layerGroup()
-    console.log(this.markerGroup)
     this.markerGroup.addTo(this.map);
 
     let ll = this.map.mouseEventToLatLng(event)
@@ -60,6 +59,7 @@ export class MapService {
   }
 
   removeMarkers() {
+    console.log('in remove')
     this.map.removeLayer(this.markerGroup)
   }
 

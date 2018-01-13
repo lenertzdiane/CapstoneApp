@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-#mapid, #map {
-  height: 350px;
+#map, #mapid {
+  min-height: 350px;
   vertical-align: top;
+  height: 35vw;
   /* display: inline-block; */
   /* width: 88÷%; */
   /* position: fixed; */
@@ -18,6 +19,30 @@
 h1 {
   color: #A9D9E5;
   font-size: 4vw;
+}
+
+.add-toggle {
+  text-align: center;
+  font-size: 1.8vw;
+  background-color: #65737e;
+  margin-bottom: 8px;
+  color: #A9D9E5;
+  border-bottom: 3px solid #65737e;
+  border-right: 3px solid #65737e;
+
+}
+
+.add-toggle:hover {
+  text-decoration: none;
+  background-color: #A9D9E5;
+  color: #65737e;
+}
+
+.acting {
+  background-color:#4f5b66;
+  border-bottom: 3px solid #A9D9E5;
+  border-right: 3px solid #A9D9E5;
+
 }
 
 .black {
@@ -37,18 +62,28 @@ h1 {
   height: 2.9vw;
   font-size: 1.8vw;
   margin-top: 3vw;
-    background-color: #4f5b66 ;
+  background-color: #4f5b66 ;
+  color: #A9D9E5
+}
+
+.btn-add:hover {
+  background-color: #A9D9E5;
+  color: #65737e;
 }
 
 .forms {
-  margin-left: 5vw;
+  margin-left: 3vw;
   /* margin-top: 8vw; */
 }
 
 .add-map {
-  margin-left: 5vw;
-  margin-top: 8vw;
+  margin-left: 2vw;
+  margin-top: 6.8vw;
   position: fixed;
+}
+
+#add-map {
+  height: 100%;
 }
 
 textarea {
@@ -61,6 +96,11 @@ textarea {
   overflow: scroll;
 background-color: #65737e;
   color: #A9D9E5;
+}
+
+#standalone-input {
+  background-color: #65737e;
+    color: #A9D9E5;
 }
 
 /* PART */
@@ -111,10 +151,11 @@ div.parts:hover {
 }
 
 .btn-menu {
-  font-size: 2.5vw;
+  font-size: 1.5vw;
   width: 100%;
   height: 3vw;
   margin-top: 17px;
+  text-align: center;
 }
 
 .btn-menu:nth-of-type(2n +1) {
@@ -131,10 +172,17 @@ div.parts:hover {
 
 .btn-menu:hover {
   text-decoration: none;
-  background-color: #a7adba;
-  color: #FFFFFF
+  background-color: #A9D9E5;
+  color: #65737e;
 }
 
+
+.leaflet-popup-content  {
+  background-color: #A9D9E5;
+}
+.leaflet-popup-content-wrapper {
+  background-color: #A9D9E5
+}
 
 /* READER ********************************************* READER  */
 
@@ -179,13 +227,13 @@ path {
 }
 
 
-::-webkit-input-placeholder {
+::webkit-input-placeholder {
   vertical-align: top;
  font-size: 14px;
- color: #d0cdfa;
- text-transform: uppercase;
- text-transform: uppercase;
- text-align: center;
+ color: #A9D9E5;
+ /* text-transform: uppercase;
+ text-transform: uppercase; */
+ text-align: left;
  font-weight: bold;
 }
 

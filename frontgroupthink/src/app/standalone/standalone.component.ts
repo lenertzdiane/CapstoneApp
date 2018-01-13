@@ -13,6 +13,7 @@ export class StandaloneComponent implements OnInit {
   newStandalone: Standalone;
   standalones: Standalone[];
   features: String
+  feat: string
 
   constructor(private standaloneService: StandaloneService, private mapService: MapService) { }
 
@@ -21,17 +22,23 @@ export class StandaloneComponent implements OnInit {
     this.getStandalones()
     this.searchCriteria = '';
     this.feature = ''
+    this.feat = ''
     this.standalones = this.getStandalones()
   }
 
 
   setLocation(event) {
-    console.log(event)
+    if(this.feat.length === 0) {
+      let latlng = this.mapService.addStandaloneMarker(event)
 
-    let latlng = this.mapService.addStandaloneMarker(event)
+    this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
+    this.feature = this.feat
+  }
+  }
 
-    let feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
-    this.feature = feat
+  removeMarkers(){
+    this.mapService.removeMarkers()
+    this.feat = ''
   }
 
   getStandalones(){
@@ -52,21 +59,22 @@ export class StandaloneComponent implements OnInit {
         }
 
 
-  insertNewStandalone() {
-    this.newStandalone.location = this.feature
-    this.standaloneService
-    .insertNewStandalone(this.newStandalone)
-    .subscribe(
-      data => {
-         this.newStandalone._id = data.id;
-         this.standalones.push(this.newStandalone);
-         this.newStandalone = Standalone.CreateDefault();
+        insertNewStandalone() {
+          this.newStandalone.location = this.feature
+          this.standaloneService
+          .insertNewStandalone(this.newStandalone)
+          .subscribe(
+            data => {
+              this.newStandalone._id = data.id;
+              this.standalones.push(this.newStandalone);
+              this.newStandalone = Standalone.CreateDefault();
 
-         console.log("Added standalone.");
+              console.log("Added standalone.");
+            }
+          )
+          this.mapService.removeMarkers()
+          this.feat = ''
+
+        }
+
       }
-    )
-    this.mapService.removeMarkers()
-
-  }
-
-}

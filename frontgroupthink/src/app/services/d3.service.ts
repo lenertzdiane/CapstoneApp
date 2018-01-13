@@ -298,23 +298,6 @@ export class D3Service {
 // //
 placeMarkers(map, standalones) {
 
-{
-  "type": "FeatureCollection",
-  "features": [
-    // {
-    //   "type": "Feature",
-    //   "properties": {},
-    //   "geometry": {
-    //     "type": "Point",
-    //     "coordinates": [
-    //       -87.6535713672638,
-    //       41.790568806493454
-    //     ]
-    //   }
-    // }
-  ]
-}
-
 let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
 standalones.forEach(function(standalone) {
   popups += standalone.location

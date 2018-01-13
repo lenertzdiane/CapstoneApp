@@ -45,6 +45,11 @@ export class VignetteComponent implements OnInit {
     this.features += feature
   }
 
+  removeMarkers(){
+    this.mapService.removeMarkers()
+    this.features = '['
+  }
+
   deletePart(i) {
     this.textArray.splice(i, 1)
   }
@@ -57,6 +62,7 @@ export class VignetteComponent implements OnInit {
 
   insertNewVignette() {
     let points = "{\"type\": \"FeatureCollection\", \"features\":" + this.features.substring(0, this.features.length - 2) + "] }"
+    console.log(points)
     this.newVignette.location = points
     this.vignetteService
     .insertNewVignette(this.newVignette)
