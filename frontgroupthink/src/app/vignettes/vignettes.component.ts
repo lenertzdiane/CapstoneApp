@@ -13,7 +13,7 @@ export class VignetteComponent implements OnInit {
   newVignette: Vignette;
   vignettes: Vignette[];
   searchCriteria: string;
-  textArray: Array;
+  textArray: Array<string>;
   editPart: string;
   index: number;
   features: string;

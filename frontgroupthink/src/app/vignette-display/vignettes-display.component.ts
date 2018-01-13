@@ -74,7 +74,8 @@ export class VignetteDisplayComponent implements OnInit {
                 element.name,
                 element.text,
                 element.characters,
-                element.location)
+                element.location,
+                element.order)
                 this.vignettes.push(newVignette);
               })
             })
