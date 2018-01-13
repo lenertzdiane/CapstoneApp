@@ -209,6 +209,7 @@ export class D3Service {
       }
     }
 
+<<<<<<< HEAD
     function makeLinePathScale(scrollTop, number, actingChild, actingLast){
       var linePathScale = d3.scale.linear()
       .domain([makeLastPartPosition(scrollTop, number-1, actingLast), makePartPosition(scrollTop, number, actingChild)])
@@ -222,10 +223,20 @@ export class D3Service {
     function render() {
 
       let length = linePath.node().getTotalLength()
+=======
+      function makeLinePathScale(scrollTop, number, actingChild, actingLast){
+        var linePathScale = d3.scale.linear()
+        .domain([makeLastPartPosition(scrollTop, number-1, actingLast), makePartPosition(scrollTop, number, actingChild)])
+        .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
+        .clamp(true);
+        return linePathScale(scrollTop)
+      }
+>>>>>>> c808afa2e407edea416a1a6d77f06c28a2734cce
 
       let vignetteElements = document.getElementsByClassName("read-vignette")
 
 
+<<<<<<< HEAD
       for(let i = 0; i < vignetteElements.length; i ++) {
         // console.log($(elements[i]).position().top, $(window).innerHeight()))
         // console.log(i)
@@ -235,10 +246,58 @@ export class D3Service {
 
         if($($(vignetteElements[i]).children().last().children()).position().top > txtHeight){
           let actingVignette = $(vignetteElements[i])
+=======
+        let length = linePath.node().getTotalLength()
+
+        let vignetteElements = document.getElementsByClassName("read-vignette")
+        // console.log(elements)
+
+        for(let i = 0; i < vignetteElements.length; i ++) {
+          // console.log($(elements[i]).position().top, $(window).innerHeight()))
+          // console.log(i)
+          //DIRTY HACK have to find something beetter than window height...
+          if($(vignetteElements[i]).position().top > $(window).innerHeight() - 2000){
+          let actingVignette = $(vignetteElements[i])
+          // console.log('this is the acting element: ')
+          // console.log(actingVignette)
+          break
+        }
+        }
+
+        //let elements be the children of the acting vignette
+        let children = actingVignette.children()
+        // console.log(children)
+
+        for(let i = 0; i < children.length; i ++) {
+          // console.log($(elements[i]).position().top, $(window).innerHeight()))
+          // console.log(i)
+          if($(children[i]).position().top > $(window).innerHeight()){
+          let actingChild = $(children[i])
+
+          //this wont work between the last one of the last vignette and the first
+          //one of the second vignette
+          let actingLast = $(children[i - 1])
+          // console.log(actingChild)
+>>>>>>> c808afa2e407edea416a1a6d77f06c28a2734cce
           break
         }
       }
 
+<<<<<<< HEAD
+      //let elements be the children of the acting vignette
+      let children = actingVignette.children()
+
+      for(let i = 1; i < children.length; i ++) {
+        // console.log($(elements[i]).position().top, $(window).innerHeight()))
+        // console.log(i)
+        if($(children[i]).position().top > txtHeight){
+        let actingChild = $(children[i])
+        //this wont work between the last one of the last vignette and the first
+        //one of the second vignette
+        let actingLast = $(children[i - 1])
+        break
+      }
+=======
       linePath
       .style('stroke-dashoffset', function(d) {
         let num = parseInt(actingChild[0].id)
@@ -258,6 +317,7 @@ export class D3Service {
 
       var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
       marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+>>>>>>> c808afa2e407edea416a1a6d77f06c28a2734cce
     }
 
     linePath
@@ -327,3 +387,50 @@ dataLayer.addTo(map)
 }
 
 }
+
+
+//////
+
+<div class= "whole container-fluid full-width" >
+  <div class="reader row row-no-gutter" >
+    <div class = "nav col-sm-1"  (click)="hide()">
+        <app-menu ></app-menu>
+    </div>
+    <section class = "big">
+
+<<<<<<< HEAD
+      <div appScrollAnimate [callback] = "scrollHandler"  class = "txt">
+        <div [id]="index+1" class = "read-vignette" *ngFor="let vignette of vignettes; let index = index" (click)="setActingVignette(vignette)">
+          <div  class="reader-title">
+            {{vignette.name}}
+          </div>
+
+          <div *ngFor="let t of vignette.text; let index = index" class = "part" [id] = "index + 1" class = "reader-text">
+=======
+    <div appScrollAnimate [callback] = "scrollHandler" class = "col-sm-5 container" >
+      <div class="">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div [id]="index+1" class = "read-vignette" *ngFor="let vignette of vignettes; let index = index" (click)="setActingVignette(vignette)">
+        <div  class="">
+          {{vignette.name}}
+        </div>
+        <div *ngFor="let t of vignette.text; let index = index" class = "part" [id] = "index + 1">
+>>>>>>> c808afa2e407edea416a1a6d77f06c28a2734cce
+            {{t}}
+            <span class = "last" [id] = "index + 1">x</span>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <div class="" >
+      <app-map appResize [standalones]= "standalones" [text]="text" [scrollTop]="scrollTop" [actingVignette] = "actingVignette" id = "mapid"></app-map>
+    </div>
+
+  </div>
+</div>
