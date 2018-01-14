@@ -6,9 +6,15 @@
     <section class = "big">
 
       <div appScrollAnimate [callback] = "scrollHandler"  class = "txt">
-        <div [id]="index+1" class = "read-vignette" *ngFor="let vignette of vignettes; let index = index" (click)="setActingVignette(vignette)">
+        <div [id]="index+1" class = "read-vignette" *ngFor="let vignette of vignettes |  orderBy: 'order', let index = index;" (click)="setActingVignette(vignette)">
           <div  class="reader-title">
             {{vignette.name}}
+          </div>
+          <div  class="reader-title">
+            {{vignette.location}}
+          </div>
+          <div  class="reader-title">
+            {{vignette.location}}
           </div>
 
           <div *ngFor="let t of vignette.text; let index = index" class = "part" [id] = "index + 1" class = "reader-text">

@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component'
 import { ReaderComponent } from './reader/reader.component'
 import { NotesComponent } from './notes/notes.component'
 import { StandaloneComponent } from './standalone/standalone.component'
+import { FilterComponent } from './filter/filter.component'
+
 
 
 const routes: Routes = [
@@ -17,6 +19,9 @@ const routes: Routes = [
   { path: 'manage', component: VignetteDisplayComponent },
   { path: 'notes', component: NotesComponent },
   { path: 'standalone', component: StandaloneComponent }
+  { path: 'filter', component: FilterComponent }
+
+
 ];
 
 //The method is called forRoot() because you configure the router at the application's

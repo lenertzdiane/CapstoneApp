@@ -56,11 +56,27 @@ router.post('/deleteVignette', function(req, res, next) {
   });
 });
 
-router.post('/updateVignette', function(req, res, next) {
-  Vignette.findByIdAndUpdate(req._id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+// router.post('/updateVignette', function(req, res, next) {
+//   Vignette.findByIdAndUpdate(req._id, req.body, function (err, post) {
+//     // console.log('in post')
+//     // console.log(req.body)
+//     if (err) return next(err);
+//     res.json(post);
+//     console.log(post)
+//   });
+// });
+
+router.post('/updateVignette', function (req, res, next) {
+
+  var id = req.body._id;
+  delete req.body._id;
+  res.send(req.body)
+
+  Vignette.update({_id: id}, req.body, function (err) {
+
+    // Do something after update here
   });
+
 });
 // router.post('/updateVignette', function(req, res, next) {
 //   var vignette = new Vignette(req.body);

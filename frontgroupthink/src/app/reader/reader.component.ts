@@ -46,6 +46,8 @@ export class ReaderComponent implements OnInit {
     // }
 
     handleScroll(scrollTop, text, standalones) {
+      console.log(this.vignettes)
+
       this.scrollTop = scrollTop;
       this.text = text;
       this.standalones = standalones;
@@ -89,7 +91,8 @@ export class ReaderComponent implements OnInit {
                 element.name,
                 element.text,
                 element.characters,
-                element.location)
+                element.location,
+                element.order)
                 this.vignettes.push(newVignette);
               })
             })

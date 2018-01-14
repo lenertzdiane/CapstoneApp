@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragulaModule } from 'ng2-dragula';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
@@ -33,12 +34,13 @@ import { ModalDirective } from './directives/modal.directive';
 import { PartEditComponent } from './part-edit/part-edit.component';
 import { LocationDirective } from './directives/location.directive';
 import { StandaloneComponent } from './standalone/standalone.component';
+import { FilterComponent } from './filter/filter.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent, StandaloneComponent
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent, StandaloneComponent, FilterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { StandaloneComponent } from './standalone/standalone.component';
     AppRoutingModule,
     MatGridListModule,
     BrowserAnimationsModule,
-    DragulaModule
+    DragulaModule,
+    OrderModule
   ],
   providers: [VignetteService, MapService, D3Service, StandaloneService],
   bootstrap: [AppComponent]

@@ -23,7 +23,7 @@ export class VignetteDisplayComponent implements OnInit {
   constructor(private vignetteService: VignetteService, private dragulaService: DragulaService) {
 
     let currentVignette = this.vignetteList;
-    // dragulaService.setOptions();
+      dragulaService.setOptions();
 
      dragulaService.drag.subscribe((value: any) => {
      let currentVignette = this.vignetteList; //onchage event ---> pushing data through
@@ -58,10 +58,8 @@ export class VignetteDisplayComponent implements OnInit {
     }
 
     handleSaveRequest(): Promise < any > {
-      console.log(this.updatedVignette)
       for(let vignette of this.updatedVignette){
         let newVignette = new Vignette(vignette.id, vignette.name, vignette.text, vignette.characters, vignette.location, (vignette.index + 1));
-        console.log(newVignette)
         this.updateVignetteOrder(newVignette)
       }
   }
@@ -76,9 +74,6 @@ export class VignetteDisplayComponent implements OnInit {
   }
 
   deleteVignette(vignette:Vignette) {
-    console.log(vignette)
-    console.log(vignette._id)
-
     this.vignetteService
     .deleteVignette(vignette)
     .subscribe(
@@ -89,20 +84,19 @@ export class VignetteDisplayComponent implements OnInit {
     }
 
     setEditVignette(vignette: Vignette){
+      console.log(this.vignettes)
+
       this.editVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location, vignette.order);
-      console.log(this.editVignette)
     }
 
 
     updateVignetteOrder(vignette:Vignette) {
-      console.log(vignette)
       this.vignetteService
       .updateVignette(vignette)
       .subscribe(
         data => {
           var index = this.vignettes.findIndex(item => item._id === vignette._id);
           this.vignettes[index] = vignette;
-
           console.log("updated Vignette.");
         }
       )

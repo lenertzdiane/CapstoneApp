@@ -6,26 +6,11 @@
 <!-- <section class="todo-list" dnd-sortable-container [sortableData]="todos"> -->
 <div class='wrapper'>
   <div class='container' [dragula]="bag-one" [dragulaModel]='vignettes'>
-  <div class="col-sm-10 vignette-display" *ngFor="let vignette of vignettes | orderBy: 'order', let i = index;" (click)="setEditVignette(vignette)" [attr.data-id] = "vignette._id" [attr.data-index] = "i" [attr.data-name]= "vignette.name" [attr.data-characters] = "vignette.characters" [attr.data-location] = "vignette.location">
+  <div class="col-sm-10 vignette-display" *ngFor="let vignette of vignettes |  orderBy: 'order', let i = index;" (click)="setEditVignette(vignette)" [attr.data-id] = "vignette._id" [attr.data-index] = "i" [attr.data-name]= "vignette.name" [attr.data-characters] = "vignette.characters" [attr.data-location] = "vignette.location">
     <div class="" >
       {{vignette.name}}
     </div>
-    <!-- <div class="">
-      {{vignette.text}}
-    </div>
-    <div class="">
-      {{vignette.characters}}
-    </div>
-    <div class="">
-      {{vignette.location}}
-    </div>
-    <div class="">
-      {{vignette.order}}
-    </div>
-    <div class=""> -->
-      <!-- <input type="text" name="" value="" [(ngModel)]="vignette.order"> -->
-      <!-- <button class="btn btn-default" (click)="updateVignette()"> Update Order </button> -->
-    <!-- </div> -->
+
     <div class="">
       <button class="btn btn-default" (click)="deleteVignette(vignette)">Delete</button>
     </div>
