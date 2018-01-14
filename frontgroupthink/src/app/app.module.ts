@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragulaModule } from 'ng2-dragula';
 
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
@@ -45,7 +46,8 @@ import { StandaloneComponent } from './standalone/standalone.component';
     FormsModule,
     AppRoutingModule,
     MatGridListModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DragulaModule
   ],
   providers: [VignetteService, MapService, D3Service, StandaloneService],
   bootstrap: [AppComponent]

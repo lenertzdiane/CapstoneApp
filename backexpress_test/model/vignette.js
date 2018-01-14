@@ -5,7 +5,8 @@ var vignetteSchema = new Schema({
   name: String,
   text: Array,
   characters: Array,
-  location: String
+  location: String,
+  order: Number
 });
 
 // vignetteSchema.methods.concatanceNameAndBlog = function() {

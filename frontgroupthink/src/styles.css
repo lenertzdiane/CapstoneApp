@@ -247,6 +247,18 @@ path {
   opacity: .6;
 }
 
+/* MANAGE VIGNETETES DRAGULA ********************************************* MANAGE VIGNETTES  */
+
+
+.vignette-display:nth-of-type(2n+1) {
+  background-color: 	#4f5b66 ;
+  color: #A9D9E5;
+}
+
+.vignette-display:nth-of-type(2n+2) {
+  background-color: #65737e ;
+  color: #A9D9E5;
+}
 
 /* TEXTAREA RESIZE ********************************************* TEXTAREA RESIZE  */
 

@@ -37,6 +37,10 @@ export class VignetteComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+//ready the map for the markers?
+  }
+
   setLocation(event) {
     console.log(event)
 

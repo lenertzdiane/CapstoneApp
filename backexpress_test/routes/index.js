@@ -57,19 +57,27 @@ router.post('/deleteVignette', function(req, res, next) {
 });
 
 router.post('/updateVignette', function(req, res, next) {
-  var vignette = new Vignette(req.body);
-  console.log(res);
-  Vignette.update({id : req.body._id}, vignette, function(err) {
-    if (err) {
-      console.log("not updated!");
-      res.status(400);
-      res.send();
-    }
-
-    console.log("updated!");
-    res.send({status: 'ok'});
+  Vignette.findByIdAndUpdate(req._id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
   });
 });
+// router.post('/updateVignette', function(req, res, next) {
+//   var vignette = new Vignette(req.body);
+//   console.log(req.body)
+//   console.log(vignette)
+//   // console.log;
+//   Vignette.update({id : req.body._id}, vignette, function(err) {
+//     if (err) {
+//       console.log("not updated!");
+//       res.status(400);
+//       res.send();
+//     }
+//
+//     console.log("updated!");
+//     // res.send({status: 'ok'});
+//   });
+// });
 
 
 // STANDALONESSSSSSSSSSSSSSSSSSSSSSSSSSSS

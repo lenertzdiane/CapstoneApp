@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Pipe, PipeTransform } from '@angular/core';
 import { Vignette } from '../models/vignette'
 import { VignetteService } from '../services/vignettes.service';
+import { DragulaService } from 'ng2-dragula'
 
 
 @Component({
   selector: 'vignettes-display',
   templateUrl: './vignettes-display.component.html',
+  pipes: []
 })
 
 export class VignetteDisplayComponent implements OnInit {
@@ -14,17 +16,60 @@ export class VignetteDisplayComponent implements OnInit {
   editVignette: Vignette;
   searchCriteria: string;
   newVignette: Vignette;
+  vignetteList: any = []
+  updatedVignette: any = [];
 
 
-  constructor(
-    private vignetteService: VignetteService
-  ) { }
+  constructor(private vignetteService: VignetteService, private dragulaService: DragulaService) {
+
+    let currentVignette = this.vignetteList;
+    // dragulaService.setOptions();
+
+     dragulaService.drag.subscribe((value: any) => {
+     let currentVignette = this.vignetteList; //onchage event ---> pushing data through
+   });
+
+   dragulaService.drop.subscribe((value: any[]) => { //runs when item being dragged is dropped into new location
+     let currentVignette = this.vignetteList; // --> pushing the data through
+     const [bagName, e, el] = value;
+     console.log(value)
+     this.onDrop(value.slice(1)); //  --> passing to onDrop
+   });
+
+
+ }
+
+ private onDrop(args: any) {
+      let [el, target, source] = args;
+      const rowData = Array.from(target.children);
+      this.updatedVignette = rowData.map((row: any, index: number) => {
+        return {
+          id: row.dataset.id,
+          name: row.dataset.name,
+          text: row.dataset.text,
+          characters: row.dataset.characters,
+          location: row.dataset.location,
+          index
+        }
+      });
+      return new Promise((resolve: any, reject: any) => {
+        this.handleSaveRequest();
+      });
+    }
+
+    handleSaveRequest(): Promise < any > {
+      console.log(this.updatedVignette)
+      for(let vignette of this.updatedVignette){
+        let newVignette = new Vignette(vignette.id, vignette.name, vignette.text, vignette.characters, vignette.location, (vignette.index + 1));
+        console.log(newVignette)
+        this.updateVignetteOrder(newVignette)
+      }
+  }
 
 
 
   ngOnInit() {
     this.newVignette = Vignette.CreateDefault();
-
     this.editVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
     this.getVignettes();
@@ -49,8 +94,23 @@ export class VignetteDisplayComponent implements OnInit {
     }
 
 
+    updateVignetteOrder(vignette:Vignette) {
+      console.log(vignette)
+      this.vignetteService
+      .updateVignette(vignette)
+      .subscribe(
+        data => {
+          var index = this.vignettes.findIndex(item => item._id === vignette._id);
+          this.vignettes[index] = vignette;
+
+          console.log("updated Vignette.");
+        }
+      )
+    }
+
+
     updateVignette(vignette:Vignette) {
-      // console.log(this.editVignette)
+      console.log(this.editVignette)
       this.vignetteService
       .updateVignette(this.editVignette)
       .subscribe(
