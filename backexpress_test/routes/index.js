@@ -30,6 +30,7 @@ router.get('/getVignettes', function(req, res, next) {
 router.post('/insertNewVignette', function(req, res, next) {
   var newVignette = new Vignette(req.body);
   newVignette._id = mongoose.Types.ObjectId();
+  console.log(newVignette._id)
 
   newVignette.save(function(err) {
     if (err) {
@@ -44,7 +45,11 @@ router.post('/insertNewVignette', function(req, res, next) {
 });
 
 router.post('/deleteVignette', function(req, res, next) {
-  Vignette.remove({id : req.body._id}, function(err) {
+  console.log(res)
+  console.log(req.body)
+
+  console.log(req.body.id)
+  Vignette.remove({_id : req.body.id}, function(err) {
     if (err) {
       console.log("not removed!");
       res.status(400);
@@ -56,21 +61,35 @@ router.post('/deleteVignette', function(req, res, next) {
   });
 });
 
+
+router.post('/updateVignette', function (req, res, next) {
+
+  var id = req.body._id;
+  delete req.body._id;
+  res.send(req.body)
+
+  Vignette.update({_id: id}, req.body, function (err) {
+
+    // Do something after update here
+  });
+
+});
 // router.post('/updateVignette', function(req, res, next) {
 //   var vignette = new Vignette(req.body);
-//
-//   Vignette.update({_id : vignette.id}, vignette, function(err) {
+//   console.log(req.body)
+//   console.log(vignette)
+//   // console.log;
+//   Vignette.update({id : req.body._id}, vignette, function(err) {
 //     if (err) {
 //       console.log("not updated!");
 //       res.status(400);
 //       res.send();
 //     }
-//     console.log("UGHH")
+//
 //     console.log("updated!");
-//     res.send({status: 'ok'});
+//     // res.send({status: 'ok'});
 //   });
 // });
-
 
 
 // STANDALONESSSSSSSSSSSSSSSSSSSSSSSSSSSS
