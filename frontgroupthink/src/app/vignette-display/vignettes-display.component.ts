@@ -23,7 +23,9 @@ export class VignetteDisplayComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.editVignette = Vignette.CreateDefault();
+    this.newVignette = Vignette.CreateDefault();
+
+    this.editVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
     this.getVignettes();
   }
@@ -46,16 +48,18 @@ export class VignetteDisplayComponent implements OnInit {
       console.log(this.editVignette)
     }
 
+
     updateVignette(vignette:Vignette) {
+      // console.log(this.editVignette)
       this.vignetteService
-      .updateVignette(this.newVignette)
+      .updateVignette(this.editVignette)
       .subscribe(
         data => {
           var index = this.vignettes.findIndex(item => item._id === this.editVignette._id);
           this.vignettes[index] = this.editVignette;
           this.editVignette = Vignette.CreateDefault();
 
-          console.log("Added vignette.");
+          console.log("updated Vignette.");
         }
       )
     }
@@ -85,4 +89,4 @@ export class VignetteDisplayComponent implements OnInit {
           //create new this.sorted vignettes, iterate over this.vignettes and push in sorted order, then ngFor
           //to display them.
 
-}
+        }

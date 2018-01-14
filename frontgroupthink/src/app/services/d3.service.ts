@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+declare var jquery:any;
 import * as d3 from 'd3';
 declare var jquery:any;
 import * as L from 'leaflet';

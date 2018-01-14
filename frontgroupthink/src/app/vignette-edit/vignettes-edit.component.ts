@@ -10,7 +10,7 @@ import { VignetteService } from '../services/vignettes.service';
 export class VignetteEditComponent implements OnInit {
   @Input() vignette: Vignette;
 
-  editVignette: Vignette
+  vignette: Vignette
   newVignette: Vignette;
   vignettes: Vignette[]
 
@@ -23,21 +23,43 @@ export class VignetteEditComponent implements OnInit {
 
   ngOnInit() {
     this.vignette = Vignette.CreateDefault();
-    this.editVignette = Vignette.CreateDefault();
+    this.newVignette = Vignette.CreateDefault();
+    this.searchCriteria = '';
+    this.getVignettes();
+    // this.editVignette = Vignette.CreateDefault();
   }
 
-    updateVignette(vignette:Vignette) {
-      console.log(this.editVignette)
-      this.vignetteService
-      .updateVignette(this.newVignette)
-      .subscribe(
-        data => {
-          var index = this.vignettes.findIndex(item => item._id === this.editVignette._id);
-          this.vignettes[index] = this.editVignette;
-          this.editVignette = Vignette.CreateDefault();
-
-          console.log("edited vignette.");
+  getVignettes(){
+    this.vignetteService.getVignettes(this.searchCriteria)
+    .subscribe(
+      data => {
+        this.vignettes = [];
+        data.forEach(
+          element => {
+            var newVignette = new Vignette(element._id,
+              element.name,
+              element.text,
+              element.characters,
+              element.location,
+              element.order)
+              this.vignettes.push(newVignette);
+            })
+          })
         }
-      )
-    }
+
+  updateVignette(vignette:Vignette) {
+    console.log('in vinedit')
+    console.log(vignette)
+    this.vignetteService
+    .updateVignette(vignette)
+    .subscribe(
+      data => {
+         var index = this.vignettes.findIndex(item => item._id === this.vignette._id);
+         this.vignettes[index] = this.vignette;
+         this.vignette = Vignette.CreateDefault();
+
+         console.log("Added vignette.");
+      }
+    )
+  }
 }

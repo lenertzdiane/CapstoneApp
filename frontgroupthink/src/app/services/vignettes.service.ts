@@ -34,6 +34,7 @@ export class VignetteService {
     }
 
     updateVignette(vignette:Vignette): Observable<any>{
+      console.log(vignette)
         return this.http.post("http://localhost:3000/updateVignette", vignette)
             .map((res:any) => {
                 return res.json();

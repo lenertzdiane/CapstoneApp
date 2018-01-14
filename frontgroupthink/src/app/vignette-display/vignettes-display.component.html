@@ -29,4 +29,14 @@
   </div>
   <div>
 
-  <vignettes-edit [vignette]="editVignette" ></vignettes-edit>
+  <!-- <vignettes-edit [vignette]="editVignette" ></vignettes-edit> -->
+  <div class="form-group col-sm-2">
+      <label for="editVignette">Edit Vignette:</label>
+      <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.editVignette.name" [ngModelOptions]="{standalone: true}"/>
+      <textarea placeholder="Text" [(ngModel)]="this.editVignette.text"></textarea>
+      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.editVignette.characters" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.editVignette.location" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control" type="text" placeholder="Order" [(ngModel)]="this.editVignette.order" [ngModelOptions]="{standalone: true}"/>
+
+      <button class="btn btn-default" (click)="updateVignette()"> Edit Vignette </button>
+  </div>
