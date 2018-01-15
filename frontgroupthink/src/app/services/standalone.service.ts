@@ -13,8 +13,10 @@ export class StandaloneService {
     }
 
     getStandalones(searchCriteria:any) : Observable<Standalone[]>{
+      let params: URLSearchParams = new URLSearchParams();
+      params.set('name', searchCriteria);
 
-        return this.http.get("http://localhost:3000/getStandalones")
+        return this.http.get("http://localhost:3000/getStandalones", { search: params })
                 .map((res:any) => {
                     return res.json();
                 })

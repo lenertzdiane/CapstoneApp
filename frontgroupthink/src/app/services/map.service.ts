@@ -8,9 +8,12 @@ export class MapService {
   public baseMaps: any;
   private vtLayer: any;
   private markerGroup: any;
+  anchorGroup: any;
 
   constructor(private http: Http) {
     this.markerGroup = {}
+    this.anchorGroup = {}
+
     this.baseMaps = {
       // MapBox:L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -57,8 +60,9 @@ export class MapService {
   }
 
   addStandaloneMarker(event) {
-    // this.markerGroup = L.layerGroup()
-    // this.markerGroup.addTo(this.map);
+    console.log('in add standalone')
+    this.markerGroup = L.layerGroup()
+    this.markerGroup.addTo(this.map);
 
     let ll = this.map.mouseEventToLatLng(event)
     var marker = L.marker([ll.lat, ll.lng]).addTo(this.markerGroup);

@@ -82,6 +82,9 @@ export class VignetteComponent implements OnInit {
 
 
   insertNewVignette() {
+    console.log(this.newVignette.characters)
+    console.log(this.newVignette.characters[0])
+
     let points = "{\"type\": \"FeatureCollection\", \"features\":" + this.features.substring(0, this.features.length - 2) + "] }"
     this.newVignette.location = points
     this.newVignette.order = this.vignettes.length + 1

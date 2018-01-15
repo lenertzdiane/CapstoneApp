@@ -31,6 +31,7 @@ export class StandaloneComponent implements OnInit {
 
 
   setLocation(event) {
+    console.log('in setlocation')
     if(this.feat.length === 0) {
       let latlng = this.mapService.addStandaloneMarker(event)
 
