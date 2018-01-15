@@ -1,3 +1,13 @@
-<p>
-  filter works!
-</p>
+<!-- <button type="button" name="button" (click) = "findByCharacter('100')">100</button> -->
+
+<div class="" *ngFor="let vignette of vignettes">
+  <div class="" *ngFor = "let char of vignette.characters">
+    <button type="button" name="button" (click) = "findByCharacter(char)">{{char}}</button>
+  </div>
+</div>
+
+<div class="read-vignette" *ngFor="let vignette of filteredVignettes">
+  {{vignette.name}}
+  {{vignette.characters}}
+  {{vignette.text}}
+</div>

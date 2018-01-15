@@ -38,6 +38,8 @@ export class VignetteComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.mapService.readyMarkerGroup()
+    console.log('ngafteriewinit')
 //ready the map for the markers?
   }
 
@@ -82,6 +84,8 @@ export class VignetteComponent implements OnInit {
     this.features = ''
     this.textArray = []
     this.mapService.removeMarkers()
+    this.mapService.readyMarkerGroup()
+    
   }
 
   getVignettes(){
@@ -101,7 +105,6 @@ export class VignetteComponent implements OnInit {
             })
           })
         }
-
 
 
 

@@ -14,7 +14,8 @@ router.get('/getVignettes', function(req, res, next) {
   var searchQuery = {};
 
   if(req.query.name)
-    searchQuery = { name: req.query.name };
+    searchQuery = { characters: req.query.name };
+    console.log(searchQuery)
 
   Vignette.find(searchQuery, function(err, vignettes){
     if (err) {
@@ -44,7 +45,7 @@ router.post('/insertNewVignette', function(req, res, next) {
 });
 
 router.post('/deleteVignette', function(req, res, next) {
-  Vignette.remove({id : req.body._id}, function(err) {
+  Vignette.remove({_id : req.body.id}, function(err) {
     if (err) {
       console.log("not removed!");
       res.status(400);

@@ -43,7 +43,6 @@ export class HighlightDirective {
       text.style.height = hiddenDiv.getBoundingClientRect().height + 'px';
 
 //THIS IS A RIDICULOUS PLACE TO PUT THIS FUNCTION CALL, SHOULD BE ON SOME NG INIT SOMEWHERE BUT.
-      this.mapService.readyMarkerGroup()
 
 
   }

@@ -10,13 +10,7 @@
           <div  class="reader-title">
             {{vignette.name}}
           </div>
-          <div  class="reader-title">
-            {{vignette.location}}
-          </div>
-          <div  class="reader-title">
-            {{vignette.location}}
-          </div>
-
+    
           <div *ngFor="let t of vignette.text; let index = index" class = "part" [id] = "index + 1" class = "reader-text">
             {{t}}
             <span class = "last" [id] = "index + 1">x</span>

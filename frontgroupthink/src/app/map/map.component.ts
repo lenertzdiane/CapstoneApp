@@ -27,7 +27,7 @@ export class MapComponent implements OnInit, OnChanges {
       center: L.latLng(41.79, -87.65),
       zoom: 17,
       minZoom: 8,
-      maxZoom: 19,
+      maxZoom: 25,
       layers: [this.mapService.baseMaps.OpenStreetMap]
     });
 
