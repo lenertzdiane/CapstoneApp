@@ -288,12 +288,12 @@ export class D3Service {
     marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
 
     var svgPnt = L.point(p.x,p.y)
-	  var mapLatLng = map.layerPointToLatLng(svgPnt)
+    var mapLatLng = map.layerPointToLatLng(svgPnt)
     map.panTo(mapLatLng)
-	// var mapLat=mapLatLng.lat
-	// var mapLng=mapLatLng.lng
-	// mapLatValue.value=mapLat.toFixed(3)
-	// mapLngValue.value=mapLng.toFixed(3)
+    // var mapLat=mapLatLng.lat
+    // var mapLng=mapLatLng.lng
+    // mapLatValue.value=mapLat.toFixed(3)
+    // mapLngValue.value=mapLng.toFixed(3)
   }
   window.requestAnimationFrame(render)
 
@@ -309,22 +309,65 @@ export class D3Service {
 // //   //probably from a model. should be something like import Popups from '../models/popups'
 // //   //then use popups.coordinates
 // //
-placeMarkers(map, standalones) {
+
+
+// //
+placeAnchors(map, anchors) {
 
 let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
-standalones.forEach(function(standalone) {
-  popups += standalone.location
+let names = []
+let notes = []
+anchors.forEach(function(anchor) {
+  popups += anchor.location;
+  names.push(anchor.name);
+  notes.push(anchor.notes)
 })
 
 let finishedPopups = popups.substring(0, popups.length-2)
 finishedPopups += " ] }"
+console.log(finishedPopups)
 
 let geoJSONPopups = JSON.parse(finishedPopups)
+let counter = 0
 //I think this is just leaflet stuff so does the d3 library work?
 let dataLayer = L.geoJson(geoJSONPopups, {
 onEachFeature: function(feature, layer) {
-  var popupText = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit</p>  "
+
+  var popupText = names[counter] + notes[counter]
   + feature.geometry.coordinates;
+  counter+=1
+  layer.bindPopup(popupText);
+  layer.on("click", function() {
+  })
+}
+});
+dataLayer.addTo(map)
+}
+
+
+placeMarkers(map, standalones) {
+let names = [];
+let text = [];
+
+let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
+standalones.forEach(function(standalone) {
+  popups += standalone.location;
+  names.push(standalone.name);
+  text.push(standalone.text);
+})
+
+let finishedPopups = popups.substring(0, popups.length-2)
+finishedPopups += " ] }"
+console.log(finishedPopups)
+
+let geoJSONPopups = JSON.parse(finishedPopups)
+let counter = 0
+//I think this is just leaflet stuff so does the d3 library work?
+let dataLayer = L.geoJson(geoJSONPopups, {
+onEachFeature: function(feature, layer) {
+  var popupText = names[counter] + text[counter]
+  + feature.geometry.coordinates;
+  counter +=1
   layer.bindPopup(popupText);
   layer.on("click", function() {
   })

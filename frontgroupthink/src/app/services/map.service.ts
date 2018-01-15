@@ -32,12 +32,15 @@ export class MapService {
   }
 
   readyMarkerGroup(){
-    console.log('readying marker')
-    console.log(this.map)
     this.markerGroup = L.layerGroup()
-    console.log(this.markerGroup)
     this.markerGroup.addTo(this.map);
   }
+
+
+    readyAnchorGroup(){
+      this.anchorGroup = L.layerGroup()
+      this.anchorGroup.addTo(this.map);
+    }
 
   getLatLng(event) {
     let ll = this.map.mouseEventToLatLng(event)
@@ -48,19 +51,14 @@ export class MapService {
   }
 
   addAnchorMarker(event) {
-    this.markerGroup = L.layerGroup()
-    this.markerGroup.addTo(this.map);
-
     let ll = this.map.mouseEventToLatLng(event)
-    var marker = L.marker([ll.lat, ll.lng]).addTo(this.markerGroup);
-    //if I wanted to do this part better i'd convert to geoJSON and pass back lol
-    //console.log(marker.toGeoJSON())
+    var marker = L.marker([ll.lat, ll.lng]).addTo(this.anchorGroup);
     return ll
   }
 
   addStandaloneMarker(event) {
-    this.markerGroup = L.layerGroup()
-    this.markerGroup.addTo(this.map);
+    // this.markerGroup = L.layerGroup()
+    // this.markerGroup.addTo(this.map);
 
     let ll = this.map.mouseEventToLatLng(event)
     var marker = L.marker([ll.lat, ll.lng]).addTo(this.markerGroup);
@@ -72,6 +70,11 @@ export class MapService {
   removeMarkers() {
     console.log('in remove')
     this.map.removeLayer(this.markerGroup)
+  }
+
+  removeAnchors() {
+    console.log('in remove')
+    this.map.removeLayer(this.anchorGroup)
   }
 
 

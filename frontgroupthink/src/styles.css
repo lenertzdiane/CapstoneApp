@@ -102,6 +102,10 @@ background-color: #65737e;
   background-color: #65737e;
     color: #A9D9E5;
 }
+.leaflet-popup {
+  max-height: 20vw;
+  overflow-y: scroll;
+}
 
 /* PART */
 .part-index {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Anchor } from '../models/anchor'
 import { AnchorService } from '../services/anchor.service'
 import { MapService } from '../services/map.service'
+import { D3Service } from '../services/d3.service'
+
 
 @Component({
   selector: 'app-anchor',
@@ -17,7 +19,7 @@ export class AnchorComponent implements OnInit {
   feature: string;
 
 
-  constructor(private anchorService: AnchorService, private mapService: MapService) { }
+  constructor(private anchorService: AnchorService, private mapService: MapService, private d3Service: D3Service) { }
 
   ngOnInit() {
     this.newAnchor = Anchor.CreateDefault();
@@ -28,8 +30,10 @@ export class AnchorComponent implements OnInit {
     this.feature = ''
   }
 
-  ngAfterViewInit() {
+  showAnchors() {
+    console.log(this.anchors)
     this.mapService.readyMarkerGroup()
+    this.d3Service.placeAnchors(this.mapService.map, this.anchors)
   }
 
   setAnchor(event) {
@@ -38,6 +42,7 @@ export class AnchorComponent implements OnInit {
 
     this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
     this.feature = this.feat
+    console.log(this.feature)
   }
   }
 

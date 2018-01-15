@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { Vignette } from '../models/vignette';
+import { Anchor } from '../models/anchor';
 import { VignetteService } from '../services/vignettes.service';
+import { AnchorService } from '../services/anchor.service';
+
 import * as L from "leaflet";
 import { MapService } from "../services/map.service";
+import { D3Service } from "../services/d3.service";
 
 
 @Component({
@@ -17,11 +21,14 @@ export class VignetteComponent implements OnInit {
   editPart: string;
   index: number;
   features: string;
+  anchors: Anchor[]
 
 
   constructor(
     private vignetteService: VignetteService,
-    private mapService: MapService
+    private mapService: MapService,
+    private d3Service: D3Service,
+    private anchorService: AnchorService,
 
   ) { }
 
@@ -29,23 +36,30 @@ export class VignetteComponent implements OnInit {
     this.newVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
     this.getVignettes(); // I shouldn't have to do this right?
+    this.getAnchors();
     this.textArray = [];
     this.editPart = '';
     this.index = 0;
     this.features = '[';
     this.vignettes = [];
+    this.anchors = []
 
   }
 
   ngAfterViewInit() {
     this.mapService.readyMarkerGroup()
-    console.log('ngafteriewinit')
-//ready the map for the markers?
+  }
+
+  showAnchors() {
+    this.mapService.readyAnchorGroup()
+    this.d3Service.placeAnchors(this.mapService.anchorGroup, this.anchors)
+  }
+
+  hideAnchors() {
+    this.mapService.removeAnchors();
   }
 
   setLocation(event) {
-    console.log(event)
-
     let latlng = this.mapService.getLatLng(event)
 
     let feature = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
@@ -69,7 +83,6 @@ export class VignetteComponent implements OnInit {
 
   insertNewVignette() {
     let points = "{\"type\": \"FeatureCollection\", \"features\":" + this.features.substring(0, this.features.length - 2) + "] }"
-    console.log(points)
     this.newVignette.location = points
     this.newVignette.order = this.vignettes.length + 1
     this.vignetteService
@@ -85,7 +98,7 @@ export class VignetteComponent implements OnInit {
     this.textArray = []
     this.mapService.removeMarkers()
     this.mapService.readyMarkerGroup()
-    
+
   }
 
   getVignettes(){
@@ -105,7 +118,24 @@ export class VignetteComponent implements OnInit {
             })
           })
         }
+        getAnchors(){
+          this.anchorService.getAnchors(this.searchCriteria)
+          .subscribe(
+            data => {
+              this.anchors = [];
+              data.forEach(
+                element => {
+                  var newAnchor = new Anchor(element._id,
+                    element.name,
+                    element.notes,
+                    element.characters,
+                    element.location)
+                    this.anchors.push(newAnchor);
+                  })
+                })
+              }
 
 
 
-      }
+
+            }
