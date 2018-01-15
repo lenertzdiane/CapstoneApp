@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { MapService } from "../services/map.service";
-import { D3Service } from '../services/d3.service'
+import { D3Service } from '../services/d3.service';
+import { Vignette } from '../models/vignette';
+import { Standalone } from 'models/standalone';
 import * as L from "leaflet";
 
 
@@ -14,7 +16,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() text: object;
   @Input() scrollTop: number;
   @Input() actingVignette: Vignette;
-  @Input() features: Array
+  @Input() features: Array<string>
   @Input() standalones: Standalone[];
 
   constructor(private mapService: MapService, private d3Service: D3Service) { }
@@ -27,7 +29,7 @@ export class MapComponent implements OnInit, OnChanges {
       center: L.latLng(41.79, -87.65),
       zoom: 17,
       minZoom: 8,
-      maxZoom: 25,
+      maxZoom: 18,
       layers: [this.mapService.baseMaps.OpenStreetMap]
     });
 

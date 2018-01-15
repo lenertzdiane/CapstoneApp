@@ -7,7 +7,6 @@ import { DragulaService } from 'ng2-dragula'
 @Component({
   selector: 'vignettes-display',
   templateUrl: './vignettes-display.component.html',
-  pipes: []
 })
 
 export class VignetteDisplayComponent implements OnInit {
@@ -23,7 +22,7 @@ export class VignetteDisplayComponent implements OnInit {
   constructor(private vignetteService: VignetteService, private dragulaService: DragulaService) {
 
     let currentVignette = this.vignetteList;
-      dragulaService.setOptions();
+      // dragulaService.setOptions();
 
      dragulaService.drag.subscribe((value: any) => {
      let currentVignette = this.vignetteList; //onchage event ---> pushing data through
@@ -57,7 +56,7 @@ export class VignetteDisplayComponent implements OnInit {
       });
     }
 
-    handleSaveRequest(): Promise < any > {
+    handleSaveRequest() {
       for(let vignette of this.updatedVignette){
         let newVignette = new Vignette(vignette.id, vignette.name, vignette.text, vignette.characters, vignette.location, (vignette.index + 1));
         this.updateVignetteOrder(newVignette)

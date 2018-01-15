@@ -8,8 +8,9 @@ import { Vignette } from '../models/vignette'
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  searchCriteria: string
-  vignettes: Vignette[]
+  searchCriteria: string;
+  vignettes: Vignette[];
+  filteredVignettes: Vignette[];
 
   constructor(private vignetteService: VignetteService) { }
 

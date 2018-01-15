@@ -8,6 +8,8 @@ import { ReaderComponent } from './reader/reader.component'
 import { NotesComponent } from './notes/notes.component'
 import { StandaloneComponent } from './standalone/standalone.component'
 import { FilterComponent } from './filter/filter.component'
+import { AnchorComponent } from './anchor/anchor.component'
+
 
 
 
@@ -18,8 +20,10 @@ const routes: Routes = [
   { path: 'add', component: VignetteComponent },
   { path: 'manage', component: VignetteDisplayComponent },
   { path: 'notes', component: NotesComponent },
-  { path: 'standalone', component: StandaloneComponent }
-  { path: 'filter', component: FilterComponent }
+  { path: 'standalone', component: StandaloneComponent },
+  { path: 'filter', component: FilterComponent },
+  { path: 'anchor', component: AnchorComponent }
+
 
 
 ];

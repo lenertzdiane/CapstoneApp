@@ -10,9 +10,9 @@ import { VignetteService } from '../services/vignettes.service';
 export class VignetteEditComponent implements OnInit {
   @Input() vignette: Vignette;
 
-  vignette: Vignette
   newVignette: Vignette;
-  vignettes: Vignette[]
+  vignettes: Vignette[];
+  searchCriteria: string
 
 
   constructor(

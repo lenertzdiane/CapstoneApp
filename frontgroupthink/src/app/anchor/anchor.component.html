@@ -1,0 +1,8 @@
+
+<input type="text" name="" value="" placeholder="Name" [(ngModel)]="this.newAnchor.name" [ngModelOptions]="{standalone: true}" >
+<input type="text" name="" value="" placeholder="Notes" [(ngModel)]="this.newAnchor.notes" [ngModelOptions]="{standalone: true}" >
+<input type="text" name="" value="" placeholder="Characters" [(ngModel)]="this.newAnchor.characters" [ngModelOptions]="{standalone: true}" >
+
+<app-map id = "anchors-map" class = "anchors-map col-sm-5" (click) = "setAnchor($event)"></app-map>
+
+<button class="btn btn-default btn-add-anchor" (click)="insertNewAnchor()"> ADD </button>

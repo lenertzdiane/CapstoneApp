@@ -46,8 +46,6 @@ export class ReaderComponent implements OnInit {
     // }
 
     handleScroll(scrollTop, text, standalones) {
-      console.log(this.vignettes)
-
       this.scrollTop = scrollTop;
       this.text = text;
       this.standalones = standalones;

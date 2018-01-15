@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 declare var jquery:any;
-import * as d3 from 'd3';
 declare var jquery:any;
+import * as d3 from 'd3';
+
 import * as L from 'leaflet';
 import { StandaloneComponent } from '../standalone/standalone.component'
 
@@ -16,18 +17,23 @@ export class D3Service {
   counter: number;
 
   constructor() {
-    console.log('contructing')
     this.projectedArray =[]
     this.linePath = undefined
     this.marker = undefined
 
   }
+  resetMap(map) {
+    d3.select('svg').remove()
+  }
+
   readyMap(map, location) {
+
     let projectedArray = this.projectedArray
     // let linePath = this.linePath
     // let marker = this.marker
 
     // console.log(projectedArray)
+    // svg.select(".leaflet-zoom-hide").remove()
 
     var svg = d3.select(map.getPanes().overlayPane).append("svg");
     let g = svg.append("g").attr("class", "leaflet-zoom-hide");
@@ -35,6 +41,12 @@ export class D3Service {
     var dataLayer = L.geoJson(this.popups);
     dataLayer.addTo(map);
     var geoData = JSON.parse(location);
+
+    if(geoData.features.length < 2) {
+      map.setZoom(18)
+    } else {
+      map.setZoom(16)
+    }
 
     //linear scale for preserving scale
     //https://github.com/d3/d3-scale/blob/master/README.md#continuous-scales

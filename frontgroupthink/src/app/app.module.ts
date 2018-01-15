@@ -14,9 +14,11 @@ import { VignetteEditComponent } from './vignette-edit/vignettes-edit.component'
 
 import { VignetteService } from './services/vignettes.service';
 import { StandaloneService } from './services/standalone.service';
+import { AnchorService } from './services/anchor.service';
 
 import { MapService } from './services/map.service';
 import { D3Service } from './services/d3.service';
+
 
 
 import { AppRoutingModule } from './/app-routing.module';
@@ -35,12 +37,13 @@ import { PartEditComponent } from './part-edit/part-edit.component';
 import { LocationDirective } from './directives/location.directive';
 import { StandaloneComponent } from './standalone/standalone.component';
 import { FilterComponent } from './filter/filter.component';
+import { AnchorComponent } from './anchor/anchor.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent, StandaloneComponent, FilterComponent
+    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent, StandaloneComponent, FilterComponent, AnchorComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,7 @@ import { FilterComponent } from './filter/filter.component';
     DragulaModule,
     OrderModule
   ],
-  providers: [VignetteService, MapService, D3Service, StandaloneService],
+  providers: [VignetteService, MapService, D3Service, StandaloneService, AnchorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

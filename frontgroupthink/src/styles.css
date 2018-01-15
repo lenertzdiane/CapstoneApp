@@ -307,6 +307,12 @@ textarea {
   overflow: hidden;
 }
 
+/*  ANCHORS */
+.anchors-map {
+  max-height: 80vw;
+  max-width: 80vw;
+}
+
 /* DRAGULA  */
 .gu-mirror {
   position: fixed !important;
