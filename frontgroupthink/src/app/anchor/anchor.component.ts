@@ -17,7 +17,8 @@ export class AnchorComponent implements OnInit {
   searchCriteria: string;
   feat: string;
   feature: string;
-
+  anchorPlaced: boolean;
+  anchorSet: boolean;
 
   constructor(private anchorService: AnchorService, private mapService: MapService, private d3Service: D3Service) { }
 
@@ -27,23 +28,35 @@ export class AnchorComponent implements OnInit {
     this.anchors = []
     this.searchCriteria = ''
     this.feat = ''
-    this.feature = ''
+    this.feature = '';
+    this.anchorPlaced = false;
+    this.anchorPlaced = false;
+
   }
 
   showAnchors() {
-    console.log(this.anchors)
-    this.mapService.readyMarkerGroup()
-    this.d3Service.placeAnchors(this.mapService.map, this.anchors)
+    if(!(this.anchorPlaced)){
+      this.mapService.readyAnchorGroup()
+      this.d3Service.placeAnchors(this.mapService.map, this.anchors)
+      this.anchorPlaced = true
+    }
+  }
+
+  hideAnchors() {
+    console.log('in here')
+    this.mapService.removeAnchors();
+    this.anchorsPlaced = false
   }
 
   setAnchor(event) {
+    this.mapService.readyAnchorGroup()
     if(this.feat.length === 0) {
       let latlng = this.mapService.addAnchorMarker(event)
-
-    this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
-    this.feature = this.feat
-    console.log(this.feature)
-  }
+      this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
+      this.feature = this.feat
+      console.log(this.feature)
+    }
+    this.anchorSet = true
   }
 
   getAnchors(){
@@ -65,6 +78,7 @@ export class AnchorComponent implements OnInit {
 
 
         insertNewAnchor() {
+          if(this.anchorSet){
           this.newAnchor.location = this.feature
           this.anchorService
           .insertNewAnchor(this.newAnchor)
@@ -77,8 +91,12 @@ export class AnchorComponent implements OnInit {
               console.log("Added anchor.");
             }
           )
-          this.mapService.removeMarkers()
+          this.mapService.removeAnchors()
           this.feat = ''
           console.log(this.anchors)
+        } else {
+          //ERROR REPORT
+        }
+          this.anchorSet = false
         }
       }

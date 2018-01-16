@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 declare var jquery:any;
 declare var jquery:any;
 import * as d3 from 'd3';
-
 import * as L from 'leaflet';
 import { StandaloneComponent } from '../standalone/standalone.component'
 
@@ -192,19 +191,18 @@ export class D3Service {
           return 0
         }
         else {
-          // console.log($(actingChild[0].childNodes[1][])
-          // console.log(actingChild[0].position())
-          // console.log($('#'+number).position().top + scrollTop - ($(window).innerHeight()))
-          return $(actingChild).position().top + scrollTop - ($(window).innerHeight())
+        console.log(actingChild)
+          return $(actingChild).position().top + scrollTop - (txtHeight)
         }
       }
 
-      function makeLastPartPosition(scrollTop, number, actingLast) {
-        // console.log(actingChild[0].childNodes[1])
+      function makeLastPartPosition(scrollTop, actingLast) {
         if(actingLast.length === 0){
+          console.log('am i ever in here?')
         return 0
       } else {
-        return $(actingLast).position().top + scrollTop - (txtHeight)
+        // console.log(actingLast.children())
+        return $(actingLast.children()[0]).position().top + scrollTop - (txtHeight)
       }
     }
 
@@ -223,8 +221,9 @@ export class D3Service {
     }
 
     function makeLinePathScale(scrollTop, number, actingChild, actingLast){
+      console.log(actingChild)
       var linePathScale = d3.scale.linear()
-      .domain([makeLastPartPosition(scrollTop, number-1, actingLast), makePartPosition(scrollTop, number, actingChild)])
+      .domain([makeLastPartPosition(scrollTop, actingLast), makePartPosition(scrollTop, number, actingChild)])
       .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
       .clamp(true);
       return linePathScale(scrollTop)
@@ -248,28 +247,38 @@ export class D3Service {
 
         if($($(vignetteElements[i]).children().last().children()).position().top > txtHeight){
           let actingVignette = $(vignetteElements[i])
+          // console.log(actingVignette)
           break
         }
       }
 
       //let elements be the children of the acting vignette
-      let children = actingVignette.children()
+      let children = actingVignette.children().children()
 
-      for(let i = 1; i < children.length; i ++) {
+      for(let i = 0; i < children.length; i ++) {
         // console.log($(elements[i]).position().top, $(window).innerHeight()))
         // console.log(i)
+        //if children[i] has a div with an id i then thats the acting child
+
+
         if($(children[i]).position().top > txtHeight){
-        let actingChild = $(children[i])
+          if($(children[i]).has('div')){
+          let actingChild = $(children[i])
+          }
+        // console.log('actingChild')
+        // console.log(actingChild)
         //this wont work between the last one of the last vignette and the first
         //one of the second vignette
         let actingLast = $(children[i - 1])
+        let actingLastNum = i
+        console.log(children)
         break
       }
     }
 
     linePath
     .style('stroke-dashoffset', function(d) {
-      let num = parseInt(actingChild[0].id)
+      let num = actingLastNum
       return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
     })
     .style('stroke-dasharray', length)
@@ -290,10 +299,6 @@ export class D3Service {
     var svgPnt = L.point(p.x,p.y)
     var mapLatLng = map.layerPointToLatLng(svgPnt)
     map.panTo(mapLatLng)
-    // var mapLat=mapLatLng.lat
-    // var mapLng=mapLatLng.lng
-    // mapLatValue.value=mapLat.toFixed(3)
-    // mapLngValue.value=mapLng.toFixed(3)
   }
   window.requestAnimationFrame(render)
 
@@ -346,6 +351,7 @@ dataLayer.addTo(map)
 
 
 placeMarkers(map, standalones) {
+  console.log(standalones)
 let names = [];
 let text = [];
 
@@ -357,8 +363,16 @@ standalones.forEach(function(standalone) {
 })
 
 let finishedPopups = popups.substring(0, popups.length-2)
-finishedPopups += " ] }"
+finishedPopups += "} ] }"
 console.log(finishedPopups)
+// console.log(finishedPopups[241])
+// console.log(finishedPopups[242])
+// console.log(finishedPopups[243)
+// console.log(finishedPopups[244])
+// console.log(finishedPopups[245])
+// console.log(finishedPopups[246])
+//
+
 
 let geoJSONPopups = JSON.parse(finishedPopups)
 let counter = 0

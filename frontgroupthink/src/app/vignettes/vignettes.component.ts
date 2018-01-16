@@ -21,7 +21,8 @@ export class VignetteComponent implements OnInit {
   editPart: string;
   index: number;
   features: string;
-  anchors: Anchor[]
+  anchors: Anchor[];
+  anchorsPlaced: boolean;
 
 
   constructor(
@@ -43,6 +44,7 @@ export class VignetteComponent implements OnInit {
     this.features = '[';
     this.vignettes = [];
     this.anchors = []
+    this.anchorsPlaced = false
 
   }
 
@@ -51,12 +53,18 @@ export class VignetteComponent implements OnInit {
   }
 
   showAnchors() {
-    this.mapService.readyAnchorGroup()
-    this.d3Service.placeAnchors(this.mapService.anchorGroup, this.anchors)
+    if(!this.anchorsPlaced){
+      this.mapService.readyAnchorGroup()
+      if(this.anchors){
+        this.d3Service.placeAnchors(this.mapService.anchorGroup, this.anchors)
+        this.anchorsPlaced = true
+      }
+    }
   }
 
   hideAnchors() {
     this.mapService.removeAnchors();
+    this.anchorsPlaced = false
   }
 
   setLocation(event) {
@@ -69,6 +77,8 @@ export class VignetteComponent implements OnInit {
   removeMarkers(){
     this.mapService.removeMarkers()
     this.features = '['
+    this.mapService.readyMarkerGroup()
+    
   }
 
   deletePart(i) {

@@ -1,9 +1,23 @@
 
-<input type="text" name="" value="" placeholder="Name" [(ngModel)]="this.newAnchor.name" [ngModelOptions]="{standalone: true}" >
-<input type="text" name="" value="" placeholder="Notes" [(ngModel)]="this.newAnchor.notes" [ngModelOptions]="{standalone: true}" >
-<input type="text" name="" value="" placeholder="Characters" [(ngModel)]="this.newAnchor.characters" [ngModelOptions]="{standalone: true}" >
+<div class="col-sm-1">
+  <app-menu>  </app-menu>
+</div>
+<h1>Add An Anchor</h1>
 
-<app-map id = "anchors-map" class = "anchors-map col-sm-5" (click) = "setAnchor($event)"></app-map>
+<div class="col-sm-5">
 
-<button class="btn btn-default btn-add-anchor" (click)="insertNewAnchor()"> ADD </button>
-<button class="btn btn-default btn-add-anchor" (click)="showAnchors()"> Show Anchors </button>
+  <input type="text" name="" value="" placeholder="Name" class = "form-control title" [(ngModel)]="this.newAnchor.name" [ngModelOptions]="{standalone: true}" >
+  <textarea type="text" name="" value="" placeholder="Notes" id = "text-input" [(ngModel)]="this.newAnchor.notes" [ngModelOptions]="{standalone: true}" ></textarea>
+  <input type="text" name="" value="" placeholder="Characters" class = "form-control character-input" [(ngModel)]="this.newAnchor.characters[0]" [ngModelOptions]="{standalone: true}" >
+  <input type="text" name="" value="" placeholder="Characters" class = "form-control character-input" [(ngModel)]="this.newAnchor.characters[1]" [ngModelOptions]="{standalone: true}" >
+  <button class="btn btn-default btn-add" (click)="insertNewAnchor()"> ADD </button>
+</div>
+
+<div class="col-sm-5">
+
+  <button class="btn btn-anchor" (click)="showAnchors()"> Show Anchors </button>
+  <!-- <button class="btn btn-anchor" (click)="hideAnchors()"> Hide Anchors </button> -->
+
+  <app-map id = "anchors-map" class = "anchors-map " (click) = "setAnchor($event)"></app-map>
+
+</div>

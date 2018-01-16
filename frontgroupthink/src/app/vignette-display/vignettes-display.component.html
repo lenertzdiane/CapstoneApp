@@ -1,7 +1,7 @@
 <div class= "container-fluid full-width">
   <div class="row row-no-gutter">
 
-    <app-menu>  </app-menu>
+    <app-menu class = "col-sm-1">  </app-menu>
 
 <!-- <section class="todo-list" dnd-sortable-container [sortableData]="todos"> -->
 <div class='wrapper'>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="">
-      <button class="btn btn-default" (click)="deleteVignette(vignette)">Delete</button>
+      <button class="btn btn-delete" (click)="deleteVignette(vignette)">Delete</button>
     </div>
   </div>
 </div>
@@ -24,7 +24,7 @@
 
 
   <!-- <vignettes-edit [vignette]="editVignette" ></vignettes-edit> -->
-  <div class="form-group col-sm-2">
+  <!-- <div class="form-group col-sm-2">
       <label for="editVignette">Edit Vignette:</label>
       <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.editVignette.name" [ngModelOptions]="{standalone: true}"/>
       <textarea placeholder="Text" [(ngModel)]="this.editVignette.text"></textarea>
@@ -33,4 +33,4 @@
       <input class="form-control" type="text" placeholder="Order" [(ngModel)]="this.editVignette.order" [ngModelOptions]="{standalone: true}"/>
 
       <button class="btn btn-default" (click)="updateVignette()"> Edit Vignette </button>
-  </div>
+  </div> -->

@@ -24,9 +24,9 @@ h1 {
 .add-toggle {
   text-align: center;
   font-size: 1.8vw;
-  background-color: #65737e;
+  background-color: #232323;
   margin-bottom: 8px;
-  color: #A9D9E5;
+  color: grey;
   border-bottom: 3px solid #65737e;
   border-right: 3px solid #65737e;
 
@@ -35,11 +35,12 @@ h1 {
 .add-toggle:hover {
   text-decoration: none;
   background-color: #A9D9E5;
-  color: #65737e;
+  color: #2e2e2e;
 }
 
 .acting {
-  background-color:#4f5b66;
+  background-color:#2e2e2e;
+  color: #A9D9E5;
   border-bottom: 3px solid #A9D9E5;
   border-right: 3px solid #A9D9E5;
 
@@ -53,8 +54,9 @@ h1 {
 .title {
   height: 5vw;
   font-size: 3vw;
-  background-color: #4f5b66 ;
+  background-color: #232323 ;
   color: #A9D9E5;
+  border: none;
 }
 
 .btn-add {
@@ -62,13 +64,14 @@ h1 {
   height: 2.9vw;
   font-size: 1.8vw;
   margin-top: 3vw;
-  background-color: #4f5b66 ;
-  color: #A9D9E5
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+  border: none;
 }
 
 .btn-add:hover {
   background-color: #A9D9E5;
-  color: #65737e;
+  color: #2e2e2e;
 }
 
 .forms {
@@ -94,13 +97,27 @@ textarea {
 #text-input {
   width: 100%;
   overflow: scroll;
-background-color: #65737e;
+background-color: #2e2e2e;
   color: #A9D9E5;
+  border: none;
+}
+
+.character-input:nth-of-type(2n+1) {
+  background-color: #2e2e2e;
+
+  border: none;
+}
+
+.character-input:nth-of-type(2n+2) {
+  background-color: #232323;
+
+  border: none;
 }
 
 #standalone-input {
-  background-color: #65737e;
+  background-color: #2e2e2e;
     color: #A9D9E5;
+    border: none;
 }
 .leaflet-popup {
   max-height: 20vw;
@@ -129,20 +146,59 @@ div.parts:hover {
 
 }
 
+.part-edit-input {
+  background-color: 	#232323 ;
+  color:  #A9D9E5;
+  margin-bottom: 1vw;
+}
 
 .parts:nth-of-type(2n +1) {
   border-width: 2px;
-  background-color: 	#4f5b66 ;
+  background-color: 	#232323 ;
   color:  #A9D9E5;
 }
 
 .parts:nth-of-type(2n + 2) {
   border-width: 2px;
-  background-color: #65737e ;
+  background-color: #2e2e2e ;
   color:  #A9D9E5;
 
 }
+.btn-delete {
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  margin-bottom: 2vw;
+  border: none;
+}
 
+.btn-edit {
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  margin-bottom: 2vw;
+  border: none;
+}
+
+/*  ANCHOR BUTTONS  ********************************************* ANCHOR BUTTONS*/
+.anchor-buttons {
+  margin-left: 5vw;
+  margin-top: 2vw;
+
+}
+.btn-anchor {
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  border: none;
+}
+
+.btn-anchor:hover {
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
+
+.btn-anchor::selection {
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
 
 
 /* NAV ********************************************* NAV */
@@ -164,13 +220,13 @@ div.parts:hover {
 
 .btn-menu:nth-of-type(2n +1) {
   border-width: 2px;
-  background-color: 	#4f5b66 ;
+  background-color: 	#232323 ;
   color: #A9D9E5;
 }
 
 .btn-menu:nth-of-type(2n + 2) {
   border-width: 2px;
-  background-color: #65737e ;
+  background-color: #2e2e2e ;
   color: #A9D9E5;
 }
 
@@ -225,7 +281,6 @@ path {
 }
 
 .read-vignette {
-  background-color: #343d46;
   color: #A9D9E5;
   font-size: 2.3vw;
 }
@@ -255,12 +310,12 @@ path {
 
 
 .vignette-display:nth-of-type(2n+1) {
-  background-color: 	#4f5b66 ;
+  background-color: 	#232323 ;
   color: #A9D9E5;
 }
 
 .vignette-display:nth-of-type(2n+2) {
-  background-color: #65737e ;
+  background-color: #2e2e2e ;
   color: #A9D9E5;
 }
 
@@ -270,7 +325,7 @@ body {
   margin: 20px;
   font-family: 'Roboto Condensed', sans-serif;
 
-  background-color: #343d46;
+  background-color: #3a3a3a;
 
 }
 

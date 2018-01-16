@@ -44,10 +44,9 @@ export class MapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
-      console.log(changes['actingVignette'])
-      console.log(changes)
+      console.log(this.standalones)
       this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
-      this.d3Service.placeMarkers(this.mapService.map, this.standalones)
+      // this.d3Service.placeMarkers(this.mapService.map, this.standalones)
       this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
 
     }

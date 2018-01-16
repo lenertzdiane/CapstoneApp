@@ -54,6 +54,8 @@ export class MapService {
   }
 
   addAnchorMarker(event) {
+    console.log('OR here??')
+
     let ll = this.map.mouseEventToLatLng(event)
     var marker = L.marker([ll.lat, ll.lng]).addTo(this.anchorGroup);
     return ll
