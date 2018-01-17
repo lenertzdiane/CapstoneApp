@@ -36,7 +36,8 @@ trigger('myAnimation4', [
 ),
 transition('true => false',
 animate('350ms', style({ transform: 'translateX(0)'})))
-])
+]),
+
 
 ]
 })

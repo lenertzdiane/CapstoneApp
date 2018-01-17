@@ -41,11 +41,11 @@ export class D3Service {
     dataLayer.addTo(map);
     var geoData = JSON.parse(location);
 
-    if(geoData.features.length < 2) {
-      map.setZoom(18)
-    } else {
-      map.setZoom(16)
-    }
+    // if(geoData.features.length < 2) {
+    //   map.setZoom(18)
+    // } else {
+    //   map.setZoom(16)
+    // }
 
     //linear scale for preserving scale
     //https://github.com/d3/d3-scale/blob/master/README.md#continuous-scales
@@ -137,6 +137,8 @@ export class D3Service {
     // console.log(p)
     this.marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
     this.projectedArray = projectedArray
+
+    this.linepath.style("stroke-width", 0)
   }
 
 
@@ -191,7 +193,7 @@ export class D3Service {
           return 0
         }
         else {
-        console.log(actingChild)
+          console.log(actingChild)
           return $(actingChild).position().top + scrollTop - (txtHeight)
         }
       }
@@ -199,193 +201,209 @@ export class D3Service {
       function makeLastPartPosition(scrollTop, actingLast) {
         if(actingLast.length === 0){
           console.log('am i ever in here?')
-        return 0
-      } else {
-        // console.log(actingLast.children())
-        return $(actingLast.children()[0]).position().top + scrollTop - (txtHeight)
-      }
-    }
-
-    function makeSegLength(lengthsArray, number) {
-      let total = 0
-      if(number === 0) {
-        return 0
-      }
-      else {
-        for (let i = 0; i < number; i ++){
-          // console.log(lengthsArray)
-          total = total + lengthsArray[i]
-        }
-        return total
-      }
-    }
-
-    function makeLinePathScale(scrollTop, number, actingChild, actingLast){
-      console.log(actingChild)
-      var linePathScale = d3.scale.linear()
-      .domain([makeLastPartPosition(scrollTop, actingLast), makePartPosition(scrollTop, number, actingChild)])
-      .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
-      .clamp(true);
-      return linePathScale(scrollTop)
-    }
-
-    render()
-
-    function render() {
-
-      let length = linePath.node().getTotalLength()
-
-      let vignetteElements = document.getElementsByClassName("read-vignette")
-
-
-      for(let i = 0; i < vignetteElements.length; i ++) {
-        // console.log($(elements[i]).position().top, $(window).innerHeight()))
-        // console.log(i)
-        //DIRTY HACK have to find something beetter than window height...
-        let txt = document.getElementsByClassName("txt")
-        txtHeight = $(txt).innerHeight()
-
-        if($($(vignetteElements[i]).children().last().children()).position().top > txtHeight){
-          let actingVignette = $(vignetteElements[i])
-          // console.log(actingVignette)
-          break
+          return 0
+        } else {
+          // console.log(actingLast.children())
+          return $(actingLast.children()[0]).position().top + scrollTop - (txtHeight)
         }
       }
 
-      //let elements be the children of the acting vignette
-      let children = actingVignette.children().children()
-
-      for(let i = 0; i < children.length; i ++) {
-        // console.log($(elements[i]).position().top, $(window).innerHeight()))
-        // console.log(i)
-        //if children[i] has a div with an id i then thats the acting child
-
-
-        if($(children[i]).position().top > txtHeight){
-          if($(children[i]).has('div')){
-          let actingChild = $(children[i])
+      function makeSegLength(lengthsArray, number) {
+        let total = 0
+        if(number === 0) {
+          return 0
+        }
+        else {
+          for (let i = 0; i < number; i ++){
+            // console.log(lengthsArray)
+            total = total + lengthsArray[i]
           }
-        // console.log('actingChild')
-        // console.log(actingChild)
-        //this wont work between the last one of the last vignette and the first
-        //one of the second vignette
-        let actingLast = $(children[i - 1])
-        let actingLastNum = i
-        console.log(children)
-        break
+          return total
+        }
       }
-    }
 
-    linePath
-    .style('stroke-dashoffset', function(d) {
-      let num = actingLastNum
-      return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
-    })
-    .style('stroke-dasharray', length)
-    .style('stroke-width', function() {
-      if(map.getZoom() > 16) {
-        return 9
-      } else if(14 < map.getZoom < 16) {
-        return 5
-      } else {
-        return 2
+      function makeLinePathScale(scrollTop, number, actingChild, actingLast){
+        console.log(actingChild)
+        var linePathScale = d3.scale.linear()
+        .domain([makeLastPartPosition(scrollTop, actingLast), makePartPosition(scrollTop, number, actingChild)])
+        .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
+        .clamp(true);
+        return linePathScale(scrollTop)
       }
-    })
-    .style('stroke-dasharray', length)
 
-    var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
-    marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+      render()
 
-    var svgPnt = L.point(p.x,p.y)
-    var mapLatLng = map.layerPointToLatLng(svgPnt)
-    map.panTo(mapLatLng)
-  }
-  window.requestAnimationFrame(render)
+      function render() {
 
-  // var marker2 = document.getElementById('marker')
-  // console.log(typeof $(marker2).lngLat())
-  // getPosition($(marker2))
-} // end reset
+        let length = linePath.node().getTotalLength()
 
-};
-
-// //
-// //   //this is called from ngOnInit in map component, must find a way to import geJSON data
-// //   //probably from a model. should be something like import Popups from '../models/popups'
-// //   //then use popups.coordinates
-// //
+        let vignetteElements = document.getElementsByClassName("read-vignette")
 
 
-// //
-placeAnchors(map, anchors) {
+        for(let i = 0; i < vignetteElements.length; i ++) {
+          // console.log($(elements[i]).position().top, $(window).innerHeight()))
+          // console.log(i)
+          //DIRTY HACK have to find something beetter than window height...
+          let txt = document.getElementsByClassName("txt")
+          txtHeight = $(txt).innerHeight()
 
-let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
-let names = []
-let notes = []
-anchors.forEach(function(anchor) {
-  popups += anchor.location;
-  names.push(anchor.name);
-  notes.push(anchor.notes)
-})
+          if($($(vignetteElements[i]).children().last().children()).position().top > txtHeight){
+            let actingVignette = $(vignetteElements[i])
+            // console.log(actingVignette)
+            break
+          }
+        }
 
-let finishedPopups = popups.substring(0, popups.length-2)
-finishedPopups += " ] }"
-console.log(finishedPopups)
+        //let elements be the children of the acting vignette
+        let children = actingVignette.children().children()
 
-let geoJSONPopups = JSON.parse(finishedPopups)
-let counter = 0
-//I think this is just leaflet stuff so does the d3 library work?
-let dataLayer = L.geoJson(geoJSONPopups, {
-onEachFeature: function(feature, layer) {
+        for(let i = 0; i < children.length; i ++) {
+          // console.log($(elements[i]).position().top, $(window).innerHeight()))
+          // console.log(i)
+          //if children[i] has a div with an id i then thats the acting child
 
-  var popupText = names[counter] + notes[counter]
-  + feature.geometry.coordinates;
-  counter+=1
-  layer.bindPopup(popupText);
-  layer.on("click", function() {
+
+          if($(children[i]).position().top > txtHeight){
+            if($(children[i]).has('div')){
+              let actingChild = $(children[i])
+            }
+            // console.log('actingChild')
+            // console.log(actingChild)
+            //this wont work between the last one of the last vignette and the first
+            //one of the second vignette
+            let actingLast = $(children[i - 1])
+            let actingLastNum = i
+            console.log(children)
+            break
+          }
+        }
+
+        linePath
+        .style('stroke-dashoffset', function(d) {
+          let num = actingLastNum
+          return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
+        })
+        .style('stroke-dasharray', length)
+        .style('stroke-width', function() {
+          if(map.getZoom() > 16) {
+            return 9
+          } else if(14 < map.getZoom < 16) {
+            return 5
+          } else {
+            return 2
+          }
+        })
+        .style('stroke-dasharray', length)
+
+        var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
+        marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
+
+        var svgPnt = L.point(p.x,p.y)
+        var mapLatLng = map.layerPointToLatLng(svgPnt)
+        map.panTo(mapLatLng)
+      }
+      window.requestAnimationFrame(render)
+
+      // var marker2 = document.getElementById('marker')
+      // console.log(typeof $(marker2).lngLat())
+      // getPosition($(marker2))
+    } // end reset
+
+  };
+
+  // //
+  // //   //this is called from ngOnInit in map component, must find a way to import geJSON data
+  // //   //probably from a model. should be something like import Popups from '../models/popups'
+  // //   //then use popups.coordinates
+  // //
+
+
+  // //
+  placeAnchors(map, anchors) {
+
+  let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
+  let names = []
+  let notes = []
+  anchors.forEach(function(anchor) {
+    popups += anchor.location;
+    names.push(anchor.name);
+    notes.push(anchor.notes)
   })
-}
-});
-dataLayer.addTo(map)
+
+  let finishedPopups = popups.substring(0, popups.length-2)
+  finishedPopups += " ] }"
+
+  let geoJSONPopups = JSON.parse(finishedPopups)
+  let counter = 0
+
+
+
+let dataLayer = L.geoJson(geoJSONPopups, {
+    pointToLayer: function (feature, latlng) {
+      counter+=1
+      let popupText = names[counter] + '\n' + notes[counter]
+        return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(popupText);
+    }
+})
+dataLayer.addTo(map);
+
+
+// L.geoJSON(geoJSONPopups, {
+//     style: myStyle
+// }).addTo(map);
+  //I think this is just leaflet stuff so does the d3 library work?
+  // let dataLayer = L.geoJson(geoJSONPopups, {
+  // onEachFeature: function(feature, layer) {
+  //
+  //   var popupText = names[counter] + notes[counter]+ feature.geometry.coordinates;
+  //   counter+=1
+  //   // var popup = layer.bindPopup(popupText);
+  //   layer.on("click", function() {
+  //     console.log('clicked')
+  //   })
+  // }
+// });
+
+// dataLayer.addTo(map)
 }
 
 
 placeMarkers(map, standalones) {
   console.log(standalones)
-let names = [];
-let text = [];
+  let names = [];
+  let text = [];
 
-let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
-standalones.forEach(function(standalone) {
-  popups += standalone.location;
-  names.push(standalone.name);
-  text.push(standalone.text);
-})
-
-let finishedPopups = popups.substring(0, popups.length-2)
-finishedPopups += "} ] }"
-console.log(finishedPopups)
-// console.log(finishedPopups[241])
-// console.log(finishedPopups[242])
-// console.log(finishedPopups[243)
-// console.log(finishedPopups[244])
-// console.log(finishedPopups[245])
-// console.log(finishedPopups[246])
-//
-
-
-let geoJSONPopups = JSON.parse(finishedPopups)
-let counter = 0
-//I think this is just leaflet stuff so does the d3 library work?
-let dataLayer = L.geoJson(geoJSONPopups, {
-onEachFeature: function(feature, layer) {
-  var popupText = names[counter] + text[counter]
-  + feature.geometry.coordinates;
-  counter +=1
-  layer.bindPopup(popupText);
-  layer.on("click", function() {
+  let popups = "{\"type\": \"FeatureCollection\",\"features\": ["
+  standalones.forEach(function(popups) {
+    popups += standalone.location;
+    names.push(standalone.name);
+    text.push(standalone.text);
   })
-}
+
+  let finishedPopups = popups.substring(0, popups.length-2)
+  finishedPopups += "} ] }"
+  console.log(finishedPopups)
+  // console.log(finishedPopups[241])
+  // console.log(finishedPopups[242])
+  // console.log(finishedPopups[243)
+  // console.log(finishedPopups[244])
+  // console.log(finishedPopups[245])
+  // console.log(finishedPopups[246])
+  //
+
+
+  let geoJSONPopups = JSON.parse(finishedPopups)
+  let counter = 0
+  //I think this is just leaflet stuff so does the d3 library work?
+  let dataLayer = L.geoJson(geoJSONPopups, {
+  onEachFeature: function(feature, layer) {
+    var popupText = names[counter] + text[counter]
+    + feature.geometry.coordinates;
+    counter +=1
+    layer.bindPopup(popupText);
+    layer.on("click", function() {
+    })
+  }
 });
 dataLayer.addTo(map)
 }

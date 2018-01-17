@@ -263,9 +263,14 @@ div.parts:hover {
   font-size: 3vw;
 }
 
-path {
+path.lines {
   fill: none;
   stroke: #A9D9E5;
+}
+
+path.leaflet-interactive {
+  fill: red;
+  stroke: red;
 }
 
 .big {
