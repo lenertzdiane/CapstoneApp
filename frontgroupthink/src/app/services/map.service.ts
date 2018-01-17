@@ -47,27 +47,24 @@ export class MapService {
 
   getLatLng(event) {
     let ll = this.map.mouseEventToLatLng(event)
-    var marker = L.marker([ll.lat, ll.lng]).addTo(this.markerGroup);
+    var marker = L.circleMarker([ll.lat, ll.lng]).addTo(this.markerGroup);
     //if I wanted to do this part better i'd convert to geoJSON and pass back lol
     //console.log(marker.toGeoJSON())
     return ll
   }
 
   addAnchorMarker(event) {
-    console.log('OR here??')
-
     let ll = this.map.mouseEventToLatLng(event)
-    var marker = L.marker([ll.lat, ll.lng]).addTo(this.anchorGroup);
+    var marker = L.circleMarker([ll.lat, ll.lng], {'className': 'anchor'}).addTo(this.anchorGroup);
     return ll
   }
 
   addStandaloneMarker(event) {
-    console.log('in add standalone')
     this.markerGroup = L.layerGroup()
     this.markerGroup.addTo(this.map);
 
     let ll = this.map.mouseEventToLatLng(event)
-    var marker = L.marker([ll.lat, ll.lng]).addTo(this.markerGroup);
+    var marker = L.circleMarker([ll.lat, ll.lng], {'className': 'standalone'}).addTo(this.markerGroup);
     //if I wanted to do this part better i'd convert to geoJSON and pass back lol
     //console.log(marker.toGeoJSON())
     return ll

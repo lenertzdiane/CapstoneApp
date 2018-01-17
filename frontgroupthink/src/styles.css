@@ -268,9 +268,14 @@ path.lines {
   stroke: #A9D9E5;
 }
 
-path.leaflet-interactive {
+path.anchor {
   fill: red;
   stroke: red;
+}
+
+path.standalone {
+  fill: #A9D9E5;
+  stroke: #A9D9E5;
 }
 
 .big {
@@ -308,7 +313,12 @@ path.leaflet-interactive {
 } */
 
 .travelMarker {
+  color: yellow;
   opacity: .6;
+}
+
+#marker {
+  color: yellow;
 }
 
 /* MANAGE VIGNETETES DRAGULA ********************************************* MANAGE VIGNETTES  */

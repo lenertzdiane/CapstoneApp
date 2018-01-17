@@ -70,15 +70,26 @@ export class VignetteComponent implements OnInit {
   setLocation(event) {
     let latlng = this.mapService.getLatLng(event)
 
-    let feature = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
+    let feature = //`{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }    } , `
+    `{
+  \"type\": \"Feature\",
+  \"properties\": {},
+  \"geometry\": {
+    \"type\": \"Point\",
+    \"coordinates\": [
+      ${latlng.lng},
+      ${latlng.lat}
+    ]
+  }
+},`
     this.features += feature
   }
 
   removeMarkers(){
     this.mapService.removeMarkers()
-    this.features = '['
+    // this.features = '['
     this.mapService.readyMarkerGroup()
-    
+
   }
 
   deletePart(i) {
@@ -95,7 +106,8 @@ export class VignetteComponent implements OnInit {
     console.log(this.newVignette.characters)
     console.log(this.newVignette.characters[0])
 
-    let points = "{\"type\": \"FeatureCollection\", \"features\":" + this.features.substring(0, this.features.length - 2) + "] }"
+    let points = "{\"type\": \"FeatureCollection\", \"features\":" + this.features.substring(0, this.features.length - 1) + "] }"
+    console.log(points)
     this.newVignette.location = points
     this.newVignette.order = this.vignettes.length + 1
     this.vignetteService
