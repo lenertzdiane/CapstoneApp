@@ -180,8 +180,9 @@ div.parts:hover {
 
 /*  ANCHOR BUTTONS  ********************************************* ANCHOR BUTTONS*/
 .anchor-buttons {
-  margin-left: 5vw;
+  margin-left: 50vw;
   margin-top: 2vw;
+  position: fixed;
 
 }
 .btn-anchor {

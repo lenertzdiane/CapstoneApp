@@ -28,8 +28,13 @@
             {{part}}
           </div>
           <div class="col-sm-1">
-
             <button class="btn btn-delete" (click)="deletePart(index)">x</button>
+          <div *ngIf = "part[0] != '@'; else detatch ">
+            <button type="button" name="button" class = 'btn-delete' (click)= "attatchPart(part, index)">o</button>
+          </div>
+          <ng-template #detatch>
+            <button type="button" name="button" class = 'btn-delete' (click)= "detatchPart(part, index)">d</button>
+          </ng-template>
           </div>
         </div>
 

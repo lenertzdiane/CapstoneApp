@@ -21,7 +21,7 @@ export class HighlightDirective {
     let end = text.selectionEnd
     let selection = text.value.slice(start, end)
     if(start<end){
-      this.textArray.push(selection)
+      this.textArray.push(" " + selection)
     }
     $(text)[0].value = $(text)[0].value.slice(0, start) + $(text)[0].value.slice(end)
 

@@ -67,6 +67,11 @@ export class VignetteComponent implements OnInit {
     this.anchorsPlaced = false
   }
 
+  addAt(part) {
+    part = this
+  }
+
+
   setLocation(event) {
     let latlng = this.mapService.getLatLng(event)
 
@@ -94,6 +99,14 @@ export class VignetteComponent implements OnInit {
 
   deletePart(i) {
     this.textArray.splice(i, 1)
+  }
+
+  attatchPart(part, i){
+    this.textArray[i] = "@"+part
+  }
+
+  detatchPart(part, i){
+    this.textArray[i] = part.substring(1, part.length)
   }
 
   setEditPart(part, index) {
