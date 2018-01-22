@@ -28,13 +28,18 @@ export class MapComponent implements OnInit, OnChanges {
       zoomControl: false,
       center: L.latLng(41.79, -87.65),
       zoom: 17,
-      minZoom: 8,
-      maxZoom: 18,
+      // minZoom: 8,
+      // maxZoom: 18,
       layers: [this.mapService.baseMaps.OpenStreetMap]
     });
 
     this.mapService.map = map;
     this.standalones = [];
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
     // this.d3Service.readyMap(this.mapService.map) //this.actingVignette.location);
     // this.d3Service.placeMarkers(this.mapService.map) // this.actingVignette.location)
   }
@@ -44,9 +49,6 @@ export class MapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
-      console.log(changes)
-      console.log(changes.scrollTop)
-
       // let scrollTop = changes.scrollTop.currentValue
       this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
       this.d3Service.placeMarkers(this.mapService.map, this.standalones)

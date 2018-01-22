@@ -68,12 +68,9 @@ export class VignetteComponent implements OnInit {
     this.anchorsPlaced = false
   }
 
-  // addAt(part) {
-  //   part = this
-  // }
-  //
 
   setLocation(event) {
+    if this.mapService.getLatLng(event){
     let latlng = this.mapService.getLatLng(event)
 
     let feature = //`{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }    } , `
@@ -89,6 +86,7 @@ export class VignetteComponent implements OnInit {
   }
 },`
     this.features += feature
+  }
   }
 
   removeMarkers(){

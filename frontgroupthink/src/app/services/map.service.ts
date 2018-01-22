@@ -47,10 +47,14 @@ export class MapService {
 
   getLatLng(event) {
     let ll = this.map.mouseEventToLatLng(event)
+    console.log(event)
+    if(event.target.localName != "path"){
     var marker = L.circleMarker([ll.lat, ll.lng]).addTo(this.markerGroup);
     //if I wanted to do this part better i'd convert to geoJSON and pass back lol
     //console.log(marker.toGeoJSON())
+
     return ll
+  }
   }
 
   addAnchorMarker(event) {

@@ -15,7 +15,7 @@ export class ResizeDirective {
 
   @HostListener('click') resize($event) {
     console.log('in hostlistener')
-    this.d3Service.resetMap(this.mapService.map)
+    // this.d3Service.resetMap(this.mapService.map)
     // this.d3Service.readyMap(this.mapService.map, standalones)
   }
 }

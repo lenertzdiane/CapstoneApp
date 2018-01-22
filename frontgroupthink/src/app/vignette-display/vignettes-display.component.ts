@@ -17,6 +17,8 @@ export class VignetteDisplayComponent implements OnInit {
   newVignette: Vignette;
   vignetteList: any = []
   updatedVignette: any = [];
+  bag: any;
+  one: any;
 
 
   constructor(private vignetteService: VignetteService, private dragulaService: DragulaService) {

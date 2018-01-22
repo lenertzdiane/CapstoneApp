@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 declare var jquery:any;
-declare var jquery:any;
 import * as d3 from 'd3';
 import * as L from 'leaflet';
 import { StandaloneComponent } from '../standalone/standalone.component'
@@ -11,16 +10,16 @@ declare var $ :any;
 export class D3Service {
 
   projectedArray: Array<object>;
-  linePath: object;
-  marker: object;
+  linePath: any;
+  marker: any;
   counter: number;
   popups: Array<object>
 
   constructor() {
-    this.projectedArray = []
-    this.linePath = undefined
-    this.marker = undefined
-    this.popups = []
+    this.projectedArray = [] as any;
+    this.linePath = {} as any;
+    this.marker = {} as any;
+    this.popups = [] as any;
 
   }
   resetMap(map) {
@@ -28,14 +27,9 @@ export class D3Service {
   }
 
   readyMap(map, location) {
-    // console.log(location)
-
-    let projectedArray = this.projectedArray
-    // let linePath = this.linePath
-    // let marker = this.marker
-
-    // console.log(projectedArray)
-    // svg.select(".leaflet-zoom-hide").remove()
+    this.marker = {} as any;
+    let projectedArray = this.projectedArray as any;
+    this.linePath = {} as any;
 
     var svg = d3.select(map.getPanes().overlayPane).append("svg");
     let g = svg.append("g").attr("class", "leaflet-zoom-hide");
@@ -151,9 +145,14 @@ export class D3Service {
 
   drawLine(map, scrollTop, text, location) {
     // let map = map
-    let marker = this.marker
+
+    // let actingVignette; //these allow me to compile but throw errors when scrolling
+    // let actingChild;
+    // let actingLast;
+    // let actingLastNum;
+    let marker = this.marker as any;
     let projectedArray = this.projectedArray
-    let linePath = this.linePath
+    let linePath = this.linePath as any;
 
     let txtHeight
 
@@ -293,15 +292,16 @@ export class D3Service {
           return length - makeLinePathScale(scrollTop, num, actingChild, actingLast) + 'px';
         })
         .style('stroke-dasharray', length)
-        .style('stroke-width', function() {
-          if(map.getZoom() > 16) {
-            return 9
-          } else if(14 < map.getZoom < 16) {
-            return 5
-          } else {
-            return 2
-          }
-        })
+        .style('stroke-width', 5)
+        // .style('stroke-width', function() {
+        //   if(map.getZoom() > 16) {
+        //     return 9
+        //   } else if(14 < map.getZoom() < 16) {
+        //     return 5
+        //   } else {
+        //     return 2
+        //   }
+        // })
         .style('stroke-dasharray', length)
 
         var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
@@ -378,9 +378,9 @@ placeMarkers(map, standalones) {
 
   let dataLayer = L.geoJson(geoJSONPopups, {
       pointToLayer: function (feature, latlng) {
-        counter+=1
         let popupText = names[counter] + '\n' + text[counter]
           return L.circleMarker(latlng, {'className': 'standalone'}).bindPopup(popupText);
+          counter+=1
       }
   })
   dataLayer.addTo(map);
