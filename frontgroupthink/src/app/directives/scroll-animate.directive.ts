@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { D3Service } from '../services/d3.service';
-import { Vignette } from '../vignettes/vignettes.component'
+import { Vignette } from '../models/vignette'
 
 
 @Directive({
@@ -13,7 +13,7 @@ export class ScrollAnimateDirective {
 
   @HostListener('scroll') scroll($event) {
     // console.log(event)
-    this.callback(event.target.scrollTop, event.target);
+    this.callback((<Element>event.target).scrollTop, event.target);
   }
 
 

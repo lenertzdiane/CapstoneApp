@@ -10,15 +10,17 @@ declare var $ :any;
 @Injectable()
 export class D3Service {
 
-  projectedArray: Array;
+  projectedArray: Array<object>;
   linePath: object;
   marker: object;
   counter: number;
+  popups: Array<object>
 
   constructor() {
     this.projectedArray = []
     this.linePath = undefined
     this.marker = undefined
+    this.popups = []
 
   }
   resetMap(map) {
@@ -26,7 +28,7 @@ export class D3Service {
   }
 
   readyMap(map, location) {
-    console.log(location)
+    // console.log(location)
 
     let projectedArray = this.projectedArray
     // let linePath = this.linePath
@@ -50,7 +52,11 @@ export class D3Service {
 
     //linear scale for preserving scale
     //https://github.com/d3/d3-scale/blob/master/README.md#continuous-scales
-    var cscale = d3.scale.linear().domain([1, 3]).range(["#ff0000", "#ff6a00", "#ffd800", "#b6ff00", "#00ffff", "#0094ff"]); //"#00FF00","#FFA500"
+    // var cscale = d3
+    // .scale
+    // .linear()
+    // .domain([1, 3])
+    // .range(["#ff0000", "#ff6a00", "#ffd800", "#b6ff00", "#00ffff", "#0094ff"]); //"#00FF00","#FFA500"
 
     var transform = d3.geo.transform({
       point: projectPoint,
@@ -111,7 +117,7 @@ export class D3Service {
       return map.latLngToLayerPoint(new L.LatLng(y, x))
     }
 
-    console.log(geoData)
+    // console.log(geoData)
     var bounds = path.bounds(geoData)
     let topLeft = bounds[0]
     let bottomRight = bounds[1]
@@ -144,7 +150,7 @@ export class D3Service {
 
 
   drawLine(map, scrollTop, text, location) {
-    let map = map
+    // let map = map
     let marker = this.marker
     let projectedArray = this.projectedArray
     let linePath = this.linePath
@@ -161,7 +167,7 @@ export class D3Service {
     // map.on("viewreset", reset);
     // map.on("moveend", reset);
     // console.log(linePath)
-    reset(linePath);
+    reset();
 
     function reset() {
 
@@ -193,14 +199,14 @@ export class D3Service {
           return 0
         }
         else {
-          console.log(actingChild)
+          // console.log(actingChild)
           return $(actingChild).position().top + scrollTop - (txtHeight)
         }
       }
 
       function makeLastPartPosition(scrollTop, actingLast) {
         if(actingLast.length === 0){
-          console.log('am i ever in here?')
+          // console.log('am i ever in here?')
           return 0
         } else {
           // console.log(actingLast.children())
@@ -223,7 +229,7 @@ export class D3Service {
       }
 
       function makeLinePathScale(scrollTop, number, actingChild, actingLast){
-        console.log(actingChild)
+        // console.log(actingChild)
         var linePathScale = d3.scale.linear()
         .domain([makeLastPartPosition(scrollTop, actingLast), makePartPosition(scrollTop, number, actingChild)])
         .range([makeSegLength(lengthsArray, number-1), makeSegLength(lengthsArray, number)])
@@ -354,7 +360,6 @@ dataLayer.addTo(map);
 
 
 placeMarkers(map, standalones) {
-  console.log(standalones)
   let names = [];
   let text = [];
 

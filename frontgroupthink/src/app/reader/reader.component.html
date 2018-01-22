@@ -67,7 +67,8 @@
 
           <div *ngFor="let t of vignette.text; let index = index"  class = "reader-text">
             <div *ngIf = "t[0] === '@'; else unattatched " class = "part" [id] = "index + 1">
-              {{t.substring(1, t.length)}}
+              {{t}}
+              <!-- {{t.substring(1, t.length)}} -->
               <span class = "last" [id] = "index + 1">x</span>
             </div>
               <ng-template #unattatched>{{t}}</ng-template>

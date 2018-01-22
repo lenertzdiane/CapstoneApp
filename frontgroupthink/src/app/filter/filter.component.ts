@@ -11,10 +11,14 @@ import { Standalone } from '../models/standalone'
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
+  standalone: Standalone;
+  standalones: Standalone[];
   searchCriteria: string;
   vignettes: Vignette[];
-  filteredVignettes: Vignette[];
+  filteredVignettes: Array<object>;
   filteredCharacters: Array<string>;
+  filteredStandaloneCharacters: Array<string>;
+
 
   constructor(private vignetteService: VignetteService, private standaloneService: StandaloneService) { }
 

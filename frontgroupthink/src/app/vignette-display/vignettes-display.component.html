@@ -2,12 +2,12 @@
   <div class="row row-no-gutter">
 
     <app-menu class = "col-sm-1">  </app-menu>
-
+<h1>Manage Order</h1>
 <!-- <section class="todo-list" dnd-sortable-container [sortableData]="todos"> -->
 <div class='wrapper'>
   <div class='container' [dragula]="bag-one" [dragulaModel]='vignettes'>
   <div class="col-sm-10 vignette-display" *ngFor="let vignette of vignettes |  orderBy: 'order', let i = index;" (click)="setEditVignette(vignette)" [attr.data-id] = "vignette._id" [attr.data-index] = "i" [attr.data-name]= "vignette.name" [attr.data-characters] = "vignette.characters" [attr.data-location] = "vignette.location">
-    <div class="" >
+    <div class="manage-title" >
       {{vignette.name}}
     </div>
 

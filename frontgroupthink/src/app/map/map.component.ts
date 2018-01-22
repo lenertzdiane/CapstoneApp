@@ -1,8 +1,8 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { MapService } from "../services/map.service";
 import { D3Service } from '../services/d3.service';
 import { Vignette } from '../models/vignette';
-import { Standalone } from 'models/standalone';
+import { Standalone } from '../models/standalone';
 import * as L from "leaflet";
 
 
@@ -34,7 +34,7 @@ export class MapComponent implements OnInit, OnChanges {
     });
 
     this.mapService.map = map;
-    this.standalones = {};
+    this.standalones = [];
     // this.d3Service.readyMap(this.mapService.map) //this.actingVignette.location);
     // this.d3Service.placeMarkers(this.mapService.map) // this.actingVignette.location)
   }
@@ -44,9 +44,13 @@ export class MapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
+      console.log(changes)
+      console.log(changes.scrollTop)
+
+      // let scrollTop = changes.scrollTop.currentValue
       this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
       this.d3Service.placeMarkers(this.mapService.map, this.standalones)
-      this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
+      // this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
 
     }
 

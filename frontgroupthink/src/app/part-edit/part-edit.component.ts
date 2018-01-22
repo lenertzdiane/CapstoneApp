@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PartEditComponent implements OnInit {
   @Input() editPart: string;
   @Input() index: number;
-  @Input() textArray: Array;
+  @Input() textArray: Array<string>;
 
 
 

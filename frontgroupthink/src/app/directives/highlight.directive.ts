@@ -25,7 +25,7 @@ export class HighlightDirective {
     }
     $(text)[0].value = $(text)[0].value.slice(0, start) + $(text)[0].value.slice(end)
 
-    let text = document.getElementById("text-input")
+    // text = document.getElementById("text-input")
 
     let hiddenDiv = document.createElement('div'),
     content = null;

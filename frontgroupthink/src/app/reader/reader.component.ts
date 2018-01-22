@@ -57,7 +57,7 @@ export class ReaderComponent implements OnInit {
     }
 
     setActingVignette(vignette: Vignette) {
-      this.actingVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location);
+      this.actingVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location, vignette.order);
     }
 
     getStandalones(){

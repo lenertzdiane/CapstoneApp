@@ -13,7 +13,7 @@ import { D3Service } from '../services/d3.service'
 export class AnchorComponent implements OnInit {
 
   newAnchor: Anchor;
-  anchors: Anchors[];
+  anchors: Anchor[];
   searchCriteria: string;
   feat: string;
   feature: string;
@@ -45,7 +45,7 @@ export class AnchorComponent implements OnInit {
   hideAnchors() {
     console.log('in here')
     this.mapService.removeAnchors();
-    this.anchorsPlaced = false
+    this.anchorPlaced = false
   }
 
   setAnchor(event) {

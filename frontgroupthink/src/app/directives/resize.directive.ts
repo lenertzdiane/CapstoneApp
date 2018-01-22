@@ -1,6 +1,7 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { D3Service } from '../services/d3.service'
 import { MapService } from '../services/map.service'
+import { Standalone } from '../models/standalone'
 
 
 @Directive({
