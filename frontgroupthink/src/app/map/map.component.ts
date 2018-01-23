@@ -48,6 +48,7 @@ export class MapComponent implements OnInit, OnChanges {
 
   //when a new vignette is actingVignette
 
+
   ngOnChanges(changes: SimpleChanges) {
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
       // let scrollTop = changes.scrollTop.currentValue

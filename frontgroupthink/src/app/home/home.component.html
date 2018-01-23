@@ -1,7 +1,12 @@
 <div>
-  <nav>
-  <a routerLink="/author">Author</a>
-  <a routerLink="/reader">Reader</a>
-  </nav>
+  <app-map class = "splash"></app-map>
+  <div class="row">
+
+  <a  class="col-sm-3 btn-home" routerLink="/add">Add A Story</a>
+  <a  class="col-sm-3 btn-home" routerLink="/manage">Manage Stories</a>
+  <a  class="col-sm-3 btn-home" routerLink="/reader">Read Stories</a>
+  <a  class="col-sm-3 btn-home" routerLink="/filter">Filter Stories</a>
+</div>
+
   <router-outlet></router-outlet>
 </div>

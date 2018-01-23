@@ -417,6 +417,19 @@ color: #A9D9E5;
 border: none;
 }
 
+.filter-read-vignette {
+  margin-top: 10vw;
+}
+
+.filter-reader-text {
+  font-size: 1.8vw;
+  height: 20vw;
+  overflow: scroll;
+  color: #A9D9E5;
+}
+.filter-container {
+  margin-left: 8vw;
+}
 .btn-filter:hover {
 background-color: #A9D9E5;
 color: #2e2e2e;
@@ -454,4 +467,33 @@ color: #2e2e2e;
   opacity: 0.2;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
+}
+
+/*  SPLASH PAGE */
+.splash {
+  height: 100vw;
+}
+.btn-home {
+  font-size: 2vw;
+  height: 5vw;
+  margin-top: 17px;
+  text-align: center;
+}
+
+.btn-home:nth-of-type(2n +1) {
+  border-width: 2px;
+  background-color: 	#232323 ;
+  color: #A9D9E5;
+}
+
+.btn-home:nth-of-type(2n + 2) {
+  border-width: 2px;
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+}
+
+.btn-home:hover {
+  text-decoration: none;
+  background-color: #A9D9E5;
+  color: #65737e;
 }
