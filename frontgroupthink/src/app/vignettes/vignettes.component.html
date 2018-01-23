@@ -21,8 +21,8 @@
 
 
       <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
-      <!-- <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/> -->
-      <!-- <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[2]" [ngModelOptions]="{standalone: true}"/> -->
+      <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/>
+      <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[2]" [ngModelOptions]="{standalone: true}"/>
       <button class="btn btn-default btn-add" (click)="insertNewVignette()"> ADD </button>
     </div>
 
@@ -42,10 +42,10 @@
           <div class="col-sm-1">
             <button class="btn btn-delete" (click)="deletePart(index)">x</button>
             <div *ngIf = "part[0] != '@'; else detatch ">
-              <button type="button" name="button" class = 'btn-delete' (click)= "attatchPart(part, index)">o</button>
+              <button type="button" name="button" class = 'btn-delete' (click)= "attatchPart(part, index)">📍</button>
             </div>
             <ng-template #detatch>
-              <button type="button" name="button" class = 'btn-delete' (click)= "detatchPart(part, index)">d</button>
+              <button type="button" name="button" class = 'btn-delete' (click)= "detatchPart(part, index)">✖️</button>
             </ng-template>
           </div>
         </div>
@@ -61,13 +61,13 @@
 
 
 
-    <div class="anchor-buttons">
-      <button class="btn btn-anchor" (click)="removeMarkers()"> Remove my Markers </button>
-      <button class="btn btn-anchor" (click)="showAnchors()"> Show Anchors </button>
-      <button class="btn btn-anchor" (click)="hideAnchors()"> Hide Anchors </button>
-      <button class="btn btn-anchor" routerLink="/anchor"> Add Anchors </button>
-    </div>
 
+  </div>
+  <div class="anchor-buttons">
+    <button class="btn btn-anchor" (click)="removeMarkers()"> Remove my Markers </button>
+    <button class="btn btn-anchor" (click)="showAnchors()"> Show Anchors </button>
+    <button class="btn btn-anchor" (click)="hideAnchors()"> Hide Anchors </button>
+    <button class="btn btn-anchor" routerLink="/anchor"> Add Anchors </button>
   </div>
   <app-map id = "mapid"  (click) = "setLocation($event)" id = "mapid"></app-map>
 </div>

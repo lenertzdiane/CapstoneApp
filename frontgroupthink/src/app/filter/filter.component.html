@@ -1,11 +1,27 @@
-<button type="button" name="button" (click) = "assembleCharacters()" (click) = "assembleStandaloneCharacters()">Read by Character</button>
 
-<div class="" *ngFor="let char of filteredCharacters">
-    <button type="button" name="button" (click) = "findByCharacter(char)" (click) = "findStandaloneByCharacter(char)" >{{char}}</button>
-</div>
+<div class="reader row row-no-gutter" >
+  <div class = "nav col-sm-1"  (click)="hide()">
+    <app-menu ></app-menu>
+  </div>
 
-<div class="read-vignette" *ngFor="let vignette of filteredVignettes | orderBy: 'order'">
-  {{vignette.name}}
-  {{vignette.characters}}
-  {{vignette.text}}
+  <h1>Filter Vignettes</h1>
+
+  <button class = "col-sm-5 btn-filter" type="button" name="button" (click) = "assembleCharacters()" (click) = "assembleStandaloneCharacters()">Read by Character</button>
+  <button class = "col-sm-5 btn-time btn-filter" type="button" name="button">Read by Time</button>
+
+  <div class="row">
+    <div class="col-sm-1 character" *ngFor="let char of filteredCharacters">
+      <button class = "btn-filter" type="button" name="button" (click) = "findByCharacter(char)" (click) = "findStandaloneByCharacter(char)" >{{char}}</button>
+    </div>
+  </div>
+
+  <div class="read-vignette" *ngFor="let vignette of filteredVignettes | orderBy: 'order'">
+    <div class="title">
+      {{vignette.name}}
+
+    </div>
+    {{vignette.characters}}
+    {{vignette.text}}
+  </div>
+
 </div>

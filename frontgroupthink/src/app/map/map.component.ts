@@ -41,6 +41,7 @@ export class MapComponent implements OnInit, OnChanges {
     map.boxZoom.disable();
     map.keyboard.disable();
     // this.d3Service.readyMap(this.mapService.map) //this.actingVignette.location);
+    // this.d3Service.(this.mapService.map) //this.actingVignette.location);
     // this.d3Service.placeMarkers(this.mapService.map) // this.actingVignette.location)
   }
 
@@ -50,7 +51,7 @@ export class MapComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
       // let scrollTop = changes.scrollTop.currentValue
-      this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
+      this.d3Service.readyMap(this.mapService.map, this.actingVignette.location, this.standalones);
       this.d3Service.placeMarkers(this.mapService.map, this.standalones)
       // this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
 

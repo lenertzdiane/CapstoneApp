@@ -22,11 +22,12 @@ export class D3Service {
     this.popups = [] as any;
 
   }
-  resetMap(map) {
-    d3.select('svg').remove()
-  }
+  // resetMap(map) {
+  // }
 
   readyMap(map, location) {
+    d3.select('svg').remove()
+    // this.placeMarkers(map, standalones)
     this.marker = {} as any;
     let projectedArray = this.projectedArray as any;
     this.linePath = {} as any;
@@ -138,7 +139,7 @@ export class D3Service {
     this.marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
     this.projectedArray = projectedArray
 
-    this.linePath.style("stroke-width", 0)
+    // this.linePath.style("stroke-width", 0)
   }
 
 
@@ -243,7 +244,7 @@ export class D3Service {
         let length = linePath.node().getTotalLength()
 
         let vignetteElements = document.getElementsByClassName("read-vignette")
-
+        let lastActingVignette = actingVignette;
 
         for(let i = 0; i < vignetteElements.length; i ++) {
           // console.log($(elements[i]).position().top, $(window).innerHeight()))
@@ -256,29 +257,23 @@ export class D3Service {
 
           if($($(vignetteElements[i]).children().last().children()).position().top > txtHeight){
             let actingVignette = $(vignetteElements[i])
+            // if(lastActingVignette != actingVignette) {
+            //   console.log('is this working?')
+            //   this.readyMap()
+            // }
             // console.log(actingVignette)
             break
           }
         }
         }
 
-        //let elements be the children of the acting vignette
         let children = actingVignette.children().children()
 
         for(let i = 0; i < children.length; i ++) {
-          // console.log($(elements[i]).position().top, $(window).innerHeight()))
-          // console.log(i)
-          //if children[i] has a div with an id i then thats the acting child
-
-
           if($(children[i]).position().top > txtHeight){
             if($(children[i]).has('div')){
               let actingChild = $(children[i])
             }
-            // console.log('actingChild')
-            // console.log(actingChild)
-            //this wont work between the last one of the last vignette and the first
-            //one of the second vignette
             let actingLast = $(children[i - 1])
             let actingLastNum = i
             console.log(children)
@@ -293,16 +288,7 @@ export class D3Service {
         })
         .style('stroke-dasharray', length)
         .style('stroke-width', 5)
-        // .style('stroke-width', function() {
-        //   if(map.getZoom() > 16) {
-        //     return 9
-        //   } else if(14 < map.getZoom() < 16) {
-        //     return 5
-        //   } else {
-        //     return 2
-        //   }
-        // })
-        .style('stroke-dasharray', length)
+        // .style('stroke-dasharray', length)
 
         var p = linePath.node().getPointAtLength(length - parseInt(linePath.style('stroke-dashoffset')));
         marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
@@ -312,19 +298,9 @@ export class D3Service {
         map.panTo(mapLatLng)
       }
       window.requestAnimationFrame(render)
-
-      // var marker2 = document.getElementById('marker')
-      // console.log(typeof $(marker2).lngLat())
-      // getPosition($(marker2))
     } // end reset
 
   };
-
-  // //
-  // //   //this is called from ngOnInit in map component, must find a way to import geJSON data
-  // //   //probably from a model. should be something like import Popups from '../models/popups'
-  // //   //then use popups.coordinates
-  // //
 
 
   // //
@@ -383,7 +359,7 @@ placeMarkers(map, standalones) {
           counter+=1
       }
   })
-  dataLayer.addTo(map);
+  dataLayer.addTo(map).bringToFront();
 
 //   //I think this is just leaflet stuff so does the d3 library work?
 //   let dataLayer = L.geoJson(geoJSONPopups, {
