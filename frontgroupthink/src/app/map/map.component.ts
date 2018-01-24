@@ -18,6 +18,7 @@ export class MapComponent implements OnInit, OnChanges {
   @Input() actingVignette: Vignette;
   @Input() features: Array<string>
   @Input() standalones: Standalone[];
+  map: object;
 
   constructor(private mapService: MapService, private d3Service: D3Service) { }
 
@@ -33,6 +34,7 @@ export class MapComponent implements OnInit, OnChanges {
       layers: [this.mapService.baseMaps.OpenStreetMap]
     });
 
+    this.map = map;
     this.mapService.map = map;
     this.standalones = [];
     map.touchZoom.disable();

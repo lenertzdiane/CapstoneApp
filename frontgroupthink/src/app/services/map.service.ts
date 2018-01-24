@@ -35,20 +35,43 @@ export class MapService {
 
 }
 
+placeInstructions(instructions, points, path) {
+  let geoJSONPopups = JSON.parse(points)
+  let counter = 0
+
+  let dataLayer = L.geoJson(geoJSONPopups, {
+      pointToLayer: function (feature, latlng) {
+        let popupText = instructions[counter]
+          return L.circleMarker(latlng, {'className': 'instructions'}).bindPopup(popupText);
+          counter+=1
+      }
+  })
+
+
+  // var marker = L.marker([  -87.6499557495117, 41.7924406075935]).addTo(this.map).bindPopup("Add paths to stories and see them animate when you scroll!");
+  // marker.addTo(this.map)
+
+  dataLayer.addTo(this.map);
+
+  this.d3Service.readyMap(this.map, path)
+
+}
+
 readyMarkerGroup(){
   this.markerGroup = L.layerGroup()
+  console.log(this.map)
   this.markerGroup.addTo(this.map);
 }
 
 
 readyAnchorGroup(){
   this.anchorGroup = L.layerGroup()
+  console.log(this.map)
   this.anchorGroup.addTo(this.map);
 }
 
 getLatLng(event) {
   let ll = this.map.mouseEventToLatLng(event)
-  console.log(event)
   if(event.target.localName != "path"){
     var marker = L.circleMarker([ll.lat, ll.lng]).addTo(this.markerGroup);
     //if I wanted to do this part better i'd convert to geoJSON and pass back lol
@@ -76,12 +99,10 @@ addStandaloneMarker(event) {
 }
 
 removeMarkers() {
-  console.log('in remove')
   this.map.removeLayer(this.markerGroup)
 }
 
 removeAnchors() {
-  console.log('in remove')
   this.map.removeLayer(this.anchorGroup)
 }
 

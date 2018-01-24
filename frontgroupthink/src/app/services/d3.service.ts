@@ -138,10 +138,46 @@ export class D3Service {
     this.marker.attr("transform", "translate(" + p.x + "," + p.y + ")");
     this.projectedArray = projectedArray
 
-    // this.linePath.style("stroke-width", )
+    //if this is the splash page
+    this.linePath.style("stroke-width", 10)
+    // this.timeTransition()
   }
 
+  timeTransition(){
+    console.log(this.linePath)
+    transition(this.linePath)
+  function transition(this.linePath) => {
+              this.linePath.transition()
+                  .duration(7500)
+                  .attrTween("stroke-dasharray", tweenDash(this.linePath))
+                  .each("end", function() {
+                    console.log('not callin!!!!')
+                      // d3.select(this).call(transition);// infinite loop
+                  });
+          } //end transition
 
+          function tweenDash(linePath) => {
+           return function(t) {
+               //total length of path (single value)
+               var l = linePath.node().getTotalLength();
+               console.log(l)
+
+               interpolate = d3.interpolateString("0," + l, l + "," + l);
+               //t is fraction of time 0-1 since transition began
+               var marker = d3.select("#marker");
+
+               // p is the point on the line (coordinates) at a given length
+               // along the line. In this case if l=50 and we're midway through
+               // the time then this would 25.
+               var p = linePath.node().getPointAtLength(t * l);
+
+               //Move the marker to that point
+               this.marker.attr("transform", "translate(" + p.x + "," + p.y + ")"); //move marker
+               console.log(interpolate(t))
+               return interpolate(t);
+           }
+       } //end tweenDash
+}
 
   drawLine(map, scrollTop, text, location) {
     // let map = map
