@@ -41,9 +41,11 @@ placeInstructions(instructions, points, path) {
 
   let dataLayer = L.geoJson(geoJSONPopups, {
       pointToLayer: function (feature, latlng) {
+        console.log(counter)
+        console.log(instructions[counter])
         let popupText = instructions[counter]
+        counter+=1
           return L.circleMarker(latlng, {'className': 'instructions'}).bindPopup(popupText);
-          counter+=1
       }
   })
 

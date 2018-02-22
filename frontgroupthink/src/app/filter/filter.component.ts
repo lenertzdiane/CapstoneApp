@@ -74,6 +74,9 @@ export class FilterComponent implements OnInit {
               assembleCharacters() {
                 this.vignettes.forEach( (vignette) =>  {
                   vignette.characters.forEach( (char)  =>{
+                    console.log(char)
+                    console.log(typeof char)
+
                     if(!(this.filteredCharacters.includes(char))) {
                       this.filteredCharacters.push(char)
                       console.log(char)

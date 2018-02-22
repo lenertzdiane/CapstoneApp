@@ -139,17 +139,18 @@ export class D3Service {
     this.projectedArray = projectedArray
 
     //if this is the splash page
-    this.linePath.style("stroke-width", 10)
+    // this.linePath.style("stroke-width", 10)
     // this.timeTransition()
   }
 
   timeTransition(){
-    console.log(this.linePath)
-    transition(this.linePath)
-  function transition(this.linePath) => {
-              this.linePath.transition()
+    console.log(this.linePath);
+    transition(this.linePath);
+
+    function transition(linePath) => {
+              linePath.transition()
                   .duration(7500)
-                  .attrTween("stroke-dasharray", tweenDash(this.linePath))
+                  .attrTween("stroke-dasharray", tweenDash(linePath))
                   .each("end", function() {
                     console.log('not callin!!!!')
                       // d3.select(this).call(transition);// infinite loop
@@ -193,6 +194,7 @@ export class D3Service {
 
     // console.log(location)
     let geoData = JSON.parse(location)
+
 
 
     // console.log(location)
@@ -305,12 +307,12 @@ export class D3Service {
           // console.log($(elements[i]).position().top, $(window).innerHeight()))
           // console.log(i)
           //if children[i] has a div with an id i then thats the acting child
-          console.log(i)
+          // console.log(i)
 
           if($(children[i]).position().top > txtHeight){
             // if($(children[i]).has('div')){
             let actingChild = $(children[i])
-            console.log(actingChild)
+            // console.log(actingChild)
             // }
             // console.log('actingChild')
             // console.log(actingChild)
@@ -385,8 +387,8 @@ export class D3Service {
 
 let dataLayer = L.geoJson(geoJSONPopups, {
     pointToLayer: function (feature, latlng) {
-      counter+=1
       let popupText = names[counter] + '\n' + notes[counter]
+      counter+=1
         return L.circleMarker(latlng, {'className': 'anchor'}).bindPopup(popupText);
     }
 })
@@ -415,10 +417,11 @@ placeMarkers(map, standalones) {
   let dataLayer = L.geoJson(geoJSONPopups, {
       pointToLayer: function (feature, latlng) {
         let popupText = names[counter] + '\n' + text[counter]
+        counter+=1
           return L.circleMarker(latlng, {'className': 'standalone'}).bindPopup(popupText);
-          counter+=1
       }
   })
+  dataLayer.bringToFront();
   dataLayer.addTo(map);
 
 //   //I think this is just leaflet stuff so does the d3 library work?
