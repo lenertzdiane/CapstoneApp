@@ -20,10 +20,19 @@ export class D3Service {
     this.linePath = {} as any;
     this.marker = {} as any;
     this.popups = [] as any;
+    this.svg = {} as any;
 
   }
-  resetMap(map) {
-    d3.select('svg').remove()
+
+  placeSVG(map) {
+    console.log('yep')
+    this.svg = d3.select(map.getPanes().overlayPane).append("svg");
+    console.log(map)
+  }
+
+  removePrevious(map) {
+    console.log(d3.select('g'))
+    d3.select('g').remove()
   }
 
   readyMap(map, location) {
@@ -31,8 +40,7 @@ export class D3Service {
     let projectedArray = this.projectedArray as any;
     this.linePath = {} as any;
 
-    var svg = d3.select(map.getPanes().overlayPane).append("svg");
-    let g = svg.append("g").attr("class", "leaflet-zoom-hide");
+    let g = this.svg.append("g").attr("class", "character path");
 
     var dataLayer = L.geoJson(this.popups);
     dataLayer.addTo(map);
@@ -123,7 +131,7 @@ export class D3Service {
       applyLatLngToLayer(d).y + ")";
     });
 
-    svg.attr("width", bottomRight[0] - topLeft[0] + 120)
+    this.svg.attr("width", bottomRight[0] - topLeft[0] + 120)
     .attr("height", bottomRight[1] - topLeft[1] + 120)
     .style("left", topLeft[0] - 50 + "px")
     .style("top", topLeft[1] - 50 + "px");

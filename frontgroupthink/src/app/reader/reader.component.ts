@@ -50,9 +50,7 @@ export class ReaderComponent implements OnInit {
       this.scrollTop = scrollTop;
       // this.actingVignette =
       this.text = text;
-      console.log(text)
       // this.standalones = standalones;
-      console.log(vignette)
       this.setActingVignette(vignette)
     }
 

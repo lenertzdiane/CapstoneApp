@@ -28,7 +28,6 @@ export class ScrollAnimateDirective {
       }
     }
   }
-    console.log(workingVignette)
     // console.log(event.path[0].children)
     // console.log(event.path[0].children[1].scrollTop)
     this.callback((<Element>event.target).scrollTop, event.target, workingVignette);
