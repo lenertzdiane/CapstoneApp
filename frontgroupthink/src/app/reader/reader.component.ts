@@ -27,6 +27,7 @@ export class ReaderComponent implements OnInit {
   standalones: Standalone[];
   vignette: Vignette;
 
+
   constructor(
     private vignetteService: VignetteService, private standaloneService: StandaloneService) {
       this.scrollHandler = this.handleScroll.bind(this);
@@ -45,6 +46,11 @@ export class ReaderComponent implements OnInit {
     //   this.vignette = vignette
     //   console.log(this.vignette)
     // }
+
+    changeStyling(e) {
+      console.log(e)
+      console.log('HERE')
+    }
 
     handleScroll(scrollTop, text, vignette) {
       this.scrollTop = scrollTop;

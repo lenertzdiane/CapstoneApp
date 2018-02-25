@@ -31,8 +31,11 @@ export class MapComponent implements OnInit, OnChanges {
       zoom: 17,
       // minZoom: 8,
       // maxZoom: 18,
-      layers: [this.mapService.baseMaps.OpenStreetMap]
+      layers: L.tileLayer("http://{s}.sm.mapstack.stamen.com/(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/{z}/{x}/{y}.png" //, {
+      // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+      // [this.mapService.baseMaps.OpenStreetMap]
     });
+
 
     this.map = map;
     this.mapService.map = map;
@@ -52,7 +55,7 @@ export class MapComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges) {
-
+    console.log()
 
     if(changes['actingVignette'] && changes['actingVignette'].currentValue != undefined) {
       // let scrollTop = changes.scrollTop.currentValue

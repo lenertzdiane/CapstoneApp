@@ -1,6 +1,8 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { D3Service } from '../services/d3.service';
-import { Vignette } from '../models/vignette'
+import { Vignette } from '../models/vignette';
+declare var jquery:any;
+
 
 
 @Directive({
