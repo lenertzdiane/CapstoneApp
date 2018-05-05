@@ -7,7 +7,7 @@ import { trigger, state, style, transition, animate, group, query, stagger, keyf
   animations: [
     trigger('myAnimation', [
       state('true', style({
-        'transform': 'translateY(-200%)'
+        'transform': 'translateY(-300%)'
       })
     ),
     transition('true => false',
@@ -15,7 +15,7 @@ import { trigger, state, style, transition, animate, group, query, stagger, keyf
   ]),
   trigger('myAnimation2', [
     state('true', style({
-      'transform': 'translateY(-400%)'
+      'transform': 'translateY(-500%)'
     })
   ),
   transition('true => false',
@@ -23,7 +23,7 @@ import { trigger, state, style, transition, animate, group, query, stagger, keyf
 ]),
 trigger('myAnimation3', [
   state('true', style({
-    'transform': 'translateY(-600%)'
+    'transform': 'translateY(-700%)'
   })
 ),
 transition('true => false',
@@ -31,12 +31,13 @@ animate('350ms', style({ transform: 'translateX(0)'})))
 ]),
 trigger('myAnimation4', [
   state('true', style({
-    'transform': 'translateY(-800%)'
+    'transform': 'translateY(-900%)'
   })
 ),
 transition('true => false',
 animate('350ms', style({ transform: 'translateX(0)'})))
-])
+]),
+
 
 ]
 })

@@ -1,9 +1,12 @@
 <div class="form-group col-sm-2">
-    <label for="editVignette">Edit Vignette:</label>
-    <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.editVignette.name" [ngModelOptions]="{standalone: true}"/>
-    <textarea placeholder="Text" [(ngModel)]="editVignette.text"></textarea>
-    <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.editVignette.characters" [ngModelOptions]="{standalone: true}"/>
-    <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.editVignette.location" [ngModelOptions]="{standalone: true}"/>
-    <input class="form-control" type="number" placeholder="Order" [(ngModel)]="this.editVignette.order" [ngModelOptions]="{standalone: true}"/>
-    <button class="btn btn-default" (click)="updateVignette()"> Edit Vignette </button>
+
+    <label for="vignette">Edit Vignette:</label>
+    <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.vignette.name" [ngModelOptions]="{standalone: true}"/>
+    <textarea placeholder="Text" [(ngModel)]="this.vignette.text"></textarea>
+    <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.vignette.characters" [ngModelOptions]="{standalone: true}"/>
+    <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.vignette.location" [ngModelOptions]="{standalone: true}"/>
+    <input class="form-control" type="text" placeholder="Order" [(ngModel)]="this.vignette.order" [ngModelOptions]="{standalone: true}"/>
+
+    <button class="btn btn-default" (click)="updateVignette(this.vignette)"> Edit Vignette </button>
+
 </div>

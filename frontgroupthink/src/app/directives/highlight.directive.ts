@@ -12,7 +12,7 @@ export class HighlightDirective {
 
 
   }
-  @Input() textArray: Array;
+  @Input() textArray: Array<string>;
 
 
   @HostListener('mouseup') mouseup($event) {
@@ -21,11 +21,11 @@ export class HighlightDirective {
     let end = text.selectionEnd
     let selection = text.value.slice(start, end)
     if(start<end){
-      this.textArray.push(selection)
+      this.textArray.push(" " + selection)
     }
     $(text)[0].value = $(text)[0].value.slice(0, start) + $(text)[0].value.slice(end)
 
-    let text = document.getElementById("text-input")
+    // text = document.getElementById("text-input")
 
     let hiddenDiv = document.createElement('div'),
     content = null;
@@ -43,7 +43,6 @@ export class HighlightDirective {
       text.style.height = hiddenDiv.getBoundingClientRect().height + 'px';
 
 //THIS IS A RIDICULOUS PLACE TO PUT THIS FUNCTION CALL, SHOULD BE ON SOME NG INIT SOMEWHERE BUT.
-      this.mapService.readyMarkerGroup()
 
 
   }

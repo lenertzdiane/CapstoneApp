@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Standalone } from '../models/standalone'
+import { Anchor } from '../models/anchor'
+
 import { StandaloneService } from '../services/standalone.service'
 import { MapService } from '../services/map.service'
+import { D3Service } from '../services/d3.service'
+import { AnchorService } from '../services/anchor.service'
+
+
 
 @Component({
   selector: 'app-standalone',
@@ -12,28 +18,37 @@ export class StandaloneComponent implements OnInit {
 
   newStandalone: Standalone;
   standalones: Standalone[];
-  features: string;
-  feature: string;
-  feat: string
-  searchCriteria: string;
 
-  constructor(private standaloneService: StandaloneService, private mapService: MapService) { }
+  features: String;
+  feature: string;
+  feat: string;
+  searchCriteria: string;
+  anchors: Anchor[];
+  anchorsPlaced: boolean;
+
+
+
+  constructor(private anchorService: AnchorService, private standaloneService: StandaloneService, private mapService: MapService, private d3Service: D3Service) { }
 
   ngOnInit() {
     this.newStandalone = Standalone.CreateDefault();
-    this.getStandalones()
+    this.getStandalones();
+    this.anchors = []
+    this.getAnchors();
     this.searchCriteria = '';
     this.feature = ''
     this.feat = ''
-    this.standalones = []
-  }
+    this.standalones = [];
+    this.anchorsPlaced = false;
+
 
 
   setLocation(event) {
+    console.log('in setlocation')
     if(this.feat.length === 0) {
       let latlng = this.mapService.addStandaloneMarker(event)
 
-    this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
+      this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
     this.feature = this.feat
   }
   }
@@ -42,6 +57,37 @@ export class StandaloneComponent implements OnInit {
     this.mapService.removeMarkers()
     this.feat = ''
   }
+
+  showAnchors() {
+    if(!this.anchorsPlaced){
+      this.mapService.readyAnchorGroup()
+      if(this.anchors){
+        this.d3Service.placeAnchors(this.mapService.anchorGroup, this.anchors)
+        this.anchorsPlaced = true
+      }
+    }
+  }
+
+  hideAnchors() {
+    this.mapService.removeAnchors();
+    this.anchorsPlaced = false
+  }
+  getAnchors(){
+    this.anchorService.getAnchors(this.searchCriteria)
+    .subscribe(
+      data => {
+        this.anchors = [];
+        data.forEach(
+          element => {
+            var newAnchor = new Anchor(element._id,
+              element.name,
+              element.notes,
+              element.characters,
+              element.location)
+              this.anchors.push(newAnchor);
+            })
+          })
+        }
 
   getStandalones(){
     this.standaloneService.getStandalones(this.searchCriteria)

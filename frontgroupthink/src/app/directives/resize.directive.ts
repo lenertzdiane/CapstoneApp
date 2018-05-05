@@ -1,6 +1,7 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { D3Service } from '../services/d3.service'
 import { MapService } from '../services/map.service'
+import { Standalone } from '../models/standalone'
 
 
 @Directive({
@@ -12,7 +13,15 @@ export class ResizeDirective {
   @Input() callback: Function;
   @Input() standalones: Standalone[];
 
-  @HostListener('load') resize($event) {
-    this.d3Service.readyMap(this.mapService.map, standalones)
-  }
+  @HostListener('click') resize($event) {
+    console.log('in hostlistener')
+    if($(event.target).hasClass("standalone")){
+      console.log($(event.target).attr("fill", "red"))
+      console.log($(event.target).attr("stroke", "red")) //[0].attributes.stroke.val
+       //[0].attributes.stroke.val
+    }
+    console.log($(event.target)
+    // this.d3Service.resetMap(this.mapService.map)
+    // this.d3Service.readyMap(this.mapService.map, standalones)
+  },
 }

@@ -18,15 +18,17 @@
 
 h1 {
   color: #A9D9E5;
+  font-family: "Bungee Hairline";
+  font-weight: bold;
   font-size: 4vw;
 }
 
 .add-toggle {
   text-align: center;
   font-size: 1.8vw;
-  background-color: #65737e;
+  background-color: #232323;
   margin-bottom: 8px;
-  color: #A9D9E5;
+  color: grey;
   border-bottom: 3px solid #65737e;
   border-right: 3px solid #65737e;
 
@@ -35,11 +37,12 @@ h1 {
 .add-toggle:hover {
   text-decoration: none;
   background-color: #A9D9E5;
-  color: #65737e;
+  color: #2e2e2e;
 }
 
 .acting {
-  background-color:#4f5b66;
+  background-color:#2e2e2e;
+  color: #A9D9E5;
   border-bottom: 3px solid #A9D9E5;
   border-right: 3px solid #A9D9E5;
 
@@ -52,23 +55,34 @@ h1 {
 
 .title {
   height: 5vw;
+
   font-size: 3vw;
-  background-color: #4f5b66 ;
+  background-color: #232323 ;
   color: #A9D9E5;
+  border: none;
+}
+
+.manage-title {
+  font-size: 2vw;
+  color: #A9D9E5;
+  border: none;
 }
 
 .btn-add {
   width: 100%;
   height: 2.9vw;
   font-size: 1.8vw;
-  margin-top: 3vw;
-  background-color: #4f5b66 ;
-  color: #A9D9E5
+  margin-top: .6vw;
+  margin-bottom: .6vw;
+
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+  border: none;
 }
 
 .btn-add:hover {
   background-color: #A9D9E5;
-  color: #65737e;
+  color: #2e2e2e;
 }
 
 .forms {
@@ -94,24 +108,42 @@ textarea {
 #text-input {
   width: 100%;
   overflow: scroll;
-background-color: #65737e;
+background-color: #2e2e2e;
   color: #A9D9E5;
+  border: none;
+}
+
+.character-input:nth-of-type(2n+1) {
+  background-color: #2e2e2e;
+
+  border: none;
+}
+
+.character-input:nth-of-type(2n+2) {
+  background-color: #232323;
+
+  border: none;
 }
 
 #standalone-input {
-  background-color: #65737e;
+  background-color: #2e2e2e;
     color: #A9D9E5;
+    border: none;
+}
+.leaflet-popup {
+  max-height: 20vw;
+  overflow-y: scroll;
 }
 
 /* PART */
 .part-index {
-  font-size: 8vw;
+  font-size: 6vw;
   max-height: 100%;
   margin-bottom: 5px;
 }
 
 .parts {
-  height: 10vw;
+  height: 8vw;
   overflow: hidden;
   margin-top: 1.3vw;
   margin-bottom: 1.3vw;
@@ -121,24 +153,73 @@ background-color: #65737e;
   font-size: 1.3vw;
 }
 
+.part-container {
+  margin-left: 4vw;
+  margin top: 8vw;
+  max-height: 28vw;
+  overflow: scroll;
+}
+
 div.parts:hover {
 
 }
 
+.part-edit-input {
+  background-color: 	#232323 ;
+  color:  #A9D9E5;
+  margin-bottom: 1vw;
+}
 
 .parts:nth-of-type(2n +1) {
   border-width: 2px;
-  background-color: 	#4f5b66 ;
+  background-color: 	#232323 ;
   color:  #A9D9E5;
 }
 
 .parts:nth-of-type(2n + 2) {
   border-width: 2px;
-  background-color: #65737e ;
+  background-color: #2e2e2e ;
   color:  #A9D9E5;
 
 }
+.btn-delete {
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  margin-bottom: 2vw;
+  border: none;
+}
 
+.btn-edit {
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  margin-bottom: 2vw;
+  border: none;
+}
+
+/*  ANCHOR BUTTONS  ********************************************* ANCHOR BUTTONS*/
+.anchor-buttons {
+  justify-content: center;
+  margin-left: 50vw;
+  /* margin-top: 2vw;
+  position: fixed; */
+
+}
+.btn-anchor {
+  margin-left: 2vw;
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  border: none;
+}
+
+.btn-anchor:hover {
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
+
+.btn-anchor::selection {
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
 
 
 /* NAV ********************************************* NAV */
@@ -149,24 +230,32 @@ div.parts:hover {
 #nav {
   height: 100vw;
 }
+.hamburger {
+    width: 35px;
+    height: 5px;
+    background-color: #A9D9E5;
+    margin: 6px 0;
 
+}
 .btn-menu {
-  font-size: 1.5vw;
+  font-family: "Bungee Hairline";
+  font-weight: bold;
+  font-size: 1.2vw;
   width: 100%;
   height: 3vw;
   margin-top: 17px;
-  text-align: center;
+  text-align: left;
 }
 
 .btn-menu:nth-of-type(2n +1) {
   border-width: 2px;
-  background-color: 	#4f5b66 ;
+  background-color: 	#232323 ;
   color: #A9D9E5;
 }
 
 .btn-menu:nth-of-type(2n + 2) {
   border-width: 2px;
-  background-color: #65737e ;
+  background-color: #2e2e2e ;
   color: #A9D9E5;
 }
 
@@ -177,12 +266,12 @@ div.parts:hover {
 }
 
 
-.leaflet-popup-content  {
+/* .leaflet-popup-content  {
   background-color: #A9D9E5;
 }
 .leaflet-popup-content-wrapper {
   background-color: #A9D9E5
-}
+} */
 
 /* READER ********************************************* READER  */
 
@@ -199,13 +288,28 @@ div.parts:hover {
 
 
 .reader-title {
+  font-family: "Bungee Hairline";
+  font-weight: bold;
   height: 5vw;
   font-size: 3vw;
 }
 
-path {
+
+
+path.lines {
   fill: none;
   stroke: #A9D9E5;
+}
+
+path.anchor {
+  fill: red;
+  stroke: red;
+}
+
+path.standalone {
+  fill: #A9D9E5;
+  stroke: #A9D9E5;
+  z-index: 6;
 }
 
 .big {
@@ -221,7 +325,6 @@ path {
 }
 
 .read-vignette {
-  background-color: #343d46;
   color: #A9D9E5;
   font-size: 2.3vw;
 }
@@ -244,17 +347,38 @@ path {
 } */
 
 .travelMarker {
+  color: yellow;
   opacity: .6;
 }
 
+#marker {
+  color: yellow;
+}
+
+.reader-text {
+  font-family: "Rajdhani";
+}
+
+/* MANAGE VIGNETETES DRAGULA ********************************************* MANAGE VIGNETTES  */
+
+
+.vignette-display:nth-of-type(2n+1) {
+  background-color: 	#232323 ;
+  color: #A9D9E5;
+}
+
+.vignette-display:nth-of-type(2n+2) {
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+}
 
 /* TEXTAREA RESIZE ********************************************* TEXTAREA RESIZE  */
 
 body {
   margin: 20px;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Bungee Hairline', sans-serif;
 
-  background-color: #343d46;
+  background-color: #3a3a3a;
 
 }
 
@@ -267,6 +391,7 @@ p {
 
 
 textarea {
+  font-family: "Rajdhani";
   color: #444;
   padding: 5px;
 }
@@ -290,7 +415,122 @@ textarea {
 .common {
   width: 500px;
   min-height: 50px;
-  font-family: Arial, sans-serif;
+  font-family: "Bungee Hairline";
+  font-weight: bold;
   font-size: 13px;
   overflow: hidden;
+}
+
+/* FILTER */
+.btn-filter {
+/* width: 100%; */
+height: 4.5vw;
+font-size: 1.8vw;
+margin-top: .6vw;
+margin-bottom: .6vw;
+
+background-color: #2e2e2e ;
+color: #A9D9E5;
+border: none;
+}
+
+.filter-read-container {
+  margin-top: 20vw;
+}
+.filter-read-vignette {
+  margin-top: 5vw;
+}
+
+.filter-reader-text {
+  font-family: "Rajdhani";
+  font-size: 1.8vw;
+  height: 20vw;
+  overflow: scroll;
+  color: #A9D9E5;
+}
+.filter-container {
+  margin-left: 8vw;
+}
+.btn-filter:hover {
+background-color: #A9D9E5;
+color: #2e2e2e;
+}
+
+.btn-time {
+  margin-left: 5vw;
+}
+
+/*  ANCHORS */
+.anchors-map {
+  max-height: 80vw;
+  max-width: 80vw;
+}
+
+/* DRAGULA  */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+/*  SPLASH PAGE */
+.splash {
+  height: 100vw;
+}
+.btn-home {
+  font-size: 2vw;
+  height: 5vw;
+  margin-top: 17px;
+  text-align: center;
+}
+
+.btn-home:nth-of-type(2n +1) {
+  border-width: 2px;
+  background-color: 	#232323 ;
+  color: #A9D9E5;
+}
+
+.btn-home:nth-of-type(2n + 2) {
+  border-width: 2px;
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+}
+
+.btn-home:hover {
+  text-decoration: none;
+  background-color: #A9D9E5;
+  color: #65737e;
+}
+
+.instructions {
+  font-size: 4vw;
+}
+
+.invisible {
+  font-size: .01vw;
+}
+
+.main-title {
+font-family: "Bungee Hairline";
+color:  #A9D9E5;
+text-align: center;
+  font-size: 6vw;
+  font-weight: bold;
 }

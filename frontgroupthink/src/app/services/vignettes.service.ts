@@ -13,8 +13,9 @@ export class VignetteService {
     }
 
     getVignettes(searchCriteria:any) : Observable<Vignette[]>{
-
-        return this.http.get("http://localhost:3000/getVignettes")
+             let params: URLSearchParams = new URLSearchParams();
+             params.set('name', searchCriteria);
+        return this.http.get("http://localhost:3000/getVignettes", { search: params })
                 .map((res:any) => {
                     return res.json();
                 })
@@ -34,6 +35,7 @@ export class VignetteService {
     }
 
     updateVignette(vignette:Vignette): Observable<any>{
+      console.log(vignette)
         return this.http.post("http://localhost:3000/updateVignette", vignette)
             .map((res:any) => {
                 return res.json();

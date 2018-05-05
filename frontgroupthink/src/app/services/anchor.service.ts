@@ -2,21 +2,20 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { Standalone } from '../models/standalone';
+import { Anchor } from '../models/anchor';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class StandaloneService {
+export class AnchorService {
 
     constructor(private http: Http) {
     }
 
-    getStandalones(searchCriteria:any) : Observable<Standalone[]>{
-      let params: URLSearchParams = new URLSearchParams();
-      params.set('name', searchCriteria);
+    getAnchors(searchCriteria:any) : Observable<Anchor[]>{
 
-        return this.http.get("http://localhost:3000/getStandalones", { search: params })
+        return this.http.get("http://localhost:3000/getAnchors")
                 .map((res:any) => {
                     return res.json();
                 })
@@ -25,8 +24,8 @@ export class StandaloneService {
                 });
     }
 
-    insertNewStandalone(standalone:Standalone): Observable<any>{
-        return this.http.post("http://localhost:3000/insertNewStandalone", standalone)
+    insertNewAnchor(anchor:Anchor): Observable<any>{
+        return this.http.post("http://localhost:3000/insertNewAnchor", anchor)
             .map((res:any) => {
                 return res.json();
             })

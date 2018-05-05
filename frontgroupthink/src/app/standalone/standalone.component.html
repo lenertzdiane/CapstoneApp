@@ -2,7 +2,7 @@
   <div class="row row-no-gutter">
 
 
-    <div class="col-sm-2">
+    <div class="col-sm-1">
       <app-menu>  </app-menu>
     </div>
 
@@ -13,20 +13,26 @@
       <a class="add-toggle col-sm-6" routerLink="/add">Narrative</a>
 
       <input class="form-control title" type="text" placeholder="Title" [(ngModel)]="this.newStandalone.name" [ngModelOptions]="{standalone: true}"/>
-      <textarea id = "standalone-input" name="name" rows="8" cols="80"  [(ngModel)]="this.newStandalone.text"></textarea>
+      <textarea  id= "text-input" name="name" rows="8" cols="80"  [(ngModel)]="this.newStandalone.text"></textarea>
 
-<!-- <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[0]" [ngModelOptions]="{standalone: true}"/>
-<input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.newVignette.characters[1]" [ngModelOptions]="{standalone: true}"/> -->
-<button class="btn btn-default btn-add" (click)="insertNewStandalone()"> ADD </button>
-</div>
+      <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newStandalone.characters[0]" [ngModelOptions]="{standalone: true}"/>
+      <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newStandalone.characters[1]" [ngModelOptions]="{standalone: true}"/>
+      <input class="character-input form-control" type="text" placeholder="Characters" [(ngModel)]="this.newStandalone.characters[2]" [ngModelOptions]="{standalone: true}"/>
 
-<app-map class = "add-map col-sm-4" (click) = "setLocation($event)" id = "mapid" ></app-map>
-<button class="btn btn-default btn-remove" (click)="removeMarkers()"> REMOVE </button>
-
+      <button class="btn btn-default btn-add" (click)="insertNewStandalone()"> ADD </button>
+    </div>
 
 
 
-</div>
+
+  </div>
+  <div class="anchor-buttons">
+    <button class="btn btn-anchor" (click)="removeMarkers()"> Remove my Markers </button>
+    <button class="btn btn-anchor" (click)="showAnchors()"> Show Anchors </button>
+    <button class="btn btn-anchor" (click)="hideAnchors()"> Hide Anchors </button>
+    <button class="btn btn-anchor" routerLink="/anchor"> Add Anchors </button>
+  </div>
+  <app-map id = "mapid"  (click) = "setLocation($event)" id = "mapid"></app-map>
 </div>
 
 

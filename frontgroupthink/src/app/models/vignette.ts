@@ -6,9 +6,10 @@ export class Vignette {
         public text : Array<string>,
         public characters: Array<string>,
         public location : string, //geoJSON
+        public order : number,
     ){}
 
     static CreateDefault(): Vignette {
-        return new Vignette('', '', [], [], '');
+        return new Vignette('', '', [], [], '', 0);
     }
 }

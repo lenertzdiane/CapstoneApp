@@ -24,7 +24,9 @@ export class ReaderComponent implements OnInit {
   text: object;
   actingVignette: Vignette;
   show: Boolean;
-  standalones: Standalone[]
+  standalones: Standalone[];
+  vignette: Vignette;
+
 
   constructor(
     private vignetteService: VignetteService, private standaloneService: StandaloneService) {
@@ -45,10 +47,17 @@ export class ReaderComponent implements OnInit {
     //   console.log(this.vignette)
     // }
 
-    handleScroll(scrollTop, text, standalones) {
+    changeStyling(e) {
+      console.log(e)
+      console.log('HERE')
+    }
+
+    handleScroll(scrollTop, text, vignette) {
       this.scrollTop = scrollTop;
+      // this.actingVignette =
       this.text = text;
-      this.standalones = standalones;
+      // this.standalones = standalones;
+      this.setActingVignette(vignette)
     }
 
 
@@ -57,8 +66,14 @@ export class ReaderComponent implements OnInit {
     }
 
     setActingVignette(vignette: Vignette) {
-      this.actingVignette = new Vignette(vignette._id, vignette.name, vignette.text, vignette.characters, vignette.location);
+      let title = vignette[0].childNodes[1].innerText
+      // console.log(this.vignettes)
+      let interest = this.vignettes.find(x => x.name == title);
+      // let workingVignette = Vignettes.where(name = workVignette )
+      // console.log(this.actingVignette)
+      this.actingVignette = new Vignette(interest._id, interest.name, interest.text, interest.characters, interest.location, interest.order);
     }
+
 
     getStandalones(){
       this.standaloneService.getStandalones(this.searchCriteria)
@@ -89,7 +104,8 @@ export class ReaderComponent implements OnInit {
                 element.name,
                 element.text,
                 element.characters,
-                element.location)
+                element.location,
+                element.order)
                 this.vignettes.push(newVignette);
               })
             })
