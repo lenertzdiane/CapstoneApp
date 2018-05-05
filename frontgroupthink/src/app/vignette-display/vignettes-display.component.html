@@ -1,0 +1,37 @@
+<div class= "container-fluid full-width">
+  <div class="row row-no-gutter">
+
+    <app-menu class = "col-sm-1">  </app-menu>
+<h1>Manage Order</h1>
+<!-- <section class="todo-list" dnd-sortable-container [sortableData]="todos"> -->
+<div class='wrapper'>
+  <div class='container' [dragula]="bag-one" [dragulaModel]='vignettes'>
+  <div class="col-sm-10 vignette-display" *ngFor="let vignette of vignettes |  orderBy: 'order', let i = index;" (click)="setEditVignette(vignette)" [attr.data-id] = "vignette._id" [attr.data-index] = "i" [attr.data-name]= "vignette.name" [attr.data-characters] = "vignette.characters" [attr.data-location] = "vignette.location">
+    <div class="manage-title" >
+      {{vignette.name}}
+    </div>
+
+    <div class="">
+      <button class="btn btn-delete" (click)="deleteVignette(vignette)">Delete</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- </section> -->
+
+
+
+
+  <!-- <vignettes-edit [vignette]="editVignette" ></vignettes-edit> -->
+  <!-- <div class="form-group col-sm-2">
+      <label for="editVignette">Edit Vignette:</label>
+      <input class="form-control" type="text" placeholder="Name" [(ngModel)]="this.editVignette.name" [ngModelOptions]="{standalone: true}"/>
+      <textarea placeholder="Text" [(ngModel)]="this.editVignette.text"></textarea>
+      <input class="form-control" type="text" placeholder="Characters" [(ngModel)]="this.editVignette.characters" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control" type="text" placeholder="Location" [(ngModel)]="this.editVignette.location" [ngModelOptions]="{standalone: true}"/>
+      <input class="form-control" type="text" placeholder="Order" [(ngModel)]="this.editVignette.order" [ngModelOptions]="{standalone: true}"/>
+
+      <button class="btn btn-default" (click)="updateVignette()"> Edit Vignette </button>
+  </div> -->
+

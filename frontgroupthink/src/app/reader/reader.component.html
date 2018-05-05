@@ -1,0 +1,88 @@
+<div class= "whole container-fluid full-width" >
+  <div class="reader row row-no-gutter" >
+    <div class = "nav col-sm-1"  (click)="hide()">
+      <app-menu ></app-menu>
+    </div>
+    <section class = "big">
+
+      <div appScrollAnimate [callback] = "scrollHandler"  class = "txt">
+        <div [id]="index+1" class = "read-vignette" *ngFor="let vignette of vignettes |  orderBy: 'order', let index = index;" >
+          <div  class="reader-title">
+            {{vignette.name}}
+          </div>
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+          {{vignette.name}}
+
+
+
+          <div *ngFor="let t of vignette.text; let index = index"  class = "reader-text">
+            <div *ngIf = "t[0] === '@'; else unattatched " class = "part" [id] = "index + 1">
+              {{t}}
+              <!-- {{t.substring(1, t.length)}} -->
+              <span class = "invisible last" [id] = "index + 1">x</span>
+            </div>
+              <ng-template #unattatched>{{t}}</ng-template>
+          </div>
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <div class="" >
+      <app-map (click) =  "changeStyling" appResize [standalones]= "standalones" [text]="text" [scrollTop]="scrollTop" [actingVignette] = "actingVignette" id = "mapid"></app-map>
+    </div>
+
+  </div>
+</div>

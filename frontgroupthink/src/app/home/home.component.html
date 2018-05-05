@@ -1,0 +1,17 @@
+<div >
+<h2 class = "main-title">Plot</h2>
+
+  <app-map  class = "splash"></app-map>
+  <div (click) = "placeInstructions()" class="">
+    place instructions
+  </div>
+  <div  class="row">
+
+  <a  class="col-sm-3 btn-home" routerLink="/add">Add A Story</a>
+  <a  class="col-sm-3 btn-home" routerLink="/manage">Manage Stories</a>
+  <a  class="col-sm-3 btn-home" routerLink="/reader">Read Stories</a>
+  <a  class="col-sm-3 btn-home" routerLink="/filter">Filter Stories</a>
+</div>
+
+  <router-outlet></router-outlet>
+</div>

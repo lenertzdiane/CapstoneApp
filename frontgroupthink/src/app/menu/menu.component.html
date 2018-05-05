@@ -1,0 +1,25 @@
+<!-- <div class=" row col-sm-12" id="nav"> -->
+  <!-- <div class="row"> -->
+
+<!-- <button (click)="toggleCollapse()" class="navbar-toggler navbar-toggler-right" type="button"> v </button> -->
+<!-- <p [@myAnimation]='state' (click)="toggleCollapse()">I will animate</p> -->
+<!-- other navbar code omitted -->
+<div (click)="toggleCollapse()" >
+  <div class="hamburger">
+
+  </div>
+  <div class="hamburger">
+
+  </div><div class="hamburger">
+
+  </div>
+</div>
+
+  <div >
+    <a [@myAnimation]='state' class="collapse" class="col-sm-12 btn-menu" routerLink="/add">Add</a>
+    <a [@myAnimation2]='state' class="collapse" class="col-sm-12 btn-menu" routerLink="/manage">Manage</a>
+    <a [@myAnimation3]='state' class="collapse" class="col-sm-12 btn-menu" routerLink="/reader">Reader</a>
+    <a [@myAnimation4]='state' class="collapse" class="col-sm-12 btn-menu" routerLink="/filter">Filter</a>
+  </div>
+
+<!-- </div> -->

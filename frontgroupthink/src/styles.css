@@ -1,0 +1,536 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+#map, #mapid {
+  min-height: 350px;
+  vertical-align: top;
+  height: 35vw;
+  /* display: inline-block; */
+  /* width: 88÷%; */
+  /* position: fixed; */
+  /* margin-left: 0; */
+  /* margin-right: 8vw; */
+
+  /* overflow: scroll; */
+}
+
+/* ADD VIGNETTE********************************************* ADD VIGNETTE  */
+
+h1 {
+  color: #A9D9E5;
+  font-family: "Bungee Hairline";
+  font-weight: bold;
+  font-size: 4vw;
+}
+
+.add-toggle {
+  text-align: center;
+  font-size: 1.8vw;
+  background-color: #232323;
+  margin-bottom: 8px;
+  color: grey;
+  border-bottom: 3px solid #65737e;
+  border-right: 3px solid #65737e;
+
+}
+
+.add-toggle:hover {
+  text-decoration: none;
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
+
+.acting {
+  background-color:#2e2e2e;
+  color: #A9D9E5;
+  border-bottom: 3px solid #A9D9E5;
+  border-right: 3px solid #A9D9E5;
+
+}
+
+.black {
+  color: black;
+  width: 100%;
+}
+
+.title {
+  height: 5vw;
+
+  font-size: 3vw;
+  background-color: #232323 ;
+  color: #A9D9E5;
+  border: none;
+}
+
+.manage-title {
+  font-size: 2vw;
+  color: #A9D9E5;
+  border: none;
+}
+
+.btn-add {
+  width: 100%;
+  height: 2.9vw;
+  font-size: 1.8vw;
+  margin-top: .6vw;
+  margin-bottom: .6vw;
+
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+  border: none;
+}
+
+.btn-add:hover {
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
+
+.forms {
+  margin-left: 3vw;
+  /* margin-top: 8vw; */
+}
+
+.add-map {
+  margin-left: 2vw;
+  margin-top: 6.8vw;
+  position: fixed;
+}
+
+#add-map {
+  height: 100%;
+}
+
+textarea {
+  max-width: 100%;
+  overflow: scroll;
+}
+
+#text-input {
+  width: 100%;
+  overflow: scroll;
+background-color: #2e2e2e;
+  color: #A9D9E5;
+  border: none;
+}
+
+.character-input:nth-of-type(2n+1) {
+  background-color: #2e2e2e;
+
+  border: none;
+}
+
+.character-input:nth-of-type(2n+2) {
+  background-color: #232323;
+
+  border: none;
+}
+
+#standalone-input {
+  background-color: #2e2e2e;
+    color: #A9D9E5;
+    border: none;
+}
+.leaflet-popup {
+  max-height: 20vw;
+  overflow-y: scroll;
+}
+
+/* PART */
+.part-index {
+  font-size: 6vw;
+  max-height: 100%;
+  margin-bottom: 5px;
+}
+
+.parts {
+  height: 8vw;
+  overflow: hidden;
+  margin-top: 1.3vw;
+  margin-bottom: 1.3vw;
+
+  padding: 8px;
+  color: #AACCFF;
+  font-size: 1.3vw;
+}
+
+.part-container {
+  margin-left: 4vw;
+  margin top: 8vw;
+  max-height: 28vw;
+  overflow: scroll;
+}
+
+div.parts:hover {
+
+}
+
+.part-edit-input {
+  background-color: 	#232323 ;
+  color:  #A9D9E5;
+  margin-bottom: 1vw;
+}
+
+.parts:nth-of-type(2n +1) {
+  border-width: 2px;
+  background-color: 	#232323 ;
+  color:  #A9D9E5;
+}
+
+.parts:nth-of-type(2n + 2) {
+  border-width: 2px;
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+
+}
+.btn-delete {
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  margin-bottom: 2vw;
+  border: none;
+}
+
+.btn-edit {
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  margin-bottom: 2vw;
+  border: none;
+}
+
+/*  ANCHOR BUTTONS  ********************************************* ANCHOR BUTTONS*/
+.anchor-buttons {
+  justify-content: center;
+  margin-left: 50vw;
+  /* margin-top: 2vw;
+  position: fixed; */
+
+}
+.btn-anchor {
+  margin-left: 2vw;
+  background-color: #2e2e2e ;
+  color:  #A9D9E5;
+  border: none;
+}
+
+.btn-anchor:hover {
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
+
+.btn-anchor::selection {
+  background-color: #A9D9E5;
+  color: #2e2e2e;
+}
+
+
+/* NAV ********************************************* NAV */
+
+.nav {
+  height: 100vw;
+}
+#nav {
+  height: 100vw;
+}
+.hamburger {
+    width: 35px;
+    height: 5px;
+    background-color: #A9D9E5;
+    margin: 6px 0;
+
+}
+.btn-menu {
+  font-family: "Bungee Hairline";
+  font-weight: bold;
+  font-size: 1.2vw;
+  width: 100%;
+  height: 3vw;
+  margin-top: 17px;
+  text-align: left;
+}
+
+.btn-menu:nth-of-type(2n +1) {
+  border-width: 2px;
+  background-color: 	#232323 ;
+  color: #A9D9E5;
+}
+
+.btn-menu:nth-of-type(2n + 2) {
+  border-width: 2px;
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+}
+
+.btn-menu:hover {
+  text-decoration: none;
+  background-color: #A9D9E5;
+  color: #65737e;
+}
+
+
+/* .leaflet-popup-content  {
+  background-color: #A9D9E5;
+}
+.leaflet-popup-content-wrapper {
+  background-color: #A9D9E5
+} */
+
+/* READER ********************************************* READER  */
+
+
+.txt {
+  font-size: 1.5vw;
+  height: 20vw;
+  overflow: scroll;
+}
+
+.reader {
+  margin-right: 8vw;
+}
+
+
+.reader-title {
+  font-family: "Bungee Hairline";
+  font-weight: bold;
+  height: 5vw;
+  font-size: 3vw;
+}
+
+
+
+path.lines {
+  fill: none;
+  stroke: #A9D9E5;
+}
+
+path.anchor {
+  fill: red;
+  stroke: red;
+}
+
+path.standalone {
+  fill: #A9D9E5;
+  stroke: #A9D9E5;
+  z-index: 6;
+}
+
+.big {
+  margin-top: 4vw;
+}
+
+.vignette {
+  border: 2px solid black;
+  margin: 2vw;
+  max-height: 10vw;
+  overflow: scroll;
+  background-color: white;
+}
+
+.read-vignette {
+  color: #A9D9E5;
+  font-size: 2.3vw;
+}
+
+
+::webkit-input-placeholder {
+  vertical-align: top;
+ font-size: 14px;
+ color: #A9D9E5;
+ /* text-transform: uppercase;
+ text-transform: uppercase; */
+ text-align: left;
+ font-weight: bold;
+}
+
+
+/* .container {
+  max-height: 100vw;
+  overflow: scroll;
+} */
+
+.travelMarker {
+  color: yellow;
+  opacity: .6;
+}
+
+#marker {
+  color: yellow;
+}
+
+.reader-text {
+  font-family: "Rajdhani";
+}
+
+/* MANAGE VIGNETETES DRAGULA ********************************************* MANAGE VIGNETTES  */
+
+
+.vignette-display:nth-of-type(2n+1) {
+  background-color: 	#232323 ;
+  color: #A9D9E5;
+}
+
+.vignette-display:nth-of-type(2n+2) {
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+}
+
+/* TEXTAREA RESIZE ********************************************* TEXTAREA RESIZE  */
+
+body {
+  margin: 20px;
+  font-family: 'Bungee Hairline', sans-serif;
+
+  background-color: #3a3a3a;
+
+}
+
+
+
+p {
+  margin-bottom: 14px;
+}
+
+
+
+textarea {
+  font-family: "Rajdhani";
+  color: #444;
+  padding: 5px;
+}
+
+.txtstuff {
+  resize: none; /* remove this if you want the user to be able to resize it in modern browsers */
+  overflow: hidden;
+}
+
+.hiddendiv {
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word; /* future version of deprecated 'word-wrap' */
+}
+
+/* the styles for 'commmon' are applied to both the textarea and the hidden clone */
+/* these must be the same for both */
+.common {
+  width: 500px;
+  min-height: 50px;
+  font-family: "Bungee Hairline";
+  font-weight: bold;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+/* FILTER */
+.btn-filter {
+/* width: 100%; */
+height: 4.5vw;
+font-size: 1.8vw;
+margin-top: .6vw;
+margin-bottom: .6vw;
+
+background-color: #2e2e2e ;
+color: #A9D9E5;
+border: none;
+}
+
+.filter-read-container {
+  margin-top: 20vw;
+}
+.filter-read-vignette {
+  margin-top: 5vw;
+}
+
+.filter-reader-text {
+  font-family: "Rajdhani";
+  font-size: 1.8vw;
+  height: 20vw;
+  overflow: scroll;
+  color: #A9D9E5;
+}
+.filter-container {
+  margin-left: 8vw;
+}
+.btn-filter:hover {
+background-color: #A9D9E5;
+color: #2e2e2e;
+}
+
+.btn-time {
+  margin-left: 5vw;
+}
+
+/*  ANCHORS */
+.anchors-map {
+  max-height: 80vw;
+  max-width: 80vw;
+}
+
+/* DRAGULA  */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+/*  SPLASH PAGE */
+.splash {
+  height: 100vw;
+}
+.btn-home {
+  font-size: 2vw;
+  height: 5vw;
+  margin-top: 17px;
+  text-align: center;
+}
+
+.btn-home:nth-of-type(2n +1) {
+  border-width: 2px;
+  background-color: 	#232323 ;
+  color: #A9D9E5;
+}
+
+.btn-home:nth-of-type(2n + 2) {
+  border-width: 2px;
+  background-color: #2e2e2e ;
+  color: #A9D9E5;
+}
+
+.btn-home:hover {
+  text-decoration: none;
+  background-color: #A9D9E5;
+  color: #65737e;
+}
+
+.instructions {
+  font-size: 4vw;
+}
+
+.invisible {
+  font-size: .01vw;
+}
+
+.main-title {
+font-family: "Bungee Hairline";
+color:  #A9D9E5;
+text-align: center;
+  font-size: 6vw;
+  font-weight: bold;
+}
