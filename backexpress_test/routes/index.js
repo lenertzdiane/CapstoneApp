@@ -33,6 +33,7 @@ router.get('/getVignettes', function(req, res, next) {
 router.post('/insertNewVignette', function(req, res, next) {
   var newVignette = new Vignette(req.body);
   newVignette._id = mongoose.Types.ObjectId();
+  console.log(newVignette._id)
 
   newVignette.save(function(err) {
     if (err) {
@@ -47,6 +48,7 @@ router.post('/insertNewVignette', function(req, res, next) {
 });
 
 router.post('/deleteVignette', function(req, res, next) {
+
   Vignette.remove({_id : req.body.id}, function(err) {
     if (err) {
       console.log("not removed!");
@@ -59,15 +61,6 @@ router.post('/deleteVignette', function(req, res, next) {
   });
 });
 
-// router.post('/updateVignette', function(req, res, next) {
-//   Vignette.findByIdAndUpdate(req._id, req.body, function (err, post) {
-//     // console.log('in post')
-//     // console.log(req.body)
-//     if (err) return next(err);
-//     res.json(post);
-//     console.log(post)
-//   });
-// });
 
 router.post('/updateVignette', function (req, res, next) {
 

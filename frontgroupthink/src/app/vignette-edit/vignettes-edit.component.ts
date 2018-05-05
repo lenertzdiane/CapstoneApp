@@ -8,7 +8,7 @@ import { VignetteService } from '../services/vignettes.service';
 })
 
 export class VignetteEditComponent implements OnInit {
-  @Input() vignette: Vignette;
+  @Input() editVignette: Vignette;
 
   newVignette: Vignette;
   vignettes: Vignette[];
@@ -22,11 +22,13 @@ export class VignetteEditComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.vignette = Vignette.CreateDefault();
     this.newVignette = Vignette.CreateDefault();
     this.searchCriteria = '';
     this.getVignettes();
     // this.editVignette = Vignette.CreateDefault();
+
   }
 
   getVignettes(){
@@ -45,7 +47,7 @@ export class VignetteEditComponent implements OnInit {
               this.vignettes.push(newVignette);
             })
           })
-        }
+
 
   updateVignette(vignette:Vignette) {
     console.log('in vinedit')

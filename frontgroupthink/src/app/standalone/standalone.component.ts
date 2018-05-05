@@ -18,12 +18,14 @@ export class StandaloneComponent implements OnInit {
 
   newStandalone: Standalone;
   standalones: Standalone[];
+
   features: String;
   feature: string;
   feat: string;
   searchCriteria: string;
   anchors: Anchor[];
   anchorsPlaced: boolean;
+
 
 
   constructor(private anchorService: AnchorService, private standaloneService: StandaloneService, private mapService: MapService, private d3Service: D3Service) { }
@@ -38,7 +40,7 @@ export class StandaloneComponent implements OnInit {
     this.feat = ''
     this.standalones = [];
     this.anchorsPlaced = false;
-  }
+
 
 
   setLocation(event) {

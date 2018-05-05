@@ -46,6 +46,7 @@ export class VignetteService {
     }
 
     deleteVignette(vignette:Vignette): Observable<any>{
+      console.log(vignette._id)
         return this.http.post("http://localhost:3000/deleteVignette", { id: vignette._id })
         .map((res:any) => {
             return res.json();
