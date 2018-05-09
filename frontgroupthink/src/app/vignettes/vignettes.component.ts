@@ -70,7 +70,7 @@ export class VignetteComponent implements OnInit {
 
 
   setLocation(event) {
-    if this.mapService.getLatLng(event){
+    if(this.mapService.getLatLng(event)){
     let latlng = this.mapService.getLatLng(event)
 
     let feature = //`{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }    } , `

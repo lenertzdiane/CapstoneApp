@@ -8,9 +8,9 @@ import { OrderModule } from 'ngx-order-pipe';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 
-import { VignetteComponent } from './vignettes/vignettes.component'
-import { VignetteDisplayComponent } from './vignette-display/vignettes-display.component'
-import { VignetteEditComponent } from './vignette-edit/vignettes-edit.component'
+import { VignetteComponent } from './vignettes/vignettes.component';
+import { VignetteDisplayComponent } from './vignette-display/vignettes-display.component';
+// import { VignetteEditComponent } from './vignette-edit/vignettes-edit.component';
 
 import { VignetteService } from './services/vignettes.service';
 import { StandaloneService } from './services/standalone.service';
@@ -30,7 +30,7 @@ import { NotesComponent } from './notes/notes.component';
 import { MenuComponent } from './menu/menu.component';
 import { ScrollAnimateDirective } from './directives/scroll-animate.directive';
 import { MapComponent } from './map/map.component';
-import { ResizeDirective } from './directives/resize.directive';
+// import { ResizeDirective } from './directives/resize.directive';
 import { HighlightDirective } from './directives/highlight.directive';
 // import { ModalDirective } from './directives/modal.directive';
 import { PartEditComponent } from './part-edit/part-edit.component';
@@ -39,11 +39,13 @@ import { StandaloneComponent } from './standalone/standalone.component';
 import { FilterComponent } from './filter/filter.component';
 import { AnchorComponent } from './anchor/anchor.component';
 
+import * as $ from 'jquery';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent, VignetteComponent, VignetteDisplayComponent, VignetteEditComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, ResizeDirective, HighlightDirective, PartEditComponent, StandaloneComponent, FilterComponent, AnchorComponent
+    AppComponent, VignetteComponent, VignetteDisplayComponent, AuthorComponent, HomeComponent, ReaderComponent, NotesComponent, MenuComponent, ScrollAnimateDirective, MapComponent, HighlightDirective, PartEditComponent, StandaloneComponent, FilterComponent, AnchorComponent
   ],
   imports: [
     BrowserModule,

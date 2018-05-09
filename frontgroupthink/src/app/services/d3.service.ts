@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 declare var jquery:any;
 import * as d3 from 'd3';
+import {interpolate} from 'd3-interpolate';
 
 import * as L from 'leaflet';
 import { StandaloneComponent } from '../standalone/standalone.component'
@@ -12,10 +13,11 @@ declare var $ :any;
 export class D3Service {
 
   projectedArray: Array<object>;
-  linePath: object;
-  marker: object;
+  linePath: any;
+  marker: any;
   counter: number;
-  popups: Array<object>
+  popups: Array<object>;
+  svg: any;
 
   constructor() {
     this.projectedArray = [] as any;
@@ -157,7 +159,7 @@ export class D3Service {
     console.log(this.linePath);
     transition(this.linePath);
 
-    function transition(linePath) => {
+    function transition(linePath) {
               linePath.transition()
                   .duration(7500)
                   .attrTween("stroke-dasharray", tweenDash(linePath))
@@ -167,13 +169,13 @@ export class D3Service {
                   });
           } //end transition
 
-          function tweenDash(linePath) => {
+          function tweenDash(linePath) {
            return function(t) {
                //total length of path (single value)
                var l = linePath.node().getTotalLength();
                console.log(l)
 
-               interpolate = d3.interpolateString("0," + l, l + "," + l);
+               let interpol = d3.interpolateString("0," + l, l + "," + l);
                //t is fraction of time 0-1 since transition began
                var marker = d3.select("#marker");
 
@@ -183,19 +185,20 @@ export class D3Service {
                var p = linePath.node().getPointAtLength(t * l);
 
                //Move the marker to that point
-               this.marker.attr("transform", "translate(" + p.x + "," + p.y + ")"); //move marker
-               console.log(interpolate(t))
-               return interpolate(t);
+               // this.marker.attr("transform", "translate(" + p.x + "," + p.y + ")"); //move marker
+               console.log(interpol(t))
+               return interpol(t);
            }
        } //end tweenDash
 }
 
   drawLine(map, scrollTop, text, location) {
     // let map = map
-    // let actingVignette; //these allow me to compile but throw errors when scrolling
-    // let actingChild;
-    // let actingLast;
-    // let actingLastNum;
+    let vignetteElements = document.getElementsByClassName("read-vignette")
+    let actingVignette = $(vignetteElements[0]); //these allow me to compile but throw errors when scrolling
+    let actingChild = actingVignette.children().children()[1];
+    let actingLast = actingVignette.children().children()[0];;
+    let actingLastNum = 0;
     let marker = this.marker as any;
     let projectedArray = this.projectedArray
     let linePath = this.linePath as any;
@@ -291,7 +294,7 @@ export class D3Service {
         // console.log('in render')
         let length = linePath.node().getTotalLength()
 
-        let vignetteElements = document.getElementsByClassName("read-vignette")
+        vignetteElements = document.getElementsByClassName("read-vignette")
 
 
         for(let i = 0; i < vignetteElements.length; i ++) {
@@ -304,14 +307,16 @@ export class D3Service {
           if($($(vignetteElements[i]).children().last()).position()){
 
           if($($(vignetteElements[i]).children().last()).position().top > txtHeight){
-            let actingVignette = $(vignetteElements[i])
+            actingVignette = $(vignetteElements[i])
             break
           }
         }
         }
 
         //let elements be the children of the acting vignette
+
         let children = actingVignette.children().children()
+
 
         for(let i = 0; i < children.length; i ++) {
           // console.log($(elements[i]).position().top, $(window).innerHeight()))
@@ -321,15 +326,15 @@ export class D3Service {
 
           if($(children[i]).position().top > txtHeight){
             // if($(children[i]).has('div')){
-            let actingChild = $(children[i])
+            actingChild = $(children[i])
             // console.log(actingChild)
             // }
             // console.log('actingChild')
             // console.log(actingChild)
             //this wont work between the last one of the last vignette and the first
             //one of the second vignette
-            let actingLast = $(children[i - 1])
-            let actingLastNum = i
+            actingLast = $(children[i - 1])
+            actingLastNum = i
             break
           }
         }
@@ -456,8 +461,8 @@ placeInstructions(instructions, points, map) {
   let dataLayer = L.geoJson(geoJSONPopups, {
       pointToLayer: function (feature, latlng) {
         let popupText = instructions[counter]
+        counter+=1
           return L.circleMarker(latlng, {'className': 'instructions'}).bindPopup(popupText);
-          counter+=1
       }
   })
   dataLayer.addTo(map);

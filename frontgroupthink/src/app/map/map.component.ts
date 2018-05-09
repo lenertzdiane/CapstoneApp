@@ -23,15 +23,15 @@ export class MapComponent implements OnInit, OnChanges {
   constructor(private mapService: MapService, private d3Service: D3Service) { }
 
   ngOnInit() {
-    this.features = []
+    this.features = [];
 
-    let map = L.map("map", {
+    var map = L.map("map", {
       zoomControl: false,
       center: L.latLng(41.79, -87.65),
       zoom: 17,
       // minZoom: 8,
       // maxZoom: 18,
-      layers: L.tileLayer("http://{s}.sm.mapstack.stamen.com/(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/{z}/{x}/{y}.png" //, {
+      layers: L.tileLayer("http://{s}.sm.mapstack.stamen.com/(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/{z}/{x}/{y}.png") //, {
       // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
       // [this.mapService.baseMaps.OpenStreetMap]
     });
@@ -63,12 +63,12 @@ export class MapComponent implements OnInit, OnChanges {
       console.log(this.mapService.map)
       this.d3Service.placeSVG(this.mapService.map)
 
-        this.d3Service.readyMap(this.mapService.map, this.actingVignette.location, this.standalones);
+        this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
         this.d3Service.placeMarkers(this.mapService.map, this.standalones)
       }
       if(changes['actingVignette'].previousValue._id != changes['actingVignette'].currentValue._id){
         this.d3Service.removePrevious(this.mapService.map)
-        this.d3Service.readyMap(this.mapService.map, this.actingVignette.location, this.standalones);
+        this.d3Service.readyMap(this.mapService.map, this.actingVignette.location);
     };
       // this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
 
@@ -77,7 +77,7 @@ export class MapComponent implements OnInit, OnChanges {
 
     if(changes['scrollTop'] && changes['scrollTop'].currentValue != undefined) {
       let scrollTop = changes.scrollTop.currentValue
-      this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location, this.standalones)
+      this.d3Service.drawLine(this.mapService.map, scrollTop, this.text, this.actingVignette.location)
 
     }
   }

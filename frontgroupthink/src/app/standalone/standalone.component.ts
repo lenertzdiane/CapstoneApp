@@ -40,33 +40,33 @@ export class StandaloneComponent implements OnInit {
     this.feat = ''
     this.standalones = [];
     this.anchorsPlaced = false;
+}
 
 
+    setLocation(event) {
+      console.log('in setlocation')
+      if(this.feat.length === 0) {
+        var latlng = this.mapService.addStandaloneMarker(event)
 
-  setLocation(event) {
-    console.log('in setlocation')
-    if(this.feat.length === 0) {
-      let latlng = this.mapService.addStandaloneMarker(event)
-
-      this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
-    this.feature = this.feat
-  }
-  }
-
-  removeMarkers(){
-    this.mapService.removeMarkers()
-    this.feat = ''
-  }
-
-  showAnchors() {
-    if(!this.anchorsPlaced){
-      this.mapService.readyAnchorGroup()
-      if(this.anchors){
-        this.d3Service.placeAnchors(this.mapService.anchorGroup, this.anchors)
-        this.anchorsPlaced = true
+        this.feat = `{       \"type\": \"Feature\",       \"properties\": {},       \"geometry\": {         \"type\": \"Point\",         \"coordinates\": [           ${latlng.lng},           ${latlng.lat}        ]       }     }, `
+        this.feature = this.feat
       }
     }
-  }
+
+    removeMarkers(){
+      this.mapService.removeMarkers()
+      this.feat = ''
+    }
+
+    showAnchors() {
+      if(!this.anchorsPlaced){
+        this.mapService.readyAnchorGroup()
+        if(this.anchors){
+          this.d3Service.placeAnchors(this.mapService.anchorGroup, this.anchors)
+          this.anchorsPlaced = true
+        }
+      }
+    }
 
   hideAnchors() {
     this.mapService.removeAnchors();

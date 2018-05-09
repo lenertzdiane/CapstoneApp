@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Anchor } from '../models/anchor';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class AnchorService {
@@ -15,7 +14,7 @@ export class AnchorService {
 
     getAnchors(searchCriteria:any) : Observable<Anchor[]>{
 
-        return this.http.get("http://localhost:3000/getAnchors")
+        return this.http.get("https://groupthinktv.herokuapp.com/getAnchors")
                 .map((res:any) => {
                     return res.json();
                 })
@@ -25,7 +24,7 @@ export class AnchorService {
     }
 
     insertNewAnchor(anchor:Anchor): Observable<any>{
-        return this.http.post("http://localhost:3000/insertNewAnchor", anchor)
+        return this.http.post("https://groupthinktv.herokuapp.com/insertNewAnchor", anchor)
             .map((res:any) => {
                 return res.json();
             })
