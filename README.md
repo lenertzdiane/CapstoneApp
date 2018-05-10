@@ -8,5 +8,6 @@ There is an interface to add/edit/rearrange stories as well as view them, but th
 link to deployed app (only some features enabled):
 https://groupthinktelevision.herokuapp.com/
 
-link to video (showcase of all features):
+link to video (showcase of all features): 
+https://www.youtube.com/watch?v=FKaRoLcJOG4
 
